@@ -63,11 +63,13 @@ export class ManualVendorComponent implements OnInit,OnDestroy {
 
   
   getVendors(){
+    this.showSpinner= true;
     this.api.send("findDb",{
       fields:["VP.*"],
       table:'vendor_parents as VP',
       conditions:[{'VP.approval_status !':6}]
     }).then((res:any)=>{
+      this.showSpinner= false;
       // console.log("res==",res.data)
       this.getMyVendors().then((result:any)=>{
 
