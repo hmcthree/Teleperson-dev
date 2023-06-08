@@ -23,6 +23,7 @@ export class AddVendorComponent implements OnInit {
   userInfoSubscriber:any
   loggedUserInfo:any =null
   selectedVendorData:any = null
+  showSpinner:boolean = true
   childs:any = []
   childsTemp:any = []
   lastIndex:any = 0
@@ -198,8 +199,10 @@ export class AddVendorComponent implements OnInit {
 
   searchVendor(event){
     this.vendorSearchTerm = event.target.value;
+    this.showSpinner = true;
 
     if(this.vendorSearchTerm.length>0){
+      this.showSpinner = false
       this.vendors = this.vendorsTemp.filter((item)=>{
         return (item.company_name.toLowerCase().startsWith(this.vendorSearchTerm.toLowerCase()));
 
