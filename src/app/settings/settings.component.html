@@ -1,0 +1,545 @@
+<div class="main-content" >
+<div *ngIf="modalStatus || confirmModalStatus || incongnitoShowModalStatus || incongnitoHideModalStatus" class="modal-backdrop show"></div>
+<div  *ngIf="modalStatus" class="modal bs-example-modal-lg" tabindex="-1" role="dialog" 
+aria-labelledby="myLargeModalLabel" aria-hidden="true" style="margin-top: 200px;">
+<div class="modal-dialog modal-md">
+    <div class="modal-content">
+        <div class="modal-header" style="border: none;">
+            <!-- <h5 class="modal-title mt-0" id="myLargeModalLabel">Add New Vendor</h5> -->
+            <button type="button" class="btn-close" data-bs-dismiss="modal" (click)="closeModal()"
+                aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+        <div class="col-md-12 col-lg-12">
+            <div class="row">
+                
+                <div class="col-md-12 col-lg-12">
+                    <div class="row mb-3 px-2">
+                      <div class="col-md-6 col-xl-6" style="display:flex;justify-content:space-around;">
+                        <img src="assets/images/Oops.svg" alt="con" style="width:200px;">
+                      </div>
+                      <div class="col-md-6 col-xl-6 text-center">
+                        <p style="padding-top:20px;font-size: 16px;text-align: center;">Woah! I did not mean to hit ‘remove account’. </p>
+                        <div class="row mt-5" style="justify-content:space-around;">
+                            <!-- <div class="col-md-6 col-xl-6"> -->
+                                <button type="button" class="btn btn-outline-success"style="border-radius: 5px !important;font-size: 16px !important;width:auto;" data-bs-dismiss="modal" aria-label="Close" (click)="closeModal()">Cancel</button>
+
+                            <!-- </div> -->
+                            <!-- <div class="col-md-6 col-xl-6"> -->
+                                <button type="button" class="btn btn-outline-success"style="border-radius: 5px !important;font-size: 16px !important;width:auto;" (click)="confirm()">Continue</button>
+                             <!-- </div> -->
+                        </div>
+
+                      </div>
+                    
+                </div>
+                
+                
+            </div>
+        </div>
+        </div>
+        
+    </div><!-- /.modal-content -->
+</div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+</div>
+
+<div *ngIf="confirmModalStatus" class="modal bs-example-modal-lg" tabindex="-1" role="dialog" 
+aria-labelledby="myLargeModalLabel" aria-hidden="true" style="margin-top: 10px;">
+
+<div class="modal bs-example-modal-lg" tabindex="-1" role="dialog" 
+aria-labelledby="myLargeModalLabel" aria-hidden="true" style="margin-top: 10px;">
+<div class="modal-dialog modal-lg">
+    <div class="modal-content">
+        <div class="modal-header" style="border: none;">
+            <!-- <h6 class="modal-title mt-0" id="myLargeModalLabel">Add New Vendor</h6> -->
+            <button type="button" class="btn-close" data-bs-dismiss="modal" (click)="closeConfirmModal()"
+                aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+        <div class="col-md-12 col-lg-12">
+            <div class="row">
+                
+                <div class="col-md-12 col-lg-12">
+                    <div class="row mb-3 px-2">
+                        <div class="col-md-5 col-xl-5 text-center">
+                        <img src="assets/images/sorry.svg" alt="con" style="width:200px;">
+                        </div>
+                        <div class="col-md-5 col-xl-5 text-center pt-3">
+                        <p style="padding-top:20px;font-size: 16px;text-align: center;">We're sorry to see you go! Before you do, can you help us understand why you’re looking to leave? This will help us make Teleperson better!</p>
+                        
+
+                        </div>
+                    
+                </div>
+                <div class="row mt-3">
+                    <div class="col-md-8 col-xl-8" style="padding-left: 30px;">
+                        <h6>1. The platform is not working properly.</h6>
+                    </div>
+                    <div class="col-md-4 col-xl-4" style="padding-left: 30px;">
+                        <div class="form-checkbox" style="text-align: left;">
+                            <input type="checkbox" class="form-check-input me-1"
+                                id="customControlInline" style="width: 23px !important;">
+                            
+                        </div>
+                    </div>
+                </div>
+                <div class="row mt-2">
+                    <div class="col-md-8 col-xl-8" style="padding-left: 30px;">
+                        <h6>2. I'm fine with just calling my companies in the traditional way.
+                        </h6>
+                    </div>
+                    <div class="col-md-4 col-xl-4" style="padding-left: 30px;">
+                        <div class="form-checkbox" style="text-align: left;">
+                            <input type="checkbox" class="form-check-input me-1"
+                                id="customControlInline" style="width: 23px !important;">
+                            
+                        </div>
+                    </div>
+                </div>
+                <div class="row mt-2">
+                    <div class="col-md-8 col-xl-8" style="padding-left: 30px;">
+                        <h6>  3. Customer experience just isn't a big enough problem for me.
+
+                        </h6>
+                    </div>
+                    <div class="col-md-4 col-xl-4" style="padding-left: 30px;">
+                        <div class="form-checkbox" style="text-align: left;">
+                            <input type="checkbox" class="form-check-input me-1"
+                                id="customControlInline" style="width: 23px !important;">
+                            
+                        </div>
+                    </div>
+                </div>
+                <div class="row mt-2">
+                    <div class="col-md-8 col-xl-8" style="padding-left: 30px;">
+                        <h6>    4. The Teleperson experience is just not what I'm looking for.
+
+                        </h6>
+                    </div>
+                    <div class="col-md-4 col-xl-4" style="padding-left: 30px;">
+                        <div class="form-checkbox" style="text-align: left;">
+                            <input type="checkbox" class="form-check-input me-1"
+                                id="customControlInline" style="width: 23px !important;">
+                            
+                        </div>
+                    </div>
+                </div>
+                <div class="row mt-2">
+                    <div class="col-md-8 col-xl-8" style="padding-left: 30px;">
+                        <h6>   5. I don't trust Teleperson with my personal data.
+
+
+                        </h6>
+                    </div>
+                    <div class="col-md-4 col-xl-4" style="padding-left: 30px;">
+                        <div class="form-checkbox" style="text-align: left;">
+                            <input type="checkbox" class="form-check-input me-1"
+                                id="customControlInline" style="width: 23px !important;">
+                            
+                        </div>
+                    </div>
+                </div>
+                <div class="row mt-2">
+                    <div class="col-md-8 col-xl-8" style="padding-left: 30px;">
+                        <h6>   7. I don't like other people knowing what companies I shop from.
+
+                        </h6>
+                    </div>
+                    <div class="col-md-4 col-xl-4" style="padding-left: 30px;">
+                        <div class="form-checkbox" style="text-align:left;">
+                            <input type="checkbox" class="form-check-input me-1"
+                                id="customControlInline" style="width: 23px !important;">
+                            
+                        </div>
+                    </div>
+                </div>
+                <div class="row mt-2">
+                    <div class="col-md-8 col-xl-8" style="padding-left: 30px;">
+                        <h6>    8. Other (please specify). </h6>
+
+                    </div>
+                    <div class="col-md-4 col-xl-4" style="padding-left: 30px;">
+                        <div class="form-checkbox" style="text-align: left;">
+                            <input type="checkbox" class="form-check-input me-1"
+                                id="customControlInline" style="width: 23px !important;">
+                            
+                        </div>
+                    </div>
+                    <div class="col-md-8 col-xl-8 mt-3" style="padding-left: 30px;">
+                        <textarea  style="width: 100%; margin-left: 0px; border: 1px solid #d1d1d1; border-radius: 5px;"></textarea><br>
+                        <button type="button" class="btn btn-outline-success mt-2"style="margin-left:0px;border-radius: 5px !important;font-size: 16px !important;width:auto;height:45px !important;" data-bs-toggle="modal" data-bs-target=".bs-example-modal-lg" >Send</button>
+
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+        </div>
+        
+    </div><!-- /.modal-content -->
+</div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+</div>
+</div>
+
+<div *ngIf="incongnitoShowModalStatus" class="modal bs-example-modal-lg" tabindex="-1" role="dialog" 
+aria-labelledby="myLargeModalLabel" aria-hidden="true" style="margin-top: 200px;">
+<div class="modal-dialog modal-md">
+    <div class="modal-content">
+        <div class="modal-header" style="border: none;">
+            <!-- <h5 class="modal-title mt-0" id="myLargeModalLabel">Add New Vendor</h5> -->
+            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                aria-label="Close" (click)="closeShowModal()"></button>
+        </div>
+        <div class="modal-body">
+        <div class="col-md-12 col-lg-12">
+            <div class="row">
+                
+                <div class="col-md-12 col-lg-12">
+                    <div class="row mb-3 px-2">
+                      <div class="col-md-6 col-xl-6">
+                        <img src="assets/images/show.svg" alt="con" style="width:200px;">
+                      </div>
+                      <div class="col-md-6 col-xl-6 text-center">
+                        <p style="padding-top:20px;font-size: 16px;text-align: center;">Awesome! Members should not be able to find you in the Teleperson community!</p>
+                        <button type="button" class="btn btn-outline-success"style="border-radius: 5px !important;font-size: 16px !important;"  data-bs-dismiss="modal"
+                        aria-label="Close" (click)="closeShowModal()">Ok</button>
+
+                      </div>
+                    
+                </div>
+                
+                
+            </div>
+        </div>
+        </div>
+        
+    </div><!-- /.modal-content -->
+</div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+</div>
+
+<div *ngIf="incongnitoHideModalStatus" class="modal bs-example-modal-lg" tabindex="-1" role="dialog" 
+    aria-labelledby="myLargeModalLabel" aria-hidden="true" style="margin-top: 200px;">
+    <div class="modal-dialog modal-md">
+        <div class="modal-content">
+            <div class="modal-header" style="border: none;">
+                <!-- <h5 class="modal-title mt-0" id="myLargeModalLabel">Add New Vendor</h5> -->
+                <button type="button" class="btn-close" data-bs-dismiss="modal"  (click)="closeHideModal()"
+                    aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+            <div class="col-md-12 col-lg-12">
+                <div class="row">
+                    
+                    <div class="col-md-12 col-lg-12">
+                        <div class="row mb-3 px-2">
+                            <div class="col-md-6 col-xl-6">
+                            <img src="assets/images/hide.svg" alt="con" style="width:200px;">
+                            </div>
+                            <div class="col-md-6 col-xl-6 text-center">
+                            <p style="padding-top:20px;font-size: 16px;text-align: center;">Got it!  You won't appear in the Teleperson community!</p>
+                            <button type="button" class="btn btn-outline-success"style="border-radius: 5px !important;font-size: 16px !important;" data-bs-dismiss="modal"
+                            aria-label="Close" (click)="closeHideModal()">Ok</button>
+
+                            </div>
+                        
+                    </div>
+                    
+                    
+                </div>
+            </div>
+            </div>
+            
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+</div>
+
+    <div class="page-content">
+        <div class="container-fluid">
+          <div class="card">
+               <div class="card-body">
+                <div class="row">
+                    <div class="col-xl-12 px-0">
+                        <!-- Nav tabs -->
+                        <ul class="nav nav-pills" role="tablist">
+                            <li class="nav-item waves-effect waves-light" style="overflow: visible;">
+                                <a class="nav-link active" data-bs-toggle="tab" href="#home-1" role="tab" aria-selected="true" style="padding: 10px 20px !important;cursor:pointer;" >
+                                    <span class="d-block d-sm-none"><i class="fas fa-cog" style="font-size: 18px;"></i></span>
+                                    <span class="d-none d-sm-block">General</span>
+                                </a>
+                            </li>
+                            <li class="nav-item waves-effect waves-light" style="overflow: visible;">
+                                <a class="nav-link" data-bs-toggle="tab" href="#profile-1" role="tab" aria-selected="false" 
+                                    style="padding: 10px 20px !important;cursor:pointer;">
+                                    <span class="d-block d-sm-none"><i class="ri-account-pin-circle-line" style="font-size: 18px;"></i></span>
+                                    <p class="d-none d-sm-block tp-wrap" style="color: #e3e2e2;margin-bottom: 0px!important;">Concierge
+                                        <span class="tp">View all settings related to the Teleperson Concierge(self-service vs direct-to-rep capabilities)</span>
+
+                                    </p>
+
+                                </a>
+                            </li>
+                            <li class="nav-item waves-effect waves-light" style="overflow: visible;">
+                                <a class="nav-link" data-bs-toggle="tab" href="#trending-1" role="tab" aria-selected="false" style="padding: 10px 20px !important; cursor:pointer;" >
+                                    <span class="d-block d-sm-none"><i class="ri-store-3-line" style="font-size: 18px;"></i></span>
+                                    <p class="d-none d-sm-block tp-wrap" style="color: #e3e2e2;margin-bottom: 0px!important;">Vendor Hub
+                                        <span class="tp">View all settings related to the Vendor Hub(with all of your consumers brought together in a single space)</span>
+
+                                    </p>
+                                </a>
+                            </li>
+                            <li class="nav-item waves-effect waves-light" style="overflow: visible;">
+                                <a class="nav-link" data-bs-toggle="tab" href="#messages-1" role="tab" aria-selected="false" style="padding: 10px 20px !important; cursor:pointer;">
+                                    <span class="d-block d-sm-none"><i class="ri-group-2-line" style="font-size: 18px;"></i></span>
+                                    <p class="d-none d-sm-block tp-wrap" style="color: #e3e2e2;margin-bottom: 0px!important;">Community
+                                        <span class="tp">View all settings related to the Teleperson community page</span>
+
+                                    </p>
+                                </a>
+                            </li>
+                            <li class="nav-item waves-effect waves-light" style="overflow: visible;">
+                                <a class="nav-link" data-bs-toggle="tab" href="#settings-1" role="tab" aria-selected="false" style="padding: 10px 20px !important; cursor:pointer;">
+                                    <span class="d-block d-sm-none"><i class="ri-movie-line" style="font-size: 18px;"></i></span>
+                                    <p class="d-none d-sm-block tp-wrap" style="color: #e3e2e2;margin-bottom: 0px!important;">YouZak
+                                     <span class="tp">View all settings related to the Teleperson's YouZak capabilities(personalized media hub to engage with conent while you're on hold)</span>
+                                    </p>
+                                </a>
+                            </li>
+                           
+                        </ul>
+
+                        <button type="button" class="setting-close btn-close" data-bs-dismiss="modal" routerLink="/app/dashboard" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}"
+                        aria-label="Close"></button>
+
+                    <!-- Tab panes -->
+
+                    
+
+                    <div class="tab-content py-3 mt-5 px-0 text-muted">
+                        <div class="tab-pane active" id="home-1" role="tabpanel">
+                            <div class="row">
+                                <div class="col-xl-3 col-md-3" [ngClass]="{'img-cam':!profileInfo?.profile}" style="text-align:center;border-right: 1px solid #dedada; ">
+                                    <div *ngIf="!profileInfo?.profile" class="initials" style="height:132px;width:132px;">{{getProfileInitials()}}</div>    
+                                    <img *ngIf="profileInfo?.profile" src="{{host}}profiles/{{profileInfo?.user_id}}/{{profileInfo?.profile}}" alt="user" width="160px" style="padding-left: 32px;">
+                                    <span style="position: relative;color: #38d8a2;background: white;padding: 3px 5px 0px 5px;border-radius: 50%;cursor: pointer;" [ngStyle]="{'top':profileInfo?.profile?'-40px':'-125px','right':profileInfo?.profile?'39px':'-42px'}" (click)="selectFile(fileInput)">
+                                        <i class="ri-camera-line"></i> 
+                                        <input type="file" style="position: absolute; top:0;right:0; z-index:1000;visibility: hidden;height: 24px;width: 24px;" #fileInput (click)="resetFile()" (change)="selectFiles()" accept="image/*">
+                                    </span>
+                                    <p class="strong-text mt-2">{{profileInfo?.first_name}} {{profileInfo?.last_name}}</p>
+                                    <div class="col-md-12 col-xl-12 mt-3 text-center">
+                                        <label for="example-week-input" style="font-weight:500!important;">{{profileInfo?.email}}</label><br>
+                                        <!-- <label for="example-week-input" style="font-weight:500!important;">+123456789</label> -->
+                                    </div>
+                                    <div class="col-md-12 col-xl-12 mt-3 mb-3">
+                                        <div class="d-flex justify-content-center">
+                                            <div *ngIf="profileInfo?.facebook" style="cursor:pointer;"><a [href]="profileInfo?.facebook" target="_blank" rel="noopener noreferrer"><img src="./assets/images/facebook.svg" alt="face"></a></div>
+                                            <div *ngIf="profileInfo?.twitter" style="margin-left:10px;cursor:pointer;"><a [href]="profileInfo?.twitter" target="_blank" rel="noopener noreferrer"><img src="./assets/images/twitter.svg" alt="face"></a></div>
+                                            <div *ngIf="profileInfo?.instagram" style="margin-left:10px;cursor:pointer;"><a [href]="profileInfo?.instagram" target="_blank" rel="noopener noreferrer"><img src="./assets/images/insta.svg" alt="face"></a></div>
+                                            <div *ngIf="profileInfo?.linkedin" style="margin-left:10px;cursor:pointer;"><a [href]="profileInfo?.linkedin" target="_blank" rel="noopener noreferrer"><img src="./assets/images/linked.svg" alt="face"></a></div>
+                                        </div>
+                                   </div>
+                                </div>
+                                <!-- <div class="col-xl-3 col-md-3" style="text-align:center;border-right: 1px solid #dedada;">
+                                    
+                                   
+                                    <div class="col-md-12 col-12 text-center pb-1" style="display: flex;flex-direction: column;align-items: center;position: relative;">
+                                        <div *ngIf="!profileInfo?.profile" class="initials" style="height:132px;width:132px;">{{getProfileInitials()}}</div>
+                                         <img *ngIf="profileInfo?.profile" src="{{host}}profiles/{{profileInfo?.user_id}}/{{profileInfo?.profile}}" alt="user" width="160px" style="padding: 0 16px;"> 
+                                         <span style="position:absolute; top: 7px;right: 65px;color: #38d8a2;background: white;padding: 3px 5px 0px 5px;border-radius: 50%;z-index: 1000;cursor: pointer;" (click)="fileInput.click()"><i class="ri-camera-line"></i></span>
+                                         <input type="file" #fileInput (click)="resetFile()" (change)="selectFiles()" class="hide_file" accept="image/*">
+                                        <p class="strong-text mt-2">{{profileInfo?.first_name}} {{profileInfo?.last_name}}</p>
+                                     
+                                     </div>
+                                    <div class="col-md-12 col-xl-12 mt-3 text-center">
+                                        <label for="example-week-input" style="font-weight:500!important;">example.123@gmail.com</label><br>
+                                    </div>
+                                    <div class="col-md-12 col-xl-12 mt-3 mb-3">
+                                        <div class="d-flex justify-content-center">
+                                            <div *ngIf="profileInfo?.facebook" style="cursor:pointer;"><a [href]="profileInfo?.facebook" target="_blank" rel="noopener noreferrer"><img src="./assets/images/facebook.svg" alt="face"></a></div>
+                                            <div *ngIf="profileInfo?.twitter" style="margin-left:10px;cursor:pointer;"><a [href]="profileInfo?.twitter" target="_blank" rel="noopener noreferrer"><img src="./assets/images/twitter.svg" alt="face"></a></div>
+                                            <div *ngIf="profileInfo?.instagram" style="margin-left:10px;cursor:pointer;"><a [href]="profileInfo?.instagram" target="_blank" rel="noopener noreferrer"><img src="./assets/images/insta.svg" alt="face"></a></div>
+                                            <div *ngIf="profileInfo?.linkedin" style="margin-left:10px;cursor:pointer;"><a [href]="profileInfo?.linkedin" target="_blank" rel="noopener noreferrer"><img src="./assets/images/linked.svg" alt="face"></a></div>
+                                         </div>
+                                   </div>
+                                </div> -->
+                                <div class="col-xl-9 col-md-9">
+                                   <div class="col-md-12 col-lg-12">
+                                    <div class="row">
+                                        <div class="col-md-12 col-lg-12" [formGroup]="profileForm">
+                                            <div class="row mb-3 px-4">
+                                                <!-- <label for="example-text-input" class="col-sm-4 col-form-label" style="text-align: left;">First Name</label> -->
+                                                <div class="col-sm-12">
+                                                    <input class="form-control" formControlName="first_name" type="text" placeholder="First name" id="example-text-input" style="border-radius: 5px !important;">
+                                                    <div class="error" style="font-size: 0.8rem;" *ngIf="profileForm.controls.first_name.errors?.pattern">Only aplhabetic charecters are accepted.</div>
+                                                </div>
+                                              
+                                            </div>
+                                            <div class="row mb-3 px-4">
+                                                <!-- <label for="example-text-input text-left" class="col-sm-4 col-form-label" style="text-align: left;">Last Name</label> -->
+                                                <div class="col-sm-12">
+                                                    <input class="form-control" formControlName="last_name" type="text" placeholder="Last name" id="example-text-input" style="border-radius: 5px !important;">
+                                                    <div class="error" style="font-size: 0.8rem;" *ngIf="profileForm.controls.last_name.errors?.pattern">Only aplhabetic charecters are accepted.</div>
+                                                </div>
+                                              
+                                            </div>
+                                            <div class="row mb-3 px-4">
+                                                <!-- <label for="example-text-input text-left" class="col-sm-4 col-form-label" style="text-align: left;">Last Name</label> -->
+                                                <div class="col-sm-12">
+                                                    <input class="form-control" formControlName="facebook" type="email" placeholder="Add facebook link" id="example-text-input"style="border-radius: 5px !important;">
+                                                </div>
+                                              
+                                            </div>
+                                            <div class="row mb-3 px-4">
+                                                <!-- <label for="example-text-input text-left" class="col-sm-4 col-form-label" style="text-align: left;">Last Name</label> -->
+                                                <div class="col-sm-12">
+                                                    <input class="form-control" formControlName="twitter" type="email" placeholder="Add twitter link" id="example-text-input"style="border-radius: 5px !important;">
+                                                </div>
+                                              
+                                            </div>
+                                            <div class="row mb-3 px-4">
+                                                <!-- <label for="example-text-input text-left" class="col-sm-4 col-form-label" style="text-align: left;">Last Name</label> -->
+                                                <div class="col-sm-12">
+                                                    <input class="form-control" formControlName="instagram" type="email" placeholder="Add instagram link" id="example-text-input"style="border-radius: 5px !important;">
+                                                </div>
+                                              
+                                            </div>
+                                            <div class="row mb-3 px-4">
+                                                <!-- <label for="example-text-input text-left" class="col-sm-4 col-form-label" style="text-align: left;">Last Name</label> -->
+                                                <div class="col-sm-12">
+                                                    <input class="form-control" formControlName="linkedin" type="email" placeholder="Add linkedin link" id="example-text-input"style="border-radius: 5px !important;">
+                                                </div>
+                                              
+                                            </div>
+                                            <div class="row mb-3 px-4">
+                                                <!-- <label for="example-text-input text-left" class="col-sm-4 col-form-label" style="text-align: left;">Phone Number</label> -->
+                                                <div class="col-sm-12">
+                                                    <div style="display: flex;">
+                                                        <select formControlName="extension" class="form-select" style="margin-right: 0.5rem;border-radius: 5px!important;width: 12%;text-align: center;">
+                                                            <option value="+1">+1</option>
+                                                            <!-- <option value="+2">+2</option>
+                                                            <option value="+3">+3</option>
+                                                            <option value="+4">+4</option>
+                                                            <option value="+5">+5</option>
+                                                            <option value="+6">+6</option>
+                                                            <option value="+7">+7</option>
+                                                            <option value="+8">+8</option>
+                                                            <option value="+9">+9</option> -->
+                                                        </select>
+                                                        <input class="form-control" formControlName="mobile" type="number" placeholder="+1234567890" id="example-text-input" style="border-radius: 5px !important;">
+                                                    </div>
+                                                    <div class="error" style="font-size: 0.8rem;" *ngIf="profileForm.controls.mobile.errors?.pattern">Max 10 digits allowed!</div>
+                                                    
+                                                </div>
+                                            </div>
+                                            <div class="row mb-3 px-4">
+                                                 <label for="example-text-input text-left" class="col-sm-2 col-form-label" style="text-align: left;">Incognito Mode</label> 
+                                                <div class="col-sm-4" style="text-align: right;">
+                                                    <div class="form-switch mb-1 pt-1" style="text-align:left;">
+                                                        <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" [checked]="false" (change)="inCongnitoModeChanged($event)">
+                                                         <label class="form-check-label" for="flexSwitchCheckChecked"></label>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6 col-lg-6">
+                                                    <!-- <button type="button" class="btn btn-outline-success btn-rounded waves-effect waves-light" style="margin-right:30px;">Invite Friends</button> -->
+                                                    <button type="button" class="btn btn-outline-success btn-rounded waves-effect waves-light mb-3" style="width:100%;border-radius: 5px !important;font-size: 16px !important;" [disabled]="!profileForm?.valid" (click)="update()">Update</button>
+                                                </div>
+                                            </div>
+                                            <div class="row px-4">
+                                                <div class="col-sm-12">
+                                                    <div class="row">
+                                                        <div class="col-md-6 col-lg-6">
+                                                            <button type="button"  routerLink="/app/invite-friend" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}" class="btn btn-outline-success btn-rounded waves-effect waves-light mb-3" style="width:100%;border-radius: 5px !important;font-size: 16px !important;">Invite Friends</button>
+                                                            <!-- <button type="button" class="btn btn-outline-success btn-rounded waves-effect waves-light">Remove Account</button> -->
+                                                        </div>
+                                                        <div class="col-md-6 col-lg-6">
+                                                            <!-- <button type="button" class="btn btn-outline-success btn-rounded waves-effect waves-light" style="margin-right:30px;">Invite Friends</button> -->
+                                                            <button type="button" class="btn btn-rounded waves-effect waves-light mb-3" style="background-color: #f2f2f2;height: 49px !important; width:100%;border-radius: 5px !important;font-size: 16px !important;" (click)="removeAccount()">Remove Account</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                           
+                                        </div>
+                                    </div>
+                                   </div>
+                                </div>
+                               
+                            </div>
+                           
+                            <!-- end row -->
+                        </div>
+                        <div class="tab-pane" id="profile-1" role="tabpanel">
+                            <div class="col-md-12 col-xl-12" style="text-align: center;">
+
+                                <img src="./assets/images/work-in-progress.svg" alt="work" width="100%">
+                            </div>
+                              
+                         </div>
+                         <div class="tab-pane" id="trending-1" role="tabpanel">
+                             <div class="col-md-12 col-xl-12" style="text-align: center;">
+
+                                <img src="./assets/images/work-in-progress.svg" alt="work" width="100%">
+                            </div>
+                     
+                         </div>
+                         <div class="tab-pane" id="messages-1" role="tabpanel">
+                             <div class="col-md-12 col-xl-12" style="text-align: center;">
+
+                                <img src="./assets/images/work-in-progress.svg" alt="work" width="100%">
+                            </div>
+                         </div>
+                         <div class="tab-pane" id="settings-1" role="tabpanel">
+                            <div class="col-md-12 col-xl-12" style="text-align: center;">
+
+                            <img src="./assets/images/work-in-progress.svg" alt="work" width="100%">
+                            </div>
+                        </div>
+                        <!-- <div class="tab-pane" id="profile-1" role="tabpanel">
+                            <div class="col-md-12 col-xl-12" style="text-align: center;">
+
+                             <img src="assets/images/work-in-progress.svg" alt="work">
+                            </div>
+                              
+                         </div>
+                         <div class="tab-pane" id="trending-1" role="tabpanel">
+                             <div class="col-md-12 col-xl-12" style="text-align: center;">
+
+                                 <img src="assets/images/work-in-progress.svg" alt="work">
+                            </div>
+                     
+                         </div>
+                         <div class="tab-pane" id="messages-1" role="tabpanel">
+                             <div class="col-md-12 col-xl-12" style="text-align: center;">
+
+                                 <img src="assets/images/work-in-progress.svg" alt="work">
+                            </div>
+                         </div>
+                         <div class="tab-pane" id="settings-1" role="tabpanel">
+                             <div class="col-md-12 col-xl-12" style="text-align: center;">
+
+                                 <img src="assets/images/work-in-progress.svg" alt="work">
+                            </div>
+                        </div> -->
+                    </div>
+                    
+                
+                </div>
+                <!-- end row -->
+
+            
+
+            
+
+                </div>
+               </div>
+          </div>
+       
+    </div>
+    </div>
+    <!-- End Page-content -->
+    <app-footer></app-footer>
+
+</div>

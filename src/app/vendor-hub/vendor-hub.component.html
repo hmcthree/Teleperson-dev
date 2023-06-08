@@ -1,0 +1,237 @@
+<!-- <div style="margin-bottom: 1rem;" class="monitor-view" *ngIf="showTopSection">
+    <div class="vendor-top">
+        <div class="vendor-btn-wrap">
+            <li  title="My Vendors" routerLink="my-vendors" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}" class="btn vendor-btns" (click)="setPage('My Vendor')"><img src="assets/img/mobile_icons/myvendors.svg" alt="">My Vendors</li>
+            <li  title="Community Vendors" routerLink="community-vendors" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}" class="btn vendor-btns" (click)="setPage('Community Vendor')"><img src="assets/img/mobile_icons/communityvendors.svg" alt="">Community Vendors</li>
+            <li  title="Recommended Vendors" routerLink="recommended-vendors" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}" class="btn vendor-btns" (click)="setPage('Recommended Vendor')"><img src="assets/img/mobile_icons/recommendedvendors.svg" alt="">Recommended Vendors</li>
+            <li  title="Other Vendors" routerLink="other-vendors" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}" class="btn vendor-btns" (click)="setPage('Other Vendor')"><img src="assets/img/mobile_icons/othervendors.svg" alt="">Other Vendors</li>
+        </div>
+        <div class="top-right">
+            <button mat-icon-button (click)="gotoVendorLounge()"><mat-icon>add</mat-icon></button>
+            <button mat-icon-button (click)="showPophover()"><mat-icon>more_horiz</mat-icon></button>
+            <div *ngIf="showPophoverStatus" class="more-menu">
+                <ul class="more-menu-items">
+                    <li class="more-menu-item" role="presentation">
+                        <button type="button" mat-raised-button class="more-menu-btn" role="menuitem" (click)="sortChange()"><img src="assets/img/more_icons/filter.svg" alt="">   Filter</button>
+                    </li>
+                    <li class="more-menu-item" role="presentation">
+                        <button type="button" mat-raised-button class="more-menu-btn" role="menuitem"  (click)="gotoPlaidVendor()"><img src="assets/img/more_icons/chair.svg" alt="">  Lounge</button>
+                    </li>
+                    <li class="more-menu-item" role="presentation">
+                        <button type="button" mat-raised-button class="more-menu-btn" role="menuitem" (click)="listview()"><img src="assets/img/more_icons/list.svg" alt="">   List View</button>
+                    </li>
+                    <li class="more-menu-item" role="presentation">
+                        <button type="button" mat-raised-button class="more-menu-btn" role="menuitem" (click)="share()"><img src="assets/img/more_icons/share.svg" alt="">   Share</button>
+                    </li>
+                </ul>
+            </div>
+            
+        </div>
+    </div>
+</div> 
+
+ 
+<div style="margin-bottom: 1rem;" class="mobile-view" *ngIf="showTopSection">
+    <div class="mobile-vendor-top">
+            <li  title="View a list of all of your personal vendors" routerLink="my-vendors" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}" class="btn vendor-btns" (click)="setPage('My Vendor')"><img src="assets/img/mobile_icons/myvendors.svg" alt=""></li>
+            <li  title="View the vendors of those in your community" routerLink="community-vendors" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}" class="btn vendor-btns" (click)="setPage('Community Vendor')"><img src="assets/img/mobile_icons/communityvendors.svg" alt=""></li>
+            <li  title="Recommended Vendors" routerLink="recommended-vendors" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}" class="btn vendor-btns" (click)="setPage('Recommended Vendor')"><img src="assets/img/mobile_icons/recommendedvendors.svg" alt=""></li>
+            <li  title="View other vendors across Teleperson" routerLink="other-vendors" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}" class="btn vendor-btns" (click)="setPage('Other Vendor')"><img src="assets/img/mobile_icons/othervendors.svg" alt=""></li>
+            <button mat-icon-button (click)="gotoVendorLounge()"><mat-icon>add</mat-icon></button>
+            <button mat-icon-button><mat-icon>format_list_bulleted</mat-icon></button>
+            <button mat-icon-button (click)="gotoPlaidVendor()"><img src="assets/img/mobile_icons/sofa.svg" alt=""></button>
+            <button mat-icon-button><img src="assets/img/mobile_icons/filter.svg" alt=""></button>
+    </div>
+</div>  -->
+<div class="main-content">
+
+    <div class="page-content">
+        <div class="container-fluid">
+
+           
+
+            <div class="row">
+                <div class="col-xl-12">
+                    <!-- Nav tabs -->
+                  <!-- <div style="display: flex; justify-content:space-between;"> -->
+                    <ul class="nav nav-pills" role="tablist">
+                        <li class="nav-item waves-effect waves-light">
+                            <a class="nav-link active" data-bs-toggle="tab" href="#home-1" role="tab" aria-selected="true" style="padding: 10px 20px !important;cursor:pointer;">
+                                <span class="d-block d-sm-none"><i class="fas fa-home" style="font-size: 18px;"></i></span>
+                                <span class="d-none d-sm-block">My Vendors</span>
+                            </a>
+                        </li>
+                        <li class="nav-item waves-effect waves-light">
+                            <a class="nav-link" data-bs-toggle="tab" href="#profile-1" role="tab" aria-selected="false" style="padding: 10px 20px !important;cursor:pointer;">
+                                <span class="d-block d-sm-none"><i class="ri-community-line" style="font-size: 18px;"></i></span>
+                                <span class="d-none d-sm-block">Community Vendors</span>
+                            </a>
+                        </li>
+                        <li class="nav-item waves-effect waves-light" style="overflow: visible;">
+                         <a class="nav-link" data-bs-toggle="tab" href="#trending-1" role="tab" aria-selected="false" style="padding: 10px 20px !important; cursor:pointer;">
+                             <span class="d-block d-sm-none"><i class="ri-fire-line" style="font-size: 18px;"></i></span>
+                             <p class="d-none d-sm-block tp-wrap" style="color: #beb7b7 !important;margin-bottom: 0px!important;">Trending Vendors
+                               <span class="tp">View vendors who have been receiving top scores and/or are being added by others in your Teleperson community.</span>
+                             </p>
+                         </a>
+                     </li>
+                        <li class="nav-item waves-effect waves-light" style="overflow: visible;">
+                            <a class="nav-link" data-bs-toggle="tab" href="#messages-1" role="tab" aria-selected="false" style="padding: 10px 20px !important; cursor:pointer;">
+                                <span class="d-block d-sm-none"><i class=" ri-home-heart-fill" style="font-size: 18px;"></i></span>
+                                <p class="d-none d-sm-block tp-wrap" style="color: #beb7b7 !important;margin-bottom: 0px!important;">Recommended Vendors
+                                   <span class="tp">View recommended vendors based on your existing Vendors Hub or interest</span>
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item waves-effect waves-light" style="overflow: visible;">
+                            <a class="nav-link" data-bs-toggle="tab" href="#settings-1" role="tab" aria-selected="false" style="padding: 10px 20px !important; cursor:pointer;">
+                                <span class="d-block d-sm-none"><i class="ri-home-smile-line" style="font-size: 18px;"></i></span>
+                                <p class="d-none d-sm-block tp-wrap" style="color: #beb7b7 !important;margin-bottom: 0px!important;">Other Vendors
+                                 <span class="tp">View other vendors not included in trending or recommended</span>
+                                </p>
+                            </a>
+                        </li>
+                        <li style="position: absolute;top:9px;right: 0px;display: flex;">
+                         <a (click)="gotoVendorLounge()" style="display: flex;align-items: flex-end; width: 2rem;justify-content: center;">
+
+                             <!-- <i class="ri-more-fill" style="font-size: 18px;"></i>  -->
+                         <i class="ri-add-line" style="font-size: 18px;"></i></a>
+                             <div class="dropdown float-end px-2" style="padding-top: 7px;"> 
+                                 <a href="#" class="dropdown-toggle arrow-none card-drop" data-bs-toggle="dropdown" aria-expanded="false">
+                                     <i class="mdi mdi-dots-vertical text-muted"></i>
+                                 </a>
+                                 <div class="dropdown-menu dropdown-menu-end" style="">
+                                    <a routerLink="/app/vendor-chair" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}" class="dropdown-item">
+                                        <i class="ri-home-gear-line" style="margin-right: 10px;position: relative;top: 2px;"></i>
+                                        <span>Vendor Lounge</span></a>
+                                    <a href="javascript:void(0);" class="dropdown-item">
+                                        <i class="ri-list-ordered" style="margin-right: 10px;position: relative;top: 2px;"></i>List View</a>
+                                    <a href="javascript:void(0);" class="dropdown-item">
+                                        <i class="ri-filter-2-line" style="margin-right: 10px;position: relative;top: 2px;"></i>Filter</a>
+                                
+                                    <a href="javascript:void(0);" class="dropdown-item">
+                                            <i class="ri-stackshare-line" style="margin-right: 10px;position: relative;top: 2px;"></i>Share</a>
+                                    
+                                </div>
+                             </div>
+                          
+                     </li>
+                    </ul>
+                    <!-- <ul class="nav nav-pills" role="tablist">
+                        <li class="nav-item waves-effect waves-light">
+                            <a class="nav-link active" data-bs-toggle="tab" href="#home-1" role="tab" aria-selected="true">
+                                <span class="d-block d-sm-none"><i class="fas fa-home"></i></span>
+                                <span class="d-none d-sm-block">My Vendors</span>
+                            </a>
+                        </li>
+                        <li class="nav-item waves-effect waves-light">
+                            <a class="nav-link" data-bs-toggle="tab" href="#profile-1" role="tab" aria-selected="false">
+                                <span class="d-block d-sm-none"><i class="ri-group-2-line"></i></span>
+                                <span class="d-none d-sm-block">Community Vendors</span>
+                            </a>
+                        </li>
+                        <li class="nav-item waves-effect waves-light" style="overflow:visible;">
+                            <a class="nav-link" data-bs-toggle="tab" href="#trending-1" role="tab" aria-selected="false" style="padding: 10px 20px !important;"  style="cursor:pointer;">
+                                <span class="d-block d-sm-none"><i class="ri-water-flash-line"></i></span>
+                                <p class="d-none d-sm-block tp-wrap" style="color: #beb7b7 !important; margin:0;">Trending Vendors
+                                    <span class="tp">View vendors who have been receiving top scores and/or are being added by others in your Teleperson community.</span>
+                                  </p>
+                            </a>
+
+
+                        </li>
+                           <li class="nav-item waves-effect waves-light" style="overflow:visible;">
+                               <a class="nav-link" data-bs-toggle="tab" href="#messages-1" role="tab" aria-selected="false" style="padding: 10px 20px !important;"   style="cursor:pointer;">
+                                   <span class="d-block d-sm-none"><i class="ri-pushpin-fill"></i></span>
+                                   <p class="d-none d-sm-block tp-wrap" style="color: #beb7b7 !important; margin:0;">Recommended Vendors
+                                    <span class="tp">View recommended vendors based on your existing Vendors Hub or interest</span>
+                                 </p>
+                               </a>
+                           </li>
+                           <li class="nav-item waves-effect waves-light" style="overflow:visible;">
+                               <a class="nav-link" data-bs-toggle="tab" href="#settings-1" role="tab" aria-selected="false" style="padding: 10px 30px !important;" data-bs-container="#tooltip-container" data-toggle="tooltip" data-placement="top" title="View other vendors not included in trending or recommended." style="cursor:pointer;">
+                                   <span class="d-block d-sm-none"><i class=" ri-star-s-fill"></i></span>
+                                   <p class="d-none d-sm-block tp-wrap" style="color: #beb7b7 !important; margin:0;">Other Vendors
+                                    <span class="tp">View other vendors not included in trending or recommended</span>
+                                   </p>
+                                </a>
+                           </li>
+                        <li style="position: absolute;top: 5px;right: 10px;">
+                                <div class="dropdown float-end p-2" style="    display: flex;align-items: center;height: 35px;">
+                                    <a href="#" class="dropdown-toggle arrow-none card-drop" data-bs-toggle="dropdown" aria-expanded="false">
+                                        <i class="mdi mdi-dots-vertical text-muted"></i>
+                                    </a>
+                                    <div class="dropdown-menu dropdown-menu-end" style="">
+                                        <a routerLink="/app/vendor-chair" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}" class="dropdown-item">
+                                            <i class="ri-home-gear-line" style="margin-right: 10px;position: relative;top: 2px;"></i>
+                                            <span>Vendor Lounge</span></a>
+                                        <a href="javascript:void(0);" class="dropdown-item">
+                                            <i class="ri-list-ordered" style="margin-right: 10px;position: relative;top: 2px;"></i>List View</a>
+                                        <a href="javascript:void(0);" class="dropdown-item">
+                                            <i class="ri-filter-2-line" style="margin-right: 10px;position: relative;top: 2px;"></i>Filter</a>
+                                    
+                                        <a href="javascript:void(0);" class="dropdown-item">
+                                                <i class="ri-stackshare-line" style="margin-right: 10px;position: relative;top: 2px;"></i>Share</a>
+                                        
+                                    </div>
+                                </div>
+                                <div class="dropdown float-end p-2" style="display: flex;align-items: center;height: 35px;">
+                                    <a (click)="gotoVendorLounge()" style="margin-top: 3px;" class="dropdown-toggle arrow-none card-drop" data-bs-toggle="dropdown" aria-expanded="false">
+                                        <i class="ri-add-line text-muted"></i>
+                                    </a>
+                                </div>
+                        </li>
+                    </ul> -->
+                  <!-- </div> -->
+                   
+                   <div class="tab-content px-0 text-muted">
+                        <app-my-vendors class="tab-pane active" id="home-1" role="tabpanel"></app-my-vendors>
+                        <app-community-vendors class="tab-pane" id="profile-1" role="tabpanel"></app-community-vendors>
+                        <!-- <div id="trending-1" role="tabpanel"></div> -->
+                        <div class="tab-pane" id="trending-1" role="tabpanel">
+                            <div class="col-md-12 col-xl-12 mt-5 pt-5" style="text-align: center;">
+
+                                <img src="assets/images/work-in-progress.svg" alt="work" class="w_inprogrss">
+                            </div>
+                       
+                          </div>
+                          <div class="tab-pane" id="messages-1" role="tabpanel">
+                            <div class="col-md-12 col-xl-12 mt-5 pt-5" style="text-align: center;">
+
+                                <img src="assets/images/work-in-progress.svg" alt="work" class="w_inprogrss">
+                               </div>
+                       
+                          </div>
+                           <div class="tab-pane" id="settings-1" role="tabpanel">
+                            <div class="col-md-12 col-xl-12 mt-5 pt-5" style="text-align: center;">
+
+                                <img src="assets/images/work-in-progress.svg" alt="work" class="w_inprogrss">
+                               </div>
+                           </div>
+                        <!-- <div id="messages-1" role="tabpanel"></div>
+                        <div id="settings-1" role="tabpanel"></div> -->
+                        <!-- <app-recommended-vendors class="tab-pane" id="messages-1" role="tabpanel"></app-recommended-vendors>
+                        <app-other-vendors class="tab-pane" id="settings-1" role="tabpanel"></app-other-vendors> -->
+                        <app-vendor-lounge class="tab-pane" id="lounge-1" role="tabpanel"></app-vendor-lounge>
+                   </div>
+                       <!-- <router-outlet></router-outlet> -->
+                   
+                </div>
+                
+              
+            </div>
+            <!-- end row -->
+
+           
+
+           
+
+        </div>
+        <!-- end container-fluid -->
+    </div>
+    <!-- End Page-content -->
+
+   
+    <app-footer></app-footer>
+</div>
+

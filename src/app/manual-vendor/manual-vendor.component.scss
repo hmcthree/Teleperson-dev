@@ -1,0 +1,47 @@
+.flex-wrap{
+    display: flex;
+    flex-wrap: wrap;
+    padding: 1rem 4rem;
+}
+.form-card{
+    width: 100%;
+    border-radius: 15px;
+    padding: 1rem 1rem 1rem 0;
+    form{
+        padding: 15px;
+    }
+
+    
+}
+
+
+
+h1{
+    color: black;
+    padding: 0 0.7rem;
+    margin: 0;
+    font-weight: 500;
+
+}
+
+.input-wrapper{
+    padding: 0.7rem;
+    width: 90%;
+    label{
+        margin-bottom: 0.4rem;
+    }
+    .required:after {
+        content: " *";
+          color: red;
+          font-weight: 100;
+      }
+}
+
+.f-btn{
+    width: 25%;
+    line-height: 1.4;
+}
+
+.cancel-btn{
+    margin-left: 2rem;
+}

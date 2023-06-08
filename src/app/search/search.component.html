@@ -1,0 +1,215 @@
+<div class="main-content" style="height:100vh!important;">
+
+    <div class="page-content">
+        <div class="container-fluid" style="overflow-y: auto;max-height: 87vh">
+            <div class="row">
+                
+                <div class="col-xl-12">
+                    <div class="card p-4">
+                        <div class="row">
+                            <div class="col-xl-10 col-md-10">
+                                <h5>Top Results for “{{search}}”</h5>
+                               
+                            </div>
+                            <div class="col-xl-2 col-md-2" style="text-align:right;">
+                                <!-- <a href="#"><span style="font-size:14px;color:#38D8A2;">View all</span></a> -->
+                            </div>
+                         </div>
+                      
+                        <div class="row pt-4 px-2 pb-2">
+                            <div class="col-xl-2 col-md-3" *ngFor="let p of myVendors; let i=index;" >
+                                <div class="card">
+                                    <div class="card-body card-height p-0">
+                                        <div class="dropdown p-2" style="position: absolute;right: 0px;">
+                                            <a href="#" class="dropdown-toggle arrow-none card-drop"
+                                                data-bs-toggle="dropdown" aria-expanded="false">
+                                                <i class="mdi mdi-dots-vertical text-muted"></i>
+                                            </a>
+                                            <div class="dropdown-menu dropdown-menu-end">
+                                                <!-- item-->
+                                                <a href="javascript:void(0);" class="dropdown-item">
+                                                    <i class="ri-profile-line"style="margin-right: 10px;position: relative;top: 2px;"></i>
+                                                    <span>See Profile</span></a>
+                                                <a href="javascript:void(0);" class="dropdown-item">
+                                                    <i class="ri-group-2-line"style="margin-right: 10px;position: relative;top: 2px;"></i>
+                                                    <span>Community</span></a>
+                                                    
+                                                <!-- item-->
+                                                <a href="javascript:void(0);" class="dropdown-item" style="opacity: 0.4;">
+                                                    <i class="ri-heart-line"style="margin-right: 10px;position: relative;top: 2px;"></i>Follow</a>
+                                                <!-- item-->
+                                                <a href="javascript:void(0);" class="dropdown-item" style="opacity: 0.4;">
+                                                    <i class="ri-inbox-archive-line"style="margin-right: 10px;position: relative;top: 2px;"></i>Archive</a>
+                                               
+                                                <a href="javascript:void(0);" class="dropdown-item" style="opacity: 0.4;">
+                                                        <i class="ri-delete-bin-line" style="margin-right: 10px;position: relative;top: 2px;"></i>Remove Vendor</a>
+                                                
+                                            </div>
+                                        </div>
+                                        <div class="p-3 d-flex" class="d-flex" style="padding: 1rem;" (click)="gotoOverview(p)">
+                                            <!-- <div style="text-align:center;padding-top: 15px;"> -->
+                                                <!-- <img src="./assets/images/layouts/bmw.png" alt="bmw"> -->
+                                                <div class="flex-1 vendor-wrapper" style="padding-top: 15px;">
+                                                    <div class="vendor-img">
+                                                        <img *ngIf="!p.logo &&(!p.logo_url || p.logo_url == '')" src="assets/img/dummy.png"  alt="{{p.company_name}}" class="responsive">
+                                                        <img *ngIf="!p.logo && p.logo_url" [src]="p.logo_url" alt="{{p.company_name}}" class="responsive">
+                                                        <img *ngIf="p.logo"  src="{{host}}vendors/{{p?.vendor_id}}/{{p?.logo}}" alt="{{p.company_name}}" class="responsive">
+                                                        <!-- <img *ngIf="checkLogo(p)" src="{{host}}vendors/{{p?.vendor_id}}/{{p?.logo}}" alt="{{p.company_name}}"  class="responsive"> -->
+                                                    </div>
+                                                <h5 class="text-center font-size-12 mb-0 pt-2">{{p.company_name}}</h5>
+                                               
+                                               </div>
+                                        </div>
+                                      
+                                    </div>
+                                    <!-- end cardbody -->
+                                </div>
+                                <!-- end card -->
+                            </div>
+                            <!-- end col -->
+                           
+                        </div>
+                    </div>
+                 
+                </div>
+            </div>
+
+            <div class="row">
+                
+                <div class="col-xl-12">
+                    <div class="card p-4">
+                         <div class="row px-2">
+                            <div class="col-xl-10 col-md-10">
+                                <h5>Related results for “{{search}}”</h5>
+                               
+                            </div>
+                            <div class="col-xl-2 col-md-2" style="text-align:right;">
+                                <!-- <a href="#"><span style="font-size:14px;color:#38D8A2;">View all</span></a> -->
+                            </div>
+                         </div>
+                         <div class="col-xl-12 pt-2 px-0">
+                            <!-- Nav tabs -->
+                        <ul class="nav nav-pills" role="tablist">
+                            <li class="nav-item waves-effect waves-light">
+                                <a class="nav-link active" data-bs-toggle="tab" href="#home-111" role="tab" aria-selected="true" style="padding: 5px 10px !important;border: 1px solid #dedede;margin: 0px 10px;">
+                                    <span class="d-block d-sm-none"><i class="fas fa-home"></i></span>
+                                    <span class="d-none d-sm-block">Vendor</span>
+                                </a>
+                            </li>
+                          
+                            <li class="nav-item waves-effect waves-light">
+                                <a class="nav-link" data-bs-toggle="tab" href="#trending-112" role="tab" aria-selected="false" style="padding: 5px 10px !important;border: 1px solid #dedede;margin: 0px 10px;">
+                                    <span class="d-block d-sm-none"><i class="far fa-envelope"></i></span>
+                                    <span class="d-none d-sm-block">Community</span>
+                                </a>
+                            </li>
+                            <li class="nav-item waves-effect waves-light">
+                                <a class="nav-link" data-bs-toggle="tab" href="#messages-113" role="tab" aria-selected="false" style="padding: 5px 10px !important;border: 1px solid #dedede;margin: 0px 10px;">
+                                    <span class="d-block d-sm-none"><i class="far fa-envelope"></i></span>
+                                    <span class="d-none d-sm-block" style="color: #e3e2e2;">Issues</span>
+                                </a>
+                            </li>
+                                                         
+                           
+                        </ul>
+                        <div class="tab-content py-3 px-0 text-muted">
+                            <div class="tab-pane active" id="home-111" role="tabpanel">
+                                <div class="row  px-0 pb-2">
+                                    <div class="col-xl-2 col-md-3" *ngFor="let p of relatedVendors; let i=index;">
+                                        <div class="card">
+                                            <div class="card-body card-height p-0">
+                                                <div class="dropdown p-2" style="position: absolute;right: 0px;">
+                                                    <a href="#" class="dropdown-toggle arrow-none card-drop"
+                                                        data-bs-toggle="dropdown" aria-expanded="false">
+                                                        <i class="mdi mdi-dots-vertical text-muted"></i>
+                                                    </a>
+                                                    <div class="dropdown-menu dropdown-menu-end">
+                                                        <!-- item-->
+                                                        <a href="javascript:void(0);" class="dropdown-item">
+                                                            <i class="ri-profile-line"style="margin-right: 10px;position: relative;top: 2px;"></i>
+                                                            <span>See Profile</span></a>
+                                                        <a href="javascript:void(0);" class="dropdown-item">
+                                                            <i class="ri-group-2-line"style="margin-right: 10px;position: relative;top: 2px;"></i>
+                                                            <span>Community</span></a>
+                                                        <!-- item-->
+                                                        <a href="javascript:void(0);" class="dropdown-item" style="opacity: 0.4;">
+                                                            <i class="ri-heart-line"style="margin-right: 10px;position: relative;top: 2px;"></i>Follow</a>
+                                                        <!-- item-->
+                                                        <a href="javascript:void(0);" class="dropdown-item" style="opacity: 0.4;">
+                                                            <i class="ri-inbox-archive-line"style="margin-right: 10px;position: relative;top: 2px;"></i>Archive</a>
+                                                       
+                                                        <a href="javascript:void(0);" class="dropdown-item" style="opacity: 0.4;">
+                                                                <i class="ri-delete-bin-line" style="margin-right: 10px;position: relative;top: 2px;"></i>Remove Vendor</a>
+                                                        
+                                                    </div>
+                                                </div>
+                                                <div class="p-3 d-flex" class="d-flex">
+                                                    <!-- <div style="text-align:center;padding-top: 15px;"> -->
+                                                        <!-- <img src="./assets/images/layouts/bmw.png" alt="bmw"> -->
+                                                        <div class="flex-1 vendor-wrapper" style="padding-top: 15px;">
+                                                            <div class="vendor-img">
+                    
+                                                                <img *ngIf="checkLogo(p)" src="{{host}}vendors/{{p?.vendor_id}}/{{p?.logo}}" alt="{{p.company_name}}"  class="responsive">
+                                                            </div>
+                                                        <h5 class="text-center font-size-12 mb-0 pt-2">{{p.company_name}}</h5>
+                                                        <p style="margin-bottom:0px;margin-top: 15px;" *ngIf="p?.user_id !== loggedUserInfo?.user_id">
+                                                            <span class="add">Add</span>
+                                                         </p>
+                                                       </div>
+                                                </div>
+                                                <!-- <div class="p-3">
+                                                    <div style="text-align:center;">
+                                                        <img src="./assets/images/layouts/bmw.png" alt="bmw">
+                                                        <h5 class="text-center font-size-12 mb-0 pt-2">{{p.company_name}}</h5>
+                                                        <p style="margin-bottom:0px;margin-top: 15px;">
+                                                            <span class="add">Add</span>
+                                                         </p>
+                                                       </div>
+                                                </div> -->
+                                              
+                                            </div>
+                                            <!-- end cardbody -->
+                                        </div>
+                                        <!-- end card -->
+                                    </div>
+                                   
+                                </div>
+                               
+                                <!-- end row -->
+                            </div>
+                            <div class="tab-pane" id="trending-112" role="tabpanel">
+                                <div class="col-xl-12 col-md-12">
+                                    <app-community-page [vendorId]="vendorId"></app-community-page>
+                                </div>
+                            </div>
+                            <div class="tab-pane" id="messages-113" role="tabpanel">
+                                
+                        
+                            </div>
+                            <!-- <div class="tab-pane" id="messages-11" role="tabpanel">
+                            
+                            </div> -->
+                            <!-- <div class="tab-pane" id="settings-1" role="tabpanel">
+                            
+                            </div> -->
+                        </div>
+                        
+                        </div>
+
+                        <!-- Tab panes -->
+                      
+                        
+                      
+                    </div>
+                 
+                </div>
+            </div>
+            
+       
+    </div>
+    </div>
+    <!-- End Page-content -->
+
+    <app-footer></app-footer>
+
+</div>

@@ -1,0 +1,110 @@
+.search-wrap{
+    background-color: white;
+    display: flex;
+    align-items: center;
+    min-width: 70%;
+    border-radius: 10px;
+    border:1px solid #ccc;
+    input{
+      border: none;
+      width: 90%;
+      height: 3rem;
+      font-size: 1rem;
+      margin-left: 1rem;
+    }
+    input:focus{
+      outline: none;
+    }
+    mat-icon{
+      color: black;
+    }
+  }
+
+  .email-input-wrap{
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+  .copy-input-wrap{
+    height: 13.5vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .email-btn-wrap{
+    display: flex;
+    justify-content: flex-end;
+    height: 15%;
+    align-items: center;
+    button{
+        width: auto;
+    }
+}
+
+.copy-btn-wrap{
+    display: flex;
+    justify-content: flex-end;
+    height: 15%;
+    align-items: center;
+    button{
+        width: auto;
+    }
+}
+
+.invitees-list{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 0.6rem;
+    .avatar-wrap{
+        display: flex;
+        align-items: center;
+        .invite-name{
+            margin-left: 1rem;
+        }
+    }
+}
+
+
+#snackbar {
+    visibility: hidden;
+    color: #fff;
+    background-color: #333;
+    min-width: 170px;
+    padding: 5px;
+    text-align: center;
+    bottom: -40px;
+    z-index: 1;
+    position: absolute;
+    border-radius: 10px;
+  }
+  
+  /* This will be activated when the snackbar's class is 'show' which will be added through JS */
+  #snackbar.show {
+    visibility: visible;
+    -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
+    animation: fadein 0.5s, fadeout 0.5s 2.5s;
+  }
+  
+  /* Animations for fading in and out */
+  @-webkit-keyframes fadein {
+    from {opacity: 0;}
+    to {opacity: 1;}
+  }
+  
+  @keyframes fadein {
+    from {opacity: 0;}
+    to {opacity: 1;}
+  }
+  
+  @-webkit-keyframes fadeout {
+    from {opacity: 1;}
+    to {opacity: 0;}
+  }
+  
+  @keyframes fadeout {
+    from {opacity: 1;}
+    to {opacity: 0;}
+  }

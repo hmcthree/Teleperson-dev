@@ -1,0 +1,29 @@
+<div class="toast-wrap">
+
+  <div id="toast" [ngClass]="{'show':messageStatus,'':!messageStatus,'success-toast':(messageColor==0)?true:false,'error-toast':(messageColor==1)?true:false,'warning-toast':(messageColor==2)?true:false}"> {{toastMessage}}</div>
+</div>
+<!-- <app-user-home *ngIf="location.path().split('/')[1] != 'user' && location.path().split('/')[1] != 'admin'"></app-user-home> -->
+<router-outlet></router-outlet>
+
+<!-- <mat-card *ngIf="freezMessage.length > 0" [ngClass]="{'freez':dataFreez,'unfreez':!dataFreez}" class="data-freez">
+  <mat-icon (click)="removeFrees()" class="freez-close-btn" [ngClass]="{'freez-close':dataFreez,'unfreez-close':!dataFreez}">close</mat-icon>
+  <div class='freez-block'>
+    <div>
+
+      <div *ngIf="dataFreez">
+
+        <mat-icon>wifi_off</mat-icon> &nbsp;&nbsp;
+        <mat-icon>cloud_off</mat-icon>
+      </div>
+      <div *ngIf="!dataFreez">
+
+        <mat-icon>wifi</mat-icon>&nbsp;&nbsp;
+        <mat-icon>cloud_done</mat-icon>
+      </div>
+      <h2 *ngIf="dataFreez">Cloud Server Down  Offline</h2>
+      <h2 *ngIf="!dataFreez">Could Server Up  Online</h2>
+    </div>
+    <div class="data-message">{{freezMessage}}</div>
+
+  </div>
+</mat-card> -->

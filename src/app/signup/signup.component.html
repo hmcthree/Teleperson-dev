@@ -1,0 +1,275 @@
+<div class="account-pages my-5 pt-5">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-8 col-lg-6 col-xl-5" *ngIf="!showSupportStatus">
+                <div class="card" style="border-radius: 30px;">
+                    <div class="card-body">
+                        <div class="text-center mt-2">
+                            <div class="mb-3">
+                                <a href="index.html" class="">
+                                    <img src="assets/images/layouts/Logo.svg" alt="" height="50" class="auth-logo logo-dark mx-auto">
+                                    <img src="assets/images/layouts/Logo.svg" alt="" height="50" class="auth-logo logo-light mx-auto">
+                                </a>
+                            </div>
+                        </div>
+                        <div class="p-2">
+                            <h4 class="font-size-18 text-muted mt-2 text-center">Register</h4>
+                            <p class="text-muted text-center mb-4">Get your free Teleperson account now.</p>
+
+                            <form class="form-horizontal" [formGroup]="signupForm">
+
+                                <div class="mb-3">
+                                    <label class="form-label" for="useremail">First Name</label>
+                                    <input type="email" class="form-control" id="useremail"
+                                         placeholder="First Name" formControlName = 'firstname'>
+                                </div>
+  
+                                <div class="mb-3">
+                                    <label class="form-label" for="username">Last Name</label>
+                                    <input type="text" class="form-control" id="username"
+                                         placeholder="Last Name" formControlName = 'lastname'>
+                                </div>
+  
+                                <div class="mb-3">
+                                    <label class="form-label" for="userpassword">Email Adress</label>
+                                    <input type="email" class="form-control" id="userpassword"
+                                         placeholder="Email Address" formControlName = 'email'>
+                                </div>
+
+                                <div class="row mb-0">
+                                    <div class="d-flex justify-content-between">
+                                        <button class="btn w-100 waves-effect waves-light login" type="submit" [disabled] = "!signupForm.valid" (click)="signup(signupForm.value)">Register</button>
+                                        <p class="pt-3 mb-0"> <a style="padding: 10px;background: #f3f3f3;border-radius: 5px;color: #42bfa6 !important; cursor: pointer;" (click)="showSupportPage()">Help?</a></p>
+                                    </div>
+                                </div>
+                                <div class="mt-4 row">
+                                    <div class="col-12">
+                                        <div class="form-checkbox" style="display: flex;">
+                                            <input type="checkbox" class="form-check-input me-1"
+                                                id="customControlInline" style="width: 42px !important;">
+                                            <label class="form-label" class="form-check-label"
+                                                for="customControlInline" style="color: black !important;padding-top: 4px;font-weight: 400 !important;">By clicking the register button, you agree to Teleperson’s <a href="https://teleperson.com/terms-and-conditions/" target="_blank" style="color: #42bfa6 !important;cursor: pointer;display: inline-block;"> Terms of Service</a> and <a href="https://teleperson.com/privacy-policy/" target="_blank" style="color: #42bfa6 !important;cursor: pointer;display: inline-block;"> Privacy Policy.</a></label> 
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+
+                        </div>
+
+                    </div>
+                </div>
+                <div class="mt-2 text-center">
+                    <p>Already have an account? <a routerLink="/login" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}"  class="fw-bold" style="color: #42bfa6 !important;"> Login </a>
+                    </p>
+                   
+                </div>
+
+            </div>
+            <div class="col-md-4 col-lg-6 col-xl-5" *ngIf="showSupportStatus">
+                <app-suport></app-suport>
+                <div class="mt-2 text-center">
+                    <p>Don't have an account? <a class="fw-bold" style="color: #42bfa6 !important;" (click)="showSupportPage()"> Register </a>
+                    </p>
+                   
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+<!-- <div class="account-pages my-5 pt-5">
+  <div class="container">
+      <div class="row justify-content-center">
+          <div class="col-md-8 col-lg-6 col-xl-5">
+              <div class="card" style="border-radius: 30px;">
+                  <div class="card-body pt-2">
+                      <div class="text-center mt-2">
+                          <div class="mb-2">
+                              <a href="index.html" class="">
+                                  <img src="assets/images/layouts/Logo.svg" alt="" height="50" class="auth-logo logo-dark mx-auto">
+                                  <img src="assets/images/layouts/Logo.svg" alt="" height="50" class="auth-logo logo-light mx-auto">
+                              </a>
+                          </div>
+                      </div>
+                      <div class="p-2">
+                          <h4 class="font-size-18 text-muted mt-2 text-center">Register</h4>
+                          <p class="text-muted text-center mb-4">Get your free Teleperson account now.</p>
+
+                          <form class="form-horizontal" [formGroup]="signupForm">
+
+                              <div class="mb-3">
+                                  <label class="form-label" for="useremail">First Name</label>
+                                  <input type="email" class="form-control" id="useremail"
+                                       placeholder="First Name" formControlName = 'firstname'>
+                              </div>
+
+                              <div class="mb-3">
+                                  <label class="form-label" for="username">Last Name</label>
+                                  <input type="text" class="form-control" id="username"
+                                       placeholder="Last Name" formControlName = 'lastname'>
+                              </div>
+
+                              <div class="mb-3">
+                                  <label class="form-label" for="userpassword">Email Adress</label>
+                                  <input type="password" class="form-control" id="userpassword"
+                                       placeholder="Email Address" formControlName = 'email'>
+                              </div>
+
+                              <div class="row mb-0">
+                                  <div class="d-flex justify-content-between">
+                                      <button class="btn w-100 waves-effect waves-light login" type="submit" [disabled] = "!signupForm.valid" (click)="signup(signupForm.value)">Register</button>
+                                      <p class="pt-2 mb-0"> <a href="#" style="padding: 10px;background: #f3f3f3;border-radius: 5px;">Help?</a></p>
+                                  </div>
+                              </div>
+
+
+
+                              <div class="mt-4 row">
+                                  <div class="col-12">
+                                      <div class="form-checkbox">
+                                          <input type="checkbox" class="form-check-input me-1"
+                                              id="customControlInline">
+                                          <label class="form-label" class="form-check-label"
+                                              for="customControlInline" style="padding-top: 4px;font-weight: 400 !important;">I agree to the <a hre="#" style="color: #5867c3;"> Terms & Conditions</a></label>
+                                      </div>
+                                  </div>
+                              </div>
+                          </form>
+
+                      </div>
+
+                  </div>
+              </div>
+              <div class="mt-2 text-center">
+                  <p>Already have an account? <a routerLink="/login" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}"  class="fw-bold" style="color: #42bfa6 !important;"> Login </a>
+                  </p>
+                 
+              </div>
+
+          </div>
+      </div>
+  </div>
+</div> -->
+<!-- <div class="account-pages my-5 pt-5">
+  <div class="container">
+      <div class="row justify-content-center">
+          <div class="col-md-8 col-lg-6 col-xl-5">
+              <div class="card">
+                  <div class="card-body">
+                      <div class="text-center mt-2">
+                          <div class="mb-2">
+                              <a href="index.html" class="">
+                                  <img src="assets/images/layouts/Logo.svg" alt="" height="50" class="auth-logo logo-dark mx-auto">
+                                  <img src="assets/images/layouts/Logo.svg" alt="" height="50" class="auth-logo logo-light mx-auto">
+                              </a>
+                          </div>
+                      </div>
+                      <div class="p-2">
+                          <h4 class="font-size-18 text-muted mt-2 text-center">Register</h4>
+                          <p class="text-muted text-center mb-4">Get your free Teleperson account now.</p>
+
+                          <form class="form-horizontal" [formGroup]="signupForm">
+                              <div class="mb-3">
+                                  <label class="form-label" for="firstname">Frist Name</label>
+                                  <input type="text" class="form-control" id="firstname"
+                                      placeholder="Enter First Name">
+                              </div>
+
+                              <div class="mb-3">
+                                  <label class="form-label" for="lastname">Last Name</label>
+                                  <input type="text" class="form-control" id="lastname"
+                                      placeholder="Enter Last Name">
+                              </div>
+
+                              <div class="mb-3">
+                                <label class="form-label" for="useremail">Email</label>
+                                <input type="email" class="form-control" id="useremail"
+                                    placeholder="Enter email">
+                              </div>
+
+                              <div class="mb-3 row mt-4">
+                                  <div class="col-12 text-end">
+                                      <button class="btn w-100 waves-effect waves-light"
+                                          type="submit" style="color:#ffffff !important;background-color:#42BFA6 !important;font-weight: 600 !important;" [disabled] = "!signupForm.valid" (click)="signup(signupForm.value)">Register</button>
+                                  </div>
+                              </div>
+
+
+                              <div class="mt-4 row">
+                                  <div class="col-12">
+                                      <div class="text-center">
+                                          <p class="text-muted mb-0">By registering you agree to the Teleperson <a
+                                                  href="#">Terms of Use</a></p>
+                                                  <p class="pt-4 mb-0"> 
+                                                      <a href="#" style="padding: 10px;background: #f3f3f3;border-radius: 5px;">Need Help?</a></p>
+
+                                      </div>
+                                  </div>
+                              </div>
+                          </form>
+
+                      </div>
+
+                  </div>
+              </div>
+              <div class="mt-2 text-center">
+                  <p>Already have an account ? <a routerLink="/login" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}" class="fw-bold"> Login </a>
+                  </p>
+                  <p>©
+                      {{year}} Teleperson. Crafted with <i
+                          class="mdi mdi-heart text-danger"></i> by HMC3
+                  </p>
+              </div>
+
+          </div>
+      </div>
+  </div>
+</div> -->
+
+<!-- 
+
+  
+<app-header [type]="type"></app-header>
+<div class="main-wrap">
+
+  <div class="container login-container" id="container">
+    <div class="overlay-panel">
+      <form [formGroup] = "signupForm" #formDirective="ngForm">
+        <h1>Let's go!</h1>
+        <span>Enter your details below here.</span>
+
+        <div class="form-wrap">
+          <div class="input-wrappper">
+            <img src="/assets/img/login_user.svg" alt="">
+            <input type="customer_id" class="focussable" placeholder="First Name" formControlName = 'firstname'/>
+          </div>
+          <div class="input-wrappper">
+            <img src="/assets/img/login_user.svg" alt="">
+            <input type="customer_id" class="focussable" placeholder="Last Name" formControlName = 'lastname'/>
+          </div>
+          <div class="input-wrappper">
+            <img src="/assets/img/login_mail.svg" alt="">
+            <input type="customer_id" class="focussable" placeholder="Email address" formControlName = 'email'/>
+            <div class="error" *ngIf="signupForm.controls.email.hasError('pattern') && signupForm.controls.email.touched">Not a Valid Email</div>
+          </div>
+         
+          <div class="signup-btn-wrap">
+            <button type="submit" class="focussable sbt-button" [disabled] = "!signupForm.valid" (click)="signup(signupForm.value,formDirective)">Sign Up</button>
+          </div>
+          <div class="sign-up">
+            <a routerLink="/login" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}"><span>Already have an account? <b style="color:#42BFA6">Sign In</b></span></a>
+            <div class="help"><img src="/assets/img/help.svg" alt=""></div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+ -->

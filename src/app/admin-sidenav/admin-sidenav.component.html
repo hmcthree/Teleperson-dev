@@ -1,0 +1,123 @@
+<div class="vertical-menu">
+
+  <div data-simplebar class="h-100">
+
+      <!--- Sidemenu -->
+      <div id="sidebar-menu" class="pt-0">
+          <!-- Left Menu Start -->
+          <ul class="metismenu list-unstyled" id="side-menu">
+              
+
+              <li>
+                  <a routerLink="/app/dashboard" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}" class="waves-effect">
+                      <i class=" ri-home-2-line"></i>
+                      <span>Home</span>
+                  </a>
+              </li>
+              <!-- end li -->
+              <li>
+                  <a routerLink="/app/concierge" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}" class=" waves-effect">
+                      <i class="ri-account-pin-circle-line"></i>
+                      <span>Concierge</span>
+                  </a>
+              </li>
+
+              <li>
+                  <a routerLink="/app/vendor-hub" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}" class=" waves-effect">
+                      <i class="ri-store-3-line"></i>
+                      <span>Vendor Hub</span>
+                  </a>
+              </li>
+              <!-- end li -->
+              <li>
+                  <a routerLink="/app/community" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}" class=" waves-effect">
+                      <i class="ri-group-2-line"></i>
+                      <span>Community</span>
+                  </a>
+              </li>
+              <li style="margin-bottom:360px;">
+                  <a routerLink="/app/youzak" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}" class=" waves-effect">
+                      <i class="ri-movie-line"></i>
+                      <span>Youzak</span>
+                  </a>
+              </li>
+              <!-- end li -->
+              <li>
+                  <a routerLink="/app/invite-friend" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">
+                      <i class="ri-user-add-line"></i>
+                      <span>Invite Friend</span>
+                  </a>
+                  
+              </li>
+              <!-- end li -->
+              <li>
+                  <a routerLink="/app/support" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">
+                      <i class="ri-customer-service-2-line"></i>
+                      <span>Support</span>
+                  </a>
+                 
+              </li>
+              <!-- end li -->
+             
+              <!-- end li -->
+           
+             
+              
+          </ul>
+          <!-- end ul -->
+      </div>
+      <!-- Sidebar -->
+  </div>
+</div>
+
+
+
+
+<!-- <div class="container-fluid">
+  <div class=" right-side-menu">
+  <div class="monitor-view">
+
+    <div class="logo" (click)="gotoDashbard()">
+      <img *ngIf="_menuState == 'in'" src="assets/img/Logo.svg" alt="Logo" class="img-fluid">
+      <img *ngIf="_menuState == 'out'" src="assets/img/menu_icon/logo.svg" alt="Logo" class="img-fluid">
+    </div>
+  </div>
+  <div class="mobile-view" style="width: 100%;">
+    <div style="display: flex; justify-content: space-between;align-items: center;    height: 10vh; border-bottom: 1px solid #ccc;">
+      <img *ngIf="_menuState == 'out'" src="assets/img/Logo.svg" alt="Logo" class="img-fluid">
+      <button mat-icon-button (click)="closeMenu()"><mat-icon style="font-size: 2rem; color: black;">close</mat-icon></button>
+    </div>
+  </div>
+
+  <div class="menu">
+    <ul class="menu-sroll" style="height: 84vh;overflow-y: auto;overflow-x: hidden; display: flex;flex-direction: column;justify-content: space-between;">
+      <div>
+        <li title="Home" class="menu-list" [ngStyle]="{'justify-content':!showTest?'center':'start'}" [ngClass]="{'menu-list-out':_menuState == 'in'}" routerLink="/app/dashboard" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}" (click)="closeMenu()">
+          <img [ngClass]="{'img-lg':_menuState == 'out'}" src="assets/img/menu_icon/home.svg" alt=""> <span *ngIf="showTest">&nbsp; Home</span></li>
+          <li title="Concierge" class="menu-list" [ngStyle]="{'justify-content':!showTest?'center':'start'}" [ngClass]="{'menu-list-out':_menuState == 'in'}" routerLink="/app/concierge" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}" (click)="closeMenu()">
+            <img [ngClass]="{'img-lg':_menuState == 'out'}" src="assets/img/menu_icon/room_service.svg" alt=""><span *ngIf="showTest">&nbsp; Concierge</span></li>
+          <li title="Vendor Hub" class="menu-list" [ngStyle]="{'justify-content':!showTest?'center':'start'}" [ngClass]="{'menu-list-out':_menuState == 'in'}" routerLink="/app/vendor-hub/my-vendors" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}" (click)="closeMenu()">
+            <img [ngClass]="{'img-lg':_menuState == 'out'}" src="assets/img/menu_icon/storefront.svg" alt=""><span *ngIf="showTest">&nbsp; Vendor Hub</span></li>
+          <li title="Community" class="menu-list" [ngStyle]="{'justify-content':!showTest?'center':'start'}" [ngClass]="{'menu-list-out':_menuState == 'in'}" routerLink="/app/community" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}" (click)="closeMenu()">
+            <img [ngClass]="{'img-lg':_menuState == 'out'}" src="assets/img/menu_icon/language.svg" alt=""><span *ngIf="showTest">&nbsp; Community</span></li>
+          <li title="YouZak" class="menu-list" [ngStyle]="{'justify-content':!showTest?'center':'start'}" [ngClass]="{'menu-list-out':_menuState == 'in'}" routerLink="/app/youzak" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}" (click)="closeMenu()">
+            <img [ngClass]="{'img-lg':_menuState == 'out'}" src="assets/img/menu_icon/theaters.svg" alt=""><span *ngIf="showTest">&nbsp; YouZak</span></li>
+      </div>
+
+        <div>
+          <li title="Invite Friend" class="menu-list" [ngStyle]="{'justify-content':!showTest?'center':'start'}" [ngClass]="{'menu-list-out':_menuState == 'in'}" routerLink="/app/invite-friend" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}" (click)="closeMenu()">
+            <img [ngClass]="{'img-lg':_menuState == 'out'}" src="assets/img/menu_icon/person_add.svg" alt=""><span *ngIf="showTest">&nbsp; Invite Friend</span></li>
+          <li title="Support" class="menu-list" [ngStyle]="{'justify-content':!showTest?'center':'start'}" [ngClass]="{'menu-list-out':_menuState == 'in'}" routerLink="/app/suport" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}" (click)="closeMenu()">
+            <img [ngClass]="{'img-lg':_menuState == 'out'}" src="assets/img/menu_icon/support_agent.svg" alt=""><span *ngIf="showTest">&nbsp; Support</span></li>
+          <li title="Settings" class="menu-list" [ngStyle]="{'justify-content':!showTest?'center':'start'}" [ngClass]="{'menu-list-out':_menuState == 'in'}" routerLink="/app/settings" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}" (click)="closeMenu()">
+            <img [ngClass]="{'img-lg':_menuState == 'out'}" src="assets/img/menu_icon/settings.svg" alt=""><span *ngIf="showTest">&nbsp; Settings</span></li>
+          <li title="Logout" class="menu-list" [ngStyle]="{'justify-content':!showTest?'center':'start'}" [ngClass]="{'menu-list-out':_menuState == 'in'}"  >
+            <img [ngClass]="{'img-lg':_menuState == 'out'}" src="assets/img/menu_icon/logout.svg" alt=""><span *ngIf="showTest">&nbsp;Logout</span></li>
+        </div>
+
+      
+    </ul>
+  </div>
+  </div>
+  
+</div> -->

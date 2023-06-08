@@ -1,0 +1,93 @@
+<div class="card">
+    <div class="card-body">
+        <div class="d-flex">
+            <h5 class="font-size-15 flex-grow-1 mb-3">
+                <span class="tp-wrap">Community
+                    <span class="tp">View other members in Community</span>
+                </span>
+            </h5>
+            <p class="mb-0" style="color:#38D8A2!important;text-align: right;">View all</p>
+          
+        </div>        
+        <div class="table-responsive">
+            <table class="table table-nowrap mb-0">
+                <tbody>
+                    <tr *ngFor="let item of communities">
+                        <td>
+                            <div class="d-flex">
+                                <div class="me-3" style="height: 40px; width: 40px;">
+                                    <div *ngIf="!item?.profile" class="community-initials img-rounded">{{getProfileInitials(item) | uppercase}}</div>
+                                    <img *ngIf="item?.profile" src="{{host}}profiles/{{item?.user_id}}/{{item?.profile}}"
+                                    class="img-fluid img-rounded" style="height: 100%;width: 100%;cursor: pointer;" alt="">
+                                </div>
+                                <div style="display: flex;align-items: center;">
+                                    <h5 class="font-size-13 text-truncate mb-1"><a href="#"
+                                            class="text-dark">{{item.first_name | titlecase}} {{item.last_name | titlecase}}</a>
+                                    </h5>
+                                    <!-- <p class="text-muted mb-0 font-size-11 text-uppercase">
+                                        8 shared vendors</p> -->
+                                </div>
+                            </div>
+                        </td>
+                        
+                        <!-- <td>
+                            <div style="text-align:right;">
+                                <img src="assets/images/users/avatar-1.jpg" class="avatar-xs h-auto rounded-circle" alt="Error">
+                                <img src="assets/images/users/avatar-1.jpg" class="avatar-xs h-auto rounded-circle" alt="Error">
+                                <img src="assets/images/users/avatar-1.jpg" class="avatar-xs h-auto rounded-circle" alt="Error">
+                            </div>
+                        </td> -->
+                        <td style="width: 15vw;">
+                            <!-- <div class="text-right"> -->
+                                <div *ngIf="item?.vendors?.length" style="height: 50%;
+                                width: 100%;
+                                display: flex;
+                                justify-content: flex-end;">
+                                    <div class="vendors-box" >
+    
+                                        <div *ngFor="let vendor of item?.vendors; let i=index" mat-card-avatar style=" height: 35px; width: 35px;position: absolute;" [ngStyle]="{'left':(item?.vendors?.length >5)?35+(10*i)+'%':95-(10* (item?.vendors?.length-i))+'%', 'z-index':true?i:0}" (click)="!isRemaining(vendor)?gotoOverview(vendor):''">
+                                            <img *ngIf="(!vendor.logo && (!vendor.logo_url || vendor.logo_url == '')) && !isRemaining(vendor)" src="assets/img/dummy.png" alt="" class="img-fluid img-rounded" style="height: 100%;width: 100%;cursor: pointer;border: 1px solid #38D8A2;background: white;">
+                                            <img *ngIf="(!vendor.logo && vendor.logo_url) && !isRemaining(vendor)" [src]="vendor.logo_url"  alt="" class="img-fluid img-rounded" style="height: 100%;width: 100%;cursor: pointer;border: 1px solid #38D8A2;background: white;">
+                                            <img *ngIf="vendor?.logo && !isRemaining(vendor)" src="{{host}}vendors/{{vendor?.vendor_id}}/{{vendor?.logo}}" alt="" class="img-fluid img-rounded" style="height: 100%;width: 100%;cursor: pointer;border: 1px solid #38D8A2;background: white;">
+                                           
+                                            <!-- <img *ngIf="!vendor?.logo && !isRemaining(vendor)" src="assets/img/dummy.png" alt="" class="img-fluid img-rounded" style="height: 100%;width: 100%;cursor: pointer;border: 1px solid #38D8A2;background: white;">
+                                            <img *ngIf="vendor?.logo && !isRemaining(vendor)" src="{{host}}vendors/{{vendor?.vendor_id}}/{{vendor?.logo}}" alt="" class="img-fluid img-rounded" style="height: 100%;width: 100%;cursor: pointer;border: 1px solid #38D8A2;background: white;"> -->
+                                            <div *ngIf="isRemaining(vendor)" class="remaining img-rounded">+{{vendor.remaining}}</div>
+                                        </div>
+                                        
+                                    </div>
+                                </div>
+                            <!-- </div> -->
+                        </td>
+                        <td>
+                            <div class="dropdown float-end p-2">
+                                <a href="#" class="dropdown-toggle arrow-none card-drop"
+                                    data-bs-toggle="dropdown" aria-expanded="false">
+                                    <i class="mdi mdi-dots-vertical text-muted"></i>
+                                </a>
+                                <div class="dropdown-menu dropdown-menu-end">
+                                    <!-- item-->
+                                    <a href="javascript:void(0);" class="dropdown-item">
+                                        <i class="ri-map-pin-user-fill"style="margin-right: 10px;position: relative;top: 2px;"></i>See Profile</a>
+                                    <a href="javascript:void(0);" class="dropdown-item">
+                                         <i class="ri-delete-bin-line"style="margin-right: 10px;position: relative;top: 2px;"></i>Remove</a>
+                                    <!-- item-->
+                                 
+                                    <!-- item-->
+                                    <a href="javascript:void(0);" class="dropdown-item" style="opacity:0.4">
+                                        <i class="ri-flag-line"style="margin-right: 10px;position: relative;top: 2px;"></i>Report</a>
+                                    <!-- item-->
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+                <!-- end t-body -->
+            </table>
+            <!-- end table -->
+        </div>
+        <!-- end table-responsive -->
+    </div>
+    <!-- end cardbody -->
+</div>
+<!-- end card -->

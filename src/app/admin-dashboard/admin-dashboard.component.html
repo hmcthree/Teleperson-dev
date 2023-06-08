@@ -1,0 +1,719 @@
+
+
+  <!-- ============================================================== -->
+  <!-- Start right Content here -->
+  <!-- ============================================================== -->
+  <div class="main-content">
+
+    <div *ngIf="modalStatus" class="modal-backdrop show"></div>
+    <div *ngIf="modalStatus" class="modal bs-example-modal-lg" tabindex="-1" role="dialog" id="myModal" 
+        aria-labelledby="myLargeModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header" style="border: none;">
+                    <!-- <h5 class="modal-title mt-0" id="myLargeModalLabel">Add New Vendor</h5> -->
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" (click)="closeModal()"
+                        aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                <div class="col-md-12 col-lg-12">
+                    <div class="row">
+                        
+                        <div class="col-md-12 col-lg-12">
+                            <div class="row mb-3 px-2 d-flex justify-content-center">
+                                <div style="padding:75% 0 0 0;position:relative;"><iframe src="https://player.vimeo.com/video/816776836?h=e49d3a4b47&amp;badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%;" title="Teleperson Welcome Video"></iframe></div>
+                                <!-- <iframe width="420" height="315" src="https://www.youtube.com/embed/nrQNDcZjErw"></iframe> -->
+                            </div>
+                        
+                            <!-- <div class="d-flex justify-content-left mt-4">
+                                <button type="button" class="btn btn-outline-success btn-rounded waves-effect waves-light" style="margin-right:30px;border-radius: 5px !important;font-size: 16px !important;" >Add</button>
+                                <button type="button" class="btn btn-outline-success btn-rounded waves-effect waves-light"style="border-radius: 5px !important;font-size: 16px !important;" >Cancel</button>
+                            </div> -->
+                        </div>
+                    </div>
+                </div>
+                </div>
+                
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+
+    <div class="page-content">
+        <div class="container-fluid">
+
+           
+
+            <div class="row">
+                <div class="col-xl-8">
+                   
+                    <div class="card" style="padding:20px;">
+                        <!-- <div class="page-title-box d-flex align-items-center justify-content-between">
+                            <h5 class="mb-0">My Vendors</h5>
+
+                            <div class="page-title-right">
+                                <p class="mb-0 see-all" >View all</p>
+                            </div> 
+                        </div> -->
+                        <div class="d-flex justify-content-between">
+                            <h5 class="font-size-15 mb-3" style="cursor:pointer;">
+                                <span class="tp-wrap">My Vendors
+                                    <span class="tp">View a summary of your top vendors</span>
+                              </span>
+                            </h5>
+                            <p class="mb-0 see-all" style="cursor:pointer;" routerLink="/app/vendor-hub" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">View all</p>
+                        </div>
+                        <div class="row mt-1">
+                                    <div class="col-xl-4 col-md-6" *ngFor="let p of myVendors; let i=index;">
+                                        <div class="card" style="border: 1px solid #ede7e7;box-shadow: none!important;">
+                                            <div class="card-body p-2" style="height:188px;">
+                                                <div class="dropdown p-2" style="position: absolute;right: 0px;">
+                                                    <a href="#" class="dropdown-toggle arrow-none card-drop"
+                                                        data-bs-toggle="dropdown" aria-expanded="false">
+                                                        <i class="mdi mdi-dots-vertical text-muted"></i>
+                                                    </a>
+                                                    <div class="dropdown-menu dropdown-menu-end">
+                                                        <!-- item-->
+                                                        <a (click)="gotoOverview(p)" class="dropdown-item">
+                                                            <i class="ri-profile-line"style="margin-right: 10px;position: relative;top: 2px;"></i>See Profile</a>
+                                                        <a href="javascript:void(0);" class="dropdown-item">
+                                                             <i class="ri-delete-bin-line"style="margin-right: 10px;position: relative;top: 2px;"></i>Remove</a>
+                                                        <!-- item-->
+                                                     
+                                                        <!-- item-->
+                                                        <a href="javascript:void(0);" class="dropdown-item" style="opacity: 0.4;">
+                                                            <i class="ri-flag-line"style="margin-right: 10px;position: relative;top: 2px;"></i>Report</a>
+                                                        <!-- item-->
+                                                    </div>
+                                                </div>
+                                                <!-- <div class="p-3">
+                                                    <div style="text-align:center;">
+                                                        <img src="./assets/images/layouts/bmw.png" alt="bmw">
+                                                        <h5 class="text-center font-size-14 mb-0 pt-2">BMW</h5>
+                                                    </div>
+
+                                                </div> -->
+
+                                                <div class="p-3">
+                                                    <div class="d-flex" (click)="gotoOverview(p)">
+                                                        <div class="flex-1 vendor-wrapper">
+                                                        <div class="vendor-img" style="width: 70px;">
+                                                            <img *ngIf="!p.logo &&(!p.logo_url || p.logo_url == '')" src="assets/img/dummy.png"  alt="{{p.company_name}}" class="responsive">
+                                                            <img *ngIf="!p.logo && p.logo_url" [src]="p.logo_url" alt="{{p.company_name}}" class="responsive">
+                                                            <img *ngIf="p.logo"  src="{{host}}vendors/{{p?.vendor_id}}/{{p?.logo}}" alt="{{p.company_name}}" class="responsive">
+                                                        </div>
+                                                        <h5 class="text-center font-size-14 mb-0 pt-2">{{p.company_name}}</h5>
+                                                    
+                                                        </div>
+                                                    </div>
+                                                
+                                                </div>
+
+                                            </div>
+                                            <!-- end cardbody -->
+                                        </div>
+                                        <!-- end card -->
+                                    </div>
+                                    <!-- end col -->
+                                </div>
+
+                        <!-- <div class="row">
+                            <div class="col-xl-4 col-md-6" *ngFor="let p of myVendors; let i=index;">
+                                <div class="card" style="min-height: 150px;"  style="border: 1px solid #ede7e7;box-shadow: none!important;">
+                                    <div class="card-body p-0" style="height: 188px;">
+                                        <div class="dropdown float-end p-2">
+                                            <a href="#" class="dropdown-toggle arrow-none card-drop"
+                                                data-bs-toggle="dropdown" aria-expanded="false">
+                                                <i class="mdi mdi-dots-vertical text-muted"></i>
+                                            </a>
+                                            <div class="dropdown-menu dropdown-menu-end">
+                                                <a href="javascript:void(0);" class="dropdown-item">
+                                                    <i class="ri-map-pin-user-fill" style="margin-right: 10px;position: relative;top: 2px;"></i>See Profile</a>
+                                                <a href="javascript:void(0);" class="dropdown-item">
+                                                    <i class="ri-delete-bin-line" style="margin-right: 10px;position: relative;top: 2px;"></i>Remove</a>
+                                                
+                                                <a href="javascript:void(0);" class="dropdown-item">
+                                                    <i class="ri-flag-line" style="margin-right: 10px;position: relative;top: 2px;"></i>Report</a>
+                                            </div>
+                                        </div>
+                                        <div class="p-3">
+                                            <div class="d-flex" (click)="gotoOverview(p)">
+                                                <div class="flex-1 vendor-wrapper">
+                                                
+                                                <div class="vendor-img">
+                                                    <img *ngIf="!checkLogo(p)" src="assets/img/dummy.png" alt="{{p.company_name}}" class="responsive">
+                                                    <img *ngIf="checkLogo(p)" src="{{host}}vendors/{{p?.vendor_id}}/{{p?.logo}}" alt="{{p.company_name}}" class="responsive">
+                                                </div>
+                                                <h5 class="text-center font-size-14 mb-0 pt-2">{{p.company_name}}</h5>
+                                            
+                                                </div>
+                                            </div>
+                                        
+                                        </div>
+                                    
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                           
+                        </div> -->
+                    </div>
+                    
+
+                    <!-- <div class="card">
+                        <div class="card-body">
+                            <div class="row align-items-center">
+                               
+                                <div class="page-title-box d-flex align-items-center justify-content-between">
+                                    <h5 class="mb-0">Community</h5>
+        
+                                    <div class="page-title-right">
+                                        <p class="mb-0 see-all"routerLink="/app/community" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}" >View all</p>
+                                    </div> 
+                                </div>
+                                
+                            </div> -->
+
+                <div class="card mt-3">
+                    <div class="card-body px-4 py-3">
+
+
+                        <div class="d-flex justify-content-between">
+                            <h5 class="font-size-15 mb-3" style="cursor:pointer;"> 
+                                <span class="tp-wrap">Community
+                                    <span class="tp">View other members in the Teleperson Community</span>
+                                </span>
+                            </h5>
+                            <p class="mb-0 see-all" style="cursor:pointer;" routerLink="/app/community" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">View all</p>
+                        </div>
+                            
+
+                            <div class="table-responsive" style="overflow: hidden;">
+                                <table class="table table-nowrap mb-0">
+                                    <tbody>
+                                        <tr *ngFor="let item of communities">
+                                            <td>
+                                                <div class="d-flex">
+                                                    <div class="me-3" style="height: 40px; width: 40px;">
+                                                        <div *ngIf="!item?.profile" class="initials img-rounded">{{getProfileInitials(item) | uppercase}}</div>
+                                                        <img *ngIf="item?.profile" src="{{host}}profiles/{{item?.user_id}}/{{item?.profile}}"
+                                                        class="img-fluid img-rounded" style="height: 100%;width: 100%;cursor: pointer;" alt="">
+                                                    </div>
+                                                    <div style="display: flex;align-items: center;">
+                                                        <h5 class="font-size-13 text-truncate mb-1"><a routerLink="/app/community-profile/{{item.user_id}}" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}"
+                                                                class="text-dark">{{item.first_name | titlecase}} {{item.last_name | titlecase}}</a>
+                                                        </h5>
+                                                        <!-- <p class="text-muted mb-0 font-size-11 text-uppercase">
+                                                            8 shared vendors</p> -->
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            
+                                            <td style="width: 15vw; padding-right: 30px !important;">
+                                                <!-- <div class="text-right"> -->
+                                                    <div *ngIf="item?.vendors?.length" style="height: 50%;
+                                                    width: 100%;
+                                                    display: flex;
+                                                    justify-content: flex-end;">
+                                                        <div class="vendors-box" >
+                        
+                                                            <div *ngFor="let vendor of item?.vendors; let i=index" mat-card-avatar style=" height: 35px; width: 35px;position: absolute;" [ngStyle]="{'left':(item?.vendors?.length >5)?35+(10*i)+'%':95-(10* (item?.vendors?.length-i))+'%', 'z-index':true?i:0}" (click)="!isRemaining(vendor)?gotoOverview(vendor):''">
+                                                                <img *ngIf="(!vendor.logo && (!vendor.logo_url || vendor.logo_url == '')) && !isRemaining(vendor)" src="assets/img/dummy.png" alt="" class="img-fluid img-rounded" style="height: 100%;width: 100%;cursor: pointer;border: 1px solid #38D8A2;background: white;">
+                                                                    <img *ngIf="(!vendor.logo && vendor.logo_url) && !isRemaining(vendor)" [src]="vendor.logo_url"  alt="" class="img-fluid img-rounded" style="height: 100%;width: 100%;cursor: pointer;border: 1px solid #38D8A2;background: white;">
+                                                                    <img *ngIf="vendor?.logo && !isRemaining(vendor)" src="{{host}}vendors/{{vendor?.vendor_id}}/{{vendor?.logo}}" alt="" class="img-fluid img-rounded" style="height: 100%;width: 100%;cursor: pointer;border: 1px solid #38D8A2;background: white;">
+                                                                <!-- <img *ngIf="!vendor?.logo && !isRemaining(vendor)" src="assets/img/dummy.png" alt="" class="img-fluid img-rounded" style="height: 100%;width: 100%;cursor: pointer;border: 3px solid #38D8A2;background: white;">
+                                                                <img *ngIf="vendor?.logo && !isRemaining(vendor)" src="{{host}}vendors/{{vendor?.vendor_id}}/{{vendor?.logo}}" alt="" class="img-fluid img-rounded" style="height: 100%;width: 100%;cursor: pointer;border: 3px solid #38D8A2;background: white;"> -->
+                                                                <div *ngIf="isRemaining(vendor)" class="remaining img-rounded">+{{vendor.remaining}}</div>
+                                                            </div>
+                                                            
+                                                        </div>
+                                                    </div>
+                                                <!-- </div> -->
+                                            </td>
+                                        </tr>
+                                       
+                                      
+                                        
+                                    </tbody>
+                                    
+                                </table>
+                                
+                            </div>
+                            
+                        </div>
+                        
+                    </div>
+                    <!-- end card -->
+                </div>
+                
+                <div class="col-xl-4">
+                    <p class="coming-soon">Coming soon</p>
+                            <div class="card" style="opacity:0.4;">
+                                <div class="card-body">
+                                    <div class="d-flex">
+                                        <h5 class="font-size-15 flex-grow-1 mb-3" style="cursor:pointer;">
+                                            <span class="tp-wrap">Transactions
+                                                <span class="tp">View all of your recent transactions in a single panel</span>
+                                            </span>
+                                        </h5>
+
+                                        <p><i class="ri-filter-2-line" style="margin-right:10px;"></i></p>
+                                        <p class="mb-0" style="color:#38D8A2!important;text-align: right;cursor: pointer;">View all</p>
+
+                                    </div>
+
+
+                                    <div class="table-responsive">
+                                        <table class="table table-nowrap mb-0">
+                                            <tbody>
+                                                <tr>
+                                                    <td>
+                                                        <div class="d-flex">
+                                                            <div class="me-3">
+                                                                <img src="assets/images/bank.png" alt="" width="30px"
+                                                                    class="avatar-xs h-auto rounded-circle">
+                                                            </div>
+                                                            <div>
+                                                                <h5 class="font-size-13 text-truncate mb-1"><a href="#"
+                                                                        class="text-dark">Bank of America</a>
+                                                                </h5>
+                                                                <p class="text-muted mb-0 font-size-11 text-uppercase">
+                                                                    Bank Deposit</p>
+                                                            </div>
+                                                        </div>
+                                                    </td>
+
+                                                    <td>
+                                                        <div>
+                                                            <h6 class="mb-0" style="text-align: right;">$150</h6>
+
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <!-- end tr -->
+                                                <tr>
+                                                    <td>
+                                                        <div class="d-flex">
+                                                            <div class="me-3">
+                                                                <img src="assets/images/spotify.png" alt="" width="30px"
+                                                                    class="avatar-xs h-auto rounded-circle">
+                                                            </div>
+                                                            <div>
+                                                                <h5 class="font-size-13 text-truncate mb-1"><a href="#"
+                                                                        class="text-dark">Spotify</a>
+                                                                </h5>
+                                                                <p class="text-muted mb-0 font-size-11 text-uppercase">
+                                                                    Subscription Charge</p>
+                                                            </div>
+                                                        </div>
+                                                    </td>
+
+                                                    <td>
+                                                        <div>
+                                                            <h6 class="mb-0" style="text-align: right;">$1,550</h6>
+
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <div class="d-flex">
+                                                            <div class="me-3">
+                                                                <img src="assets/images/McDonalds-logo.png" alt="" width="30px"
+                                                                    class="avatar-xs h-auto rounded-circle">
+                                                            </div>
+                                                            <div>
+                                                                <h5 class="font-size-13 text-truncate mb-1"><a href="#"
+                                                                        class="text-dark">Mcdonald</a>
+                                                                </h5>
+                                                                <p class="text-muted mb-0 font-size-11 text-uppercase">
+                                                                    Meal</p>
+                                                            </div>
+                                                        </div>
+                                                    </td>
+
+                                                    <td>
+                                                        <div>
+                                                            <h6 class="mb-0" style="text-align: right;">-$1,250</h6>
+
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <!-- end tr -->
+                                                <tr>
+                                                    <td>
+                                                        <div class="d-flex">
+                                                            <div class="me-3">
+                                                                <img src="assets/images/kfc.png" alt="" width="30px"
+                                                                    class="avatar-xs h-auto rounded-circle">
+                                                            </div>
+                                                            <div>
+                                                                <h5 class="font-size-13 text-truncate mb-1"><a href="#"
+                                                                        class="text-dark">KFC</a>
+                                                                </h5>
+                                                                <p class="text-muted mb-0 font-size-11 text-uppercase">
+                                                                    Meal</p>
+                                                            </div>
+                                                        </div>
+                                                    </td>
+
+                                                    <td>
+                                                        <div>
+                                                            <h6 class="mb-0" style="text-align: right;">-$550</h6>
+
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <div class="d-flex">
+                                                            <div class="me-3">
+                                                                <img src="assets/images/bank.png" alt="" width="30px"
+                                                                    class="avatar-xs h-auto rounded-circle">
+                                                            </div>
+                                                            <div>
+                                                                <h5 class="font-size-13 text-truncate mb-1"><a href="#"
+                                                                        class="text-dark">Bank of America</a>
+                                                                </h5>
+                                                                <p class="text-muted mb-0 font-size-11 text-uppercase">
+                                                                    Transfer</p>
+                                                            </div>
+                                                        </div>
+                                                    </td>
+
+                                                    <td>
+                                                        <div>
+                                                            <h6 class="mb-0" style="text-align: right;">$150</h6>
+
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <!-- end tr -->
+                                                <tr>
+                                                    <td>
+                                                        <div class="d-flex">
+                                                            <div class="me-3">
+                                                                <img src="assets/images/spotify.png" alt="" width="30px"
+                                                                    class="avatar-xs h-auto rounded-circle">
+                                                            </div>
+                                                            <div>
+                                                                <h5 class="font-size-13 text-truncate mb-1"><a href="#"
+                                                                        class="text-dark">Spotify</a>
+                                                                </h5>
+                                                                <p class="text-muted mb-0 font-size-11 text-uppercase">
+                                                                    Subscription Charge</p>
+                                                            </div>
+                                                        </div>
+                                                    </td>
+
+                                                    <td>
+                                                        <div>
+                                                            <h6 class="mb-0" style="text-align: right;">$1,550</h6>
+
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>
+                                                        <div class="d-flex">
+                                                            <div class="me-3">
+                                                                <img src="assets/images/McDonalds-logo.png" alt="" width="30px"
+                                                                    class="avatar-xs h-auto rounded-circle">
+                                                            </div>
+                                                            <div>
+                                                                <h5 class="font-size-13 text-truncate mb-1"><a href="#"
+                                                                        class="text-dark">Mcdonald</a>
+                                                                </h5>
+                                                                <p class="text-muted mb-0 font-size-11 text-uppercase">
+                                                                    Meal</p>
+                                                            </div>
+                                                        </div>
+                                                    </td>
+
+                                                    <td>
+                                                        <div>
+                                                            <h6 class="mb-0" style="text-align: right;">-$1,250</h6>
+
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <!-- end tr -->
+                                                <tr>
+                                                    <td>
+                                                        <div class="d-flex">
+                                                            <div class="me-3">
+                                                                <img src="assets/images/kfc.png" alt="" width="30px"
+                                                                    class="avatar-xs h-auto rounded-circle">
+                                                            </div>
+                                                            <div>
+                                                                <h5 class="font-size-13 text-truncate mb-1"><a href="#"
+                                                                        class="text-dark">KFC</a>
+                                                                </h5>
+                                                                <p class="text-muted mb-0 font-size-11 text-uppercase">
+                                                                    Meal</p>
+                                                            </div>
+                                                        </div>
+                                                    </td>
+
+                                                    <td>
+                                                        <div>
+                                                            <h6 class="mb-0" style="text-align: right;">-$550</h6>
+
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <!-- end tr -->
+                                              
+                                                <!-- end tr -->
+
+                                                <!-- end tr -->
+                                            </tbody>
+                                            <!-- end t-body -->
+                                        </table>
+                                        <!-- end table -->
+                                    </div>
+                                    <!-- end table-responsive -->
+                                </div>
+                                <!-- end cardbody -->
+                            </div>
+                </div>
+                
+            </div>
+            
+
+            <div class="row">
+             
+               
+                <div class="col-xl-8">
+
+                    <div id="accordion" class="custom-accordion">
+                        <div class="card mb-3 shadow-none">
+                            <a href="#collapseOne" class="text-dark collapsed" data-bs-toggle="collapse"
+                                aria-expanded="false" aria-controls="collapseOne">
+                                <div class="card-header px-3" id="headingOne">
+                                    <h6 class="m-0">
+                                        Customer Service Transactions
+                                        <i class="mdi mdi-minus float-end accor-plus-icon"></i>
+                                    </h6>
+                                </div>
+                            </a>
+
+                            <div id="collapseOne" class="collapse" aria-labelledby="headingOne"
+                                data-bs-parent="#accordion" style="">
+                                <div class="card-body py-2 px-3">
+                                    See a summary of your recent consumer service transactions over the last month.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card mb-3 shadow-none">
+                            <a href="#collapseTwo" class="text-dark collapsed" data-bs-toggle="collapse"
+                                aria-expanded="false" aria-controls="collapseTwo">
+                                <div class="card-header px-3" id="headingTwo">
+                                    <h6 class="m-0">
+                                        VendorVox
+                                        <i class="mdi mdi-minus float-end accor-plus-icon"></i>
+                                    </h6>
+                                </div>
+                            </a>
+                            <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo"
+                                data-bs-parent="#accordion" style="">
+                                <div class="card-body py-2 px-3">
+                                    With VendorVox, you can simply swipe right to show interest in new products, right to reject, up to purchase, and down to share with others in your community.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card mb-0 shadow-none">
+                            <a href="#collapseThree" class="text-dark collapsed" data-bs-toggle="collapse"
+                                aria-expanded="false" aria-controls="collapseThree">
+                                <div class="card-header px-3" id="headingThree">
+                                    <h6 class="m-0">
+                                        Vendor Stream
+                                        <i class="mdi mdi-minus float-end accor-plus-icon"></i>
+                                    </h6>
+                                </div>
+                            </a>
+                            <div id="collapseThree" class="collapse" aria-labelledby="headingThree"
+                                data-bs-parent="#accordion">
+                                <div class="card-body py-2 px-3">
+                                    With vendor stream, see all of your vendor's social media in a single space!
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card mb-0 shadow-none">
+                            <a href="#collapseFour" class="text-dark collapsed" data-bs-toggle="collapse"
+                                aria-expanded="false" aria-controls="collapseThree">
+                                <div class="card-header px-3" id="headingThree">
+                                    <h6 class="m-0">
+                                        Vendor Insights
+                                        <i class="mdi mdi-minus float-end accor-plus-icon"></i>
+                                    </h6>
+                                </div>
+                            </a>
+                            <div id="collapseFour" class="collapse" aria-labelledby="headingThree"
+                                data-bs-parent="#accordion">
+                                <div class="card-body py-2 px-3">
+                                    <div class="col-md-12 col-xl-12" style="text-align: center;">
+                            
+                                        <div class="row">
+                                            <div class="col-md-3 col-lg-3">
+        
+                                            </div>
+                                            <div class="col-md-6 col-lg-6">
+                                                <img src="./assets/images/work-in-progress.svg" alt="work" width="100%">
+                                            </div>
+                                            <div class="col-md-3 col-lg-3">
+        
+                                            </div>
+                                            </div>
+                                        </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+
+                <!-- <div class="col-xl-4">
+                     <p class="coming-soon"> Coming Soon</p>
+                            <div class="card" style="opacity:0.4;">
+                                <div class="card-body">
+                                    <div class="float-end">
+                                        <select class="form-select form-select-sm">
+                                            <option selected>Apr</option>
+                                            <option value="1">Mar</option>
+                                            <option value="2">Feb</option>
+                                            <option value="3">Jan</option>
+                                        </select>
+                                    </div>
+                                    <h4 class="card-title mb-4">Customer Trends by Month</h4>
+    
+                                    <div id="line_chart" class="apex-charts"></div>
+                                </div>
+                            </div>
+                </div> -->
+                
+            </div>
+            
+
+           
+
+        </div>
+        <!-- end container-fluid -->
+    </div>
+    <script type="text/javascript" charset="utf-8">
+
+        (function (g, e, n, es, ys) {
+      
+          g['_genesysJs'] = e;
+      
+          g[e] = g[e] || function () {
+      
+            (g[e].q = g[e].q || []).push(arguments)
+      
+          };
+      
+          g[e].t = 1 * new Date();
+      
+          g[e].c = es;
+      
+          ys = document.createElement('script'); ys.async = 1; ys.src = n; ys.charset = 'utf-8'; document.head.appendChild(ys);
+      
+        })(window, 'Genesys', 'https://apps.mypurecloud.com/genesys-bootstrap/genesys.min.js', {
+      
+          environment: 'prod',
+      
+          deploymentId: '7c519498-8404-4497-8833-f0d67d00c530'
+      
+        });
+      
+      </script>
+    <!-- End Page-content -->
+
+   <app-footer>
+   </app-footer>
+
+</div>
+<!-- end main content-->
+
+<!-- <div class="main-wrapper">
+    <div class="col-md-8">
+        <div class="monitor-view">
+            <div class="block-wrapper">
+                <div style="margin: 0 2.5rem;display: flex;justify-content: space-between;">
+                    <span style="font-size:1.2rem;">My Vendors</span>
+                    <span style="font-size:1.2rem;"><a style="color:#38D8A2" routerLink="/app/vendor-hub/my-vendors" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">See all</a></span>
+                </div>
+            <div class="vendor-card-wrap"  style="margin-top: 1rem;">
+                <mat-card class="vendor-card-1" *ngFor="let p of myVendors; let i=index;" [ngClass]="{'show-more-menu':popoverIndex == p?.vendor_id, 'hidden': i == myVendors.length -1}">
+                    <button mat-icon-button class="more-btn" (click)="showVendorPopup(p)"><mat-icon>more_vert</mat-icon></button>
+                   
+
+                    <div class="more-menu">
+                        <ul class="more-menu-items">
+                            <li class="more-menu-item" role="presentation">
+                                <button type="button" mat-raised-button class="more-menu-btn" role="menuitem" (click)="removeFromList(p,i)"><img src="assets/img/more_icons/trash.svg" alt="">   Remove</button>
+                            </li>
+                        </ul>
+                    </div>
+            
+                  <div class="vendor-logo-wrap" (click)="gotoOverview(p)">
+                    <div class="vendor-logo">
+                        <img *ngIf="!checkLogo(p)" src="assets/img/dummy.png" alt="" class="responsive">
+                        <img *ngIf="checkLogo(p)" src="{{host}}vendors/{{p?.vendor_id}}/{{p?.logo}}" alt="" class="responsive">
+                    </div>
+                    <div class="vendor-details">
+                        <b>{{p.company_name}}</b>
+                    </div> 
+                  </div> 
+                </mat-card>
+               
+            </div>
+        </div>
+        </div>
+
+        <div class="mobile-view">
+            <span>My Vendors</span>
+            <div class="vendor-card-wrap">
+                <mat-card class="vendor-card" *ngFor="let p of myVendors; let i=index;" [ngClass]="{'show-more-menu':popoverIndex == p?.vendor_id}">
+                  
+            
+                  <div class="vendor-logo-wrap" (click)="gotoOverview(p)">
+                    <div class="vendor-logo">
+                        <img *ngIf="!checkLogo(p)" src="assets/img/dummy.png" alt="" class="responsive">
+                        <img *ngIf="checkLogo(p)" src="{{host}}vendors/{{p?.vendor_id}}/{{p?.logo}}" alt="" class="responsive">
+                    </div>
+                    
+                  </div> 
+                </mat-card>
+               
+            </div>
+          </div>
+        <div class="monitor-view">
+            <img title="View other members in your Teleperson community" src="assets/img/home_community.svg" alt="" style="width: 100%;">
+            <img title="View recent customer service transactions" src="assets/img/home_customer_service.svg" alt="" style="width: 100%;margin-top: -2.8rem;">
+            <img title="Quickly like, dislike or learn more information about marketed products across your vendors" src="assets/img/home_vendorvox.svg" alt="" style="width: 100%;margin-top: -2.8rem;">
+            <img title="View consolidated list of social updates across your vendors social media channels" src="assets/img/home_vendorstream.svg" alt="" style="width: 100%;margin-top: -2.8rem;">
+            <img title="View or directly engage in vendor-led surveys across multiples products, services or experiences across all of your vendors" src="assets/img/home_vendorinsight.svg" alt="" style="width: 100%;margin-top: -2.8rem;">
+        </div>
+        <div class="mobile-view">
+            <img title="View other members in your Teleperson community" src="assets/img/home_community.svg" alt="" style="width: 100%;">
+            <img title="View recent customer service transactions" src="assets/img/home_customer_service.svg" alt="" style="width: 100%;margin-top: -0.8rem;">
+            <img title="Quickly like, dislike or learn more information about marketed products across your vendors" src="assets/img/home_vendorvox.svg" alt="" style="width: 100%;margin-top: -0.8rem;">
+            <img title="View consolidated list of social updates across your vendors social media channels" src="assets/img/home_vendorstream.svg" alt="" style="width: 100%;margin-top: -0.8rem;">
+            <img title="View or directly engage in vendor-led surveys across multiples products, services or experiences across all of your vendors" src="assets/img/home_vendorinsight.svg" alt="" style="width: 100%;margin-top: -0.8rem;">
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="monitor-view">
+            <img title="View all recent transactions across all of your vendors" src="assets/img/transactions.svg" alt="" class="responsive" style="width: 100%; margin-left: -1rem;">
+        </div>
+        <div class="monitor-view">
+            <img title="View recent amount of spending per category" src="assets/img/activity.svg" alt="" class="responsive" style="width: 100%;margin-top: -1.2rem; margin-left: -1rem;">
+        </div>
+        <div class="mobile-view">
+            <img title="View all recent transactions across all of your vendors" src="assets/img/transactions.svg" alt="" class="responsive" style="width: 100%;">
+        </div>
+        <div class="mobile-view">
+            <img title="View recent amount of spending per category" src="assets/img/activity.svg" alt="" class="responsive" style="width: 100%;margin-top: -1.2rem;">
+        </div>
+    </div>
+</div> -->

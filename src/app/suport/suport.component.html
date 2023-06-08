@@ -1,0 +1,101 @@
+
+<div class="main-content" *ngIf="loggedUserInfo">
+
+  <div class="page-content" >
+      <div class="container-fluid" >
+          <div class="row justify-content-center" >
+              <div class="col-xl-7 col-md-7" >
+<div class="card" style="border-radius: 30px;">
+  <div class="card-body">
+      <!-- <div class="text-center mt-2">
+          <div class="mb-3">
+              <a href="index.html" class="">
+                  <img src="assets/images/layouts/Logo.svg" alt="" height="50" class="auth-logo logo-dark mx-auto">
+                  <img src="assets/images/layouts/Logo.svg" alt="" height="50" class="auth-logo logo-light mx-auto">
+              </a>
+          </div>
+      </div> -->
+      <div class="p-2">
+          <h4 class="font-size-18 text-muted mt-2 text-center">Support</h4>
+          <p class="text-muted text-center mb-4">How can we help?</p>
+
+          <form class="form-horizontal" [formGroup]="contactForm" #formDirective="ngForm">
+              <div class="mb-3">
+                  <label class="form-label" for="email">Email Address</label>
+                  <input type="customer_id" id="email" class="form-control" placeholder="enter your email address" formControlName = 'email'/>
+                  <div class="error" *ngIf="contactForm.controls.email.hasError('email') && contactForm.controls.email.touched">Not a Valid Email</div>
+              </div>
+
+              <div class="mb-3">
+                  <label class="form-label" for="userpassword">Message</label>
+                  <textarea class="form-control" rows="3" id="userpassword" style="height:92px !important;" placeholder="type your message here" formControlName="message"></textarea>
+              </div>
+
+
+              <div class="row mb-0">
+                  <div class="d-flex justify-content-between">
+                    <button type="submit" class="btn w-100 waves-effect waves-light login" [disabled] = "!contactForm.valid" (click)="sendMessage(contactForm.value,formDirective)">Send Message</button>
+                  </div>
+              </div>
+              
+              <!-- end row -->
+
+          </form>
+          <!-- end form -->
+      </div>
+
+      <!-- <div class="alert" [ngClass]="{'alert-success':alertMessage.type == 0,'alert-danger':alertMessage.type == 1}" *ngIf="alertMessage">{{alertMessage.message}}</div> -->
+  </div>
+  <!-- end cardbody -->
+</div>
+</div>
+</div>
+</div>
+</div>
+<app-footer></app-footer>
+</div>
+
+
+<div class="card" style="border-radius: 30px;" *ngIf="!loggedUserInfo">
+  <div class="card-body">
+      <div class="text-center mt-2">
+          <div class="mb-3">
+              <a href="index.html" class="">
+                  <img src="assets/images/layouts/Logo.svg" alt="" height="50" class="auth-logo logo-dark mx-auto">
+                  <img src="assets/images/layouts/Logo.svg" alt="" height="50" class="auth-logo logo-light mx-auto">
+              </a>
+          </div>
+      </div>
+      <div class="p-2">
+          <h4 class="font-size-18 text-muted mt-2 text-center">Support</h4>
+          <p class="text-muted text-center mb-4">How can we help?</p>
+
+          <form class="form-horizontal" [formGroup]="contactForm" #formDirective="ngForm">
+              <div class="mb-3">
+                  <label class="form-label" for="email">Email Address</label>
+                  <input type="customer_id" id="email" class="form-control" placeholder="enter your email address" formControlName = 'email'/>
+                  <div class="error" *ngIf="contactForm.controls.email.hasError('email') && contactForm.controls.email.touched">Not a Valid Email</div>
+              </div>
+
+              <div class="mb-3">
+                  <label class="form-label" for="userpassword">Message</label>
+                  <textarea class="form-control" rows="3" id="userpassword" style="height:92px !important;" placeholder="type your message here" formControlName="message"></textarea>
+              </div>
+
+
+              <div class="row mb-0">
+                  <div class="d-flex justify-content-between">
+                    <button type="submit" class="btn w-100 waves-effect waves-light login" [disabled] = "!contactForm.valid" (click)="sendMessage(contactForm.value,formDirective)">Send Message</button>
+                  </div>
+              </div>
+              
+              <!-- end row -->
+
+          </form>
+          <!-- end form -->
+      </div>
+
+      <!-- <div class="alert" [ngClass]="{'alert-success':alertMessage.type == 0,'alert-danger':alertMessage.type == 1}" *ngIf="alertMessage">{{alertMessage.message}}</div> -->
+  </div>
+  <!-- end cardbody -->
+</div>

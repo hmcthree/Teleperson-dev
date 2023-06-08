@@ -1,0 +1,316 @@
+<div class="main-content">
+
+    <div class="page-content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-xl-4 col-md-4">
+                    <div class="card">
+                        <div class="card-body" style="height:416px;">
+                            <div class="row align-items-center" >
+                                <div class="col-md-12 col-12 text-center pb-1" style="display: flex;
+                                flex-direction: column;
+                                align-items: center;">
+                                    <a href="#"  data-bs-toggle="modal" data-bs-target=".bs-example-modal-lg" (click)="editProfile()"><img src="./assets/images/edit.svg" alt="edit" style="position: absolute;right: 0;top: -14px;"></a>
+                                   <!-- <img src="./assets/images/users/avatar-7.jpg" alt="user" width="160px"> -->
+                                   <div *ngIf="!profileInfo?.profile" class="initials" style="height:160px;width:160px">{{getProfileInitials()}}</div>
+                                    <img *ngIf="profileInfo?.profile" src="{{host}}profiles/{{profileInfo?.user_id}}/{{profileInfo?.profile}}" alt="user" width="160px"> 
+                                   <p class="strong-text mt-2">{{profileInfo?.first_name}} {{profileInfo?.last_name}}</p>
+                                   
+                                    <div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog"
+                                    aria-labelledby="myLargeModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog modal-lg">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title mt-0" id="myLargeModalLabel">Edit Profile</h5>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                        aria-label="Close"></button>
+                                                </div>
+                                                <div class="modal-body">
+                                                <div class="col-md-12 col-lg-12">
+                                                    <div class="row">
+                                                        <div class="col-md-4 px-4" style="border-right: 1px solid gainsboro;text-align: center;">
+                                                            <!-- <img src="./assets/images/placeholder.png" alt="user" width="100%"> -->
+                                                            <div *ngIf="!profileInfo?.profile" class="initials">{{getProfileInitials()}}</div>
+                                                            <img *ngIf="profileInfo?.profile" src="{{host}}profiles/{{profileInfo?.user_id}}/{{profileInfo?.profile}}" alt="user" width="100%">
+                                                            <div class="custom-file-upload">
+
+                                                                <button type="button" class="btn btn-outline-success btn-rounded waves-effect waves-light mt-3">Upload Image</button>
+                                                                <input type="file" #fileInput (click)="resetFile()" (change)="selectFiles()" class="hide_file" accept="image/*">
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-8 col-lg-8">
+                                                            <form [formGroup]="profileForm">
+                                                                <div class="row mb-3 px-2">
+                                                                    <label for="example-text-input" class="col-sm-4 col-form-label" style="text-align: left;">First Name</label>
+                                                                    <div class="col-sm-7" style="padding-left: 0px;">
+                                                                        <input class="form-control" type="text" placeholder="First Name" id="example-text-input" formControlName="first_name">
+                                                                        <div  class="error" style="font-size: 0.8rem;" *ngIf="profileForm.controls.first_name.errors?.pattern">Only aplhabetic charecters are accepted.</div>
+                                                                    </div>
+                                                                
+                                                                </div>
+                                                                <div class="row mb-3 px-2">
+                                                                    <label for="example-text-input text-left" class="col-sm-4 col-form-label" style="text-align: left;">Last Name</label>
+                                                                    <div class="col-sm-7" style="padding-left: 0px;">
+                                                                        <input class="form-control" type="text" placeholder="Last Name" id="example-text-input" formControlName="last_name">
+                                                                        <div  class="error" style="font-size: 0.8rem;" *ngIf="profileForm.controls.last_name.errors?.pattern">Only aplhabetic charecters are accepted.</div>
+                                                                    </div>
+                                                                
+                                                                </div>
+                                                                <div class="row mb-3 px-2">
+                                                                    <label for="example-text-input text-left" class="col-sm-4 col-form-label" style="text-align: left;">Phone Number</label>
+                                                                    <div class="col-sm-7" style="padding-left: 0px; display: flex;   text-align: left;">
+                                                                        <select formControlName="extension" class="form-select" style="margin-right: 0.5rem;border-radius: 30px!important;width: 30%;text-align: center;">
+                                                                            <option value="+1">+1</option>
+                                                                            <!-- <option value="+2">+2</option>
+                                                                            <option value="+3">+3</option>
+                                                                            <option value="+4">+4</option>
+                                                                            <option value="+5">+5</option>
+                                                                            <option value="+6">+6</option>
+                                                                            <option value="+7">+7</option>
+                                                                            <option value="+8">+8</option>
+                                                                            <option value="+9">+9</option> -->
+                                                                          </select>
+                                                                        <input class="form-control" type="number" placeholder="+1234567890" id="example-text-input" formControlName="mobile">
+                                                                        <!-- <div  class="error" style="font-size: 0.8rem;" *ngIf="profileForm.controls.mobile.errors?.pattern">Only numeric digits are accepted.</div> -->
+                                                                    </div>
+                                                                    <div class="error" style="font-size: 0.8rem;" *ngIf="profileForm.controls.mobile.errors?.pattern">Max 10 digits allowed!</div>
+                                                                </div>
+                                                                <div class="row  mb-3 px-2">
+                                                                    <label for="example-text-input text-left" class="col-sm-4 col-form-label" style="text-align: left;">Facebook</label>
+                                                                    <div class="col-sm-7 text-left" style="padding-left: 0px;    text-align: left;">
+                                                                        <input class="form-control" type="phone" placeholder="add link here" id="example-text-input" formControlName="facebook">
+                                                                    
+                                                                    </div>
+                                                                </div>
+                                                                <div class="row mb-3 px-2">
+                                                                    <label for="example-text-input text-left" class="col-sm-4 col-form-label" style="text-align: left;">LinkedIn</label>
+                                                                    <div class="col-sm-7 text-left" style="padding-left: 0px;    text-align: left;">
+                                                                        <input class="form-control" type="phone" placeholder="add link here" id="example-text-input" formControlName="linkedin">
+        
+                                                                    </div>
+                                                                </div>
+                                                                <div class="row mb-3 px-2">
+                                                                    <label for="example-text-input text-left" class="col-sm-4 col-form-label" style="text-align: left;">Twitter</label>
+                                                                    <div class="col-sm-7" style="padding-left: 0px;    text-align: left;">
+                                                                        <input class="form-control" type="phone" placeholder="add link here" id="example-text-input" formControlName="twitter">
+                                                                    </div>
+                                                                </div>
+                                                                <div class="row  px-2">
+                                                                    <label for="example-text-input text-left" class="col-sm-4 col-form-label" style="text-align: left;">Instagram</label>
+                                                                    <div class="col-sm-7 text-left" style="padding-left: 0px;text-align: left;">
+                                                                        <input class="form-control" type="phone" placeholder="add link here" id="example-text-input" formControlName="instagram">
+                                                                    </div>
+                                                                </div>
+                                                                <div class="d-flexjustify-content-center mt-5">
+                                                                    <button type="button" class="btn btn-outline-success btn-rounded waves-effect waves-light" style="margin-right:30px;" [disabled]="!profileForm?.valid" (click)="update()">Save Changes</button>
+                                                                    <!-- <button type="button" class="btn btn-outline-success btn-rounded waves-effect waves-light">Cancel</button> -->
+                                                                </div>
+                                                            </form>
+                                                            
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                </div>
+                                            
+                                            </div>
+                                        </div>
+                                    </div>
+                                   
+                                </div>
+
+                               
+
+
+
+                                <div class="col-md-12 col-xl-12 mt-3 text-center">
+                                    <label for="example-week-input" style="font-weight:500!important;">{{profileInfo?.email}}</label><br>
+                                    <label for="example-week-input" style="font-weight:500!important;">{{profileInfo?.mobile}}</label>
+                                </div>
+
+                               
+                                <div class="col-md-12 col-xl-12 mt-3">
+                                     <div class="d-flex justify-content-center">
+                                        <div *ngIf="profileInfo?.facebook" style="cursor:pointer;"><a [href]="profileInfo?.facebook" target="_blank" rel="noopener noreferrer"><img src="./assets/images/facebook.svg" alt="face"></a></div>
+                                        <div *ngIf="profileInfo?.twitter" style="margin-left:10px;cursor:pointer;"><a [href]="profileInfo?.twitter" target="_blank" rel="noopener noreferrer"><img src="./assets/images/twitter.svg" alt="face"></a></div>
+                                        <div *ngIf="profileInfo?.instagram" style="margin-left:10px;cursor:pointer;"><a [href]="profileInfo?.instagram" target="_blank" rel="noopener noreferrer"><img src="./assets/images/insta.svg" alt="face"></a></div>
+                                        <div *ngIf="profileInfo?.linkedin" style="margin-left:10px;cursor:pointer;"><a [href]="profileInfo?.linkedin" target="_blank" rel="noopener noreferrer"><img src="./assets/images/linked.svg" alt="face"></a></div>
+                                     </div>
+                                </div>
+                               
+                            </div>
+                           
+                        </div>
+
+                    </div>
+                </div>
+
+
+
+                <div class="col-xl-8 col-md-8">
+                    <div class="card">
+                        <div class="card-body p-3">
+                            <div class="d-flex">
+                                <h5 class="font-size-15 flex-grow-1 mb-3">
+                                    <span class="tp-wrap">My Vendors
+                                        <span class="tp">View a summary of your top vendors</span>
+                                  </span>
+                                </h5>
+                                <p style="margin-right:10px;">
+                               </p> 
+                               
+                              <p class="mb-0" style="color:#38D8A2!important;text-align: right; cursor:pointer;"  routerLink="/app/vendor-hub" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">View all</p>
+                              
+                            </div>
+                            <div class="row">
+                               
+                                <div class="col-xl-3 col-md-3" *ngFor="let p of myVendors; let i=index;"  [title]="!p.verified_status?'This vendor is being built with love by the Teleperson team. Stay tuned!':''">
+                                    <div class="card">
+                                        <div class="card-body  p-0">
+                                            <div class="dropdown p-2" style="position: absolute;right: 0px;">
+                                                <a href="#" class="dropdown-toggle arrow-none card-drop"
+                                                    data-bs-toggle="dropdown" aria-expanded="false">
+                                                    <i class="mdi mdi-dots-vertical text-muted"></i>
+                                                </a>
+                                                <div class="dropdown-menu dropdown-menu-end">
+                                                    <a  (click)="gotoOverview(p)" class="dropdown-item">
+                                                        <i class="ri-profile-line"style="margin-right: 10px;position: relative;top: 2px;"></i>
+                                                        <span>See Profile</span></a>
+                                                   
+                                                
+                                                    <a href="javascript:void(0);" class="dropdown-item">
+                                                            <i class="ri-delete-bin-line" style="margin-right: 10px;position: relative;top: 2px;"></i>Remove</a>
+                                                    <a href="javascript:void(0);" class="dropdown-item" style="opacity:0.4">
+                                                                <i class="ri-flag-line"style="margin-right: 10px;position: relative;top: 2px;"></i>
+                                                                <span>Report</span></a>
+                                                </div>
+                                            </div>
+                                            <div class="p-3" (click)="gotoOverview(p)">
+                                                <!-- <div style="text-align:center;padding-top: 15px;">
+                                                    <img src="./assets/images/layouts/bmw.png" alt="bmw">
+                                                    <h5 class="text-center font-size-12 mb-0 pt-2">BMW</h5>
+                                                   
+                                                </div> -->
+                                                <div class="flex-1 vendor-wrapper" style="text-align:center;padding-top: 15px;">
+                                                    <div class="vendor-img">
+                                                        <img *ngIf="!p.logo &&(!p.logo_url || p.logo_url == '')" src="assets/img/dummy.png"  alt="{{p.company_name}}" class="responsive">
+                                                        <img *ngIf="!p.logo && p.logo_url" [src]="p.logo_url" alt="{{p.company_name}}" class="responsive">
+                                                        <img *ngIf="p.logo"  src="{{host}}vendors/{{p?.vendor_id}}/{{p?.logo}}" alt="{{p.company_name}}" class="responsive">
+                                                        <!-- <img *ngIf="!checkLogo(p)" src="assets/img/dummy.png" alt="{{p.company_name}}" class="responsive">
+                                                        <img *ngIf="checkLogo(p)" src="{{host}}vendors/{{p?.vendor_id}}/{{p?.logo}}" alt="{{p.company_name}}" class="responsive"> -->
+                                                     </div>
+                                                 
+                                                 <h5 class="text-center font-size-12 mb-0 pt-2">{{p.company_name}}</h5>
+                                                </div>
+
+                                            </div>
+                                          
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row align-items-center">
+                <div class="col-xl-4 col-md-4">
+                   
+                </div>
+                <div class="col-xl-8 col-md-8">
+                    <div class="card mt-2">
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between">
+                                <h5 class="font-size-15 mb-3"><span class="tp-wrap">Community
+                                    <span class="tp">View other members in the Teleperson Community</span>
+                                </span></h5>
+                                <p class="mb-0 see-all" style="cursor:pointer;" routerLink="/app/community" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">View all</p>
+                            </div>
+                                
+    
+                                <div class="table-responsive" style="overflow: hidden;">
+                                    <table class="table table-nowrap mb-0">
+                                        <tbody>
+                                            <tr *ngFor="let item of communities">
+                                                <td>
+                                                    <div class="d-flex">
+                                                        <div class="me-3" style="height: 40px; width: 40px;">
+                                                            <div *ngIf="!item?.profile" class="community-initials img-rounded">{{getCommunityProfileInitials(item) | uppercase}}</div>
+                                                            <img *ngIf="item?.profile" src="{{host}}profiles/{{item?.user_id}}/{{item?.profile}}"
+                                                            class="img-fluid img-rounded" style="height: 100%;width: 100%;cursor: pointer;" alt="">
+                                                        </div>
+                                                        <div style="display: flex;align-items: center;">
+                                                            <h5 class="font-size-13 text-truncate mb-1"><a href="#"
+                                                                    class="text-dark">{{item.first_name | titlecase}} {{item.last_name | titlecase}}</a>
+                                                            </h5>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                                
+                                                <td style="width: 15vw;">
+                                                    <!-- <div class="text-right"> -->
+                                                        <div *ngIf="item?.vendors?.length" style="height: 50%;
+                                                        width: 100%;
+                                                        display: flex;
+                                                        justify-content: flex-end;">
+                                                            <div class="vendors-box" >
+                            
+                                                                <div *ngFor="let vendor of item?.vendors; let i=index" mat-card-avatar style=" height: 35px; width: 35px;position: absolute;" [ngStyle]="{'left':(item?.vendors?.length >5)?35+(10*i)+'%':95-(10* (item?.vendors?.length-i))+'%', 'z-index':true?i:0}" (click)="gotoOverview(vendor)">
+                                                                    <img *ngIf="(!vendor.logo && (!vendor.logo_url || vendor.logo_url == '')) && !isRemaining(vendor)" src="assets/img/dummy.png" alt="" class="img-fluid img-rounded" style="height: 100%;width: 100%;cursor: pointer;border: 1px solid #38D8A2;background: white;">
+                                                                    <img *ngIf="(!vendor.logo && vendor.logo_url) && !isRemaining(vendor)" [src]="vendor.logo_url"  alt="" class="img-fluid img-rounded" style="height: 100%;width: 100%;cursor: pointer;border: 1px solid #38D8A2;background: white;">
+                                                                    <img *ngIf="vendor?.logo && !isRemaining(vendor)" src="{{host}}vendors/{{vendor?.vendor_id}}/{{vendor?.logo}}" alt="" class="img-fluid img-rounded" style="height: 100%;width: 100%;cursor: pointer;border: 1px solid #38D8A2;background: white;">
+                                                                    <!-- <img *ngIf="!vendor?.logo && !isRemaining(vendor)" src="assets/img/dummy.png" alt="" class="img-fluid img-rounded" style="height: 100%;width: 100%;cursor: pointer;border: 3px solid #38D8A2;background: white;">
+                                                                    <img *ngIf="vendor?.logo && !isRemaining(vendor)" src="{{host}}vendors/{{vendor?.vendor_id}}/{{vendor?.logo}}" alt="" class="img-fluid img-rounded" style="height: 100%;width: 100%;cursor: pointer;border: 3px solid #38D8A2;background: white;"> -->
+                                                                    <div *ngIf="isRemaining(vendor)" class="remaining img-rounded">+{{vendor.remaining}}</div>
+                                                                </div>
+                                                                
+                                                            </div>
+                                                        </div>
+                                                    <!-- </div> -->
+                                                </td>
+
+                                                <td>
+                                                    <div class="dropdown float-end p-2">
+                                                        <a href="#" class="dropdown-toggle arrow-none card-drop"
+                                                            data-bs-toggle="dropdown" aria-expanded="false">
+                                                            <i class="mdi mdi-dots-vertical text-muted"></i>
+                                                        </a>
+                                                        <div class="dropdown-menu dropdown-menu-end">
+                                                            <!-- item-->
+                                                            <a href="javascript:void(0);" class="dropdown-item">
+                                                                <i class="ri-map-pin-user-fill"style="margin-right: 10px;position: relative;top: 2px;"></i>See Profile</a>
+                                                            <a href="javascript:void(0);" class="dropdown-item">
+                                                                 <i class="ri-delete-bin-line"style="margin-right: 10px;position: relative;top: 2px;"></i>Remove</a>
+                                                            <!-- item-->
+                                                         
+                                                            <!-- item-->
+                                                            <a href="javascript:void(0);" class="dropdown-item" style="opacity:0.4">
+                                                                <i class="ri-flag-line"style="margin-right: 10px;position: relative;top: 2px;"></i>Report</a>
+                                                            <!-- item-->
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                           
+                                          
+                                            
+                                        </tbody>
+                                        
+                                    </table>
+                                    
+                                </div>
+                            <!-- end table-responsive -->
+                        </div>
+                        <!-- end cardbody -->
+                    </div>
+                    <!-- end card -->
+                </div>
+               
+                <!-- end col -->
+            </div>
+                    
+        </div>
+    </div>
+    <app-footer></app-footer>
+</div>
+

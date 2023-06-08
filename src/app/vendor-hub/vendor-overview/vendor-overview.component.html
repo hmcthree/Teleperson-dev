@@ -1,0 +1,777 @@
+<div class="main-content">
+    <div *ngIf="modalStatus" class="modal-backdrop show"></div>
+    <div  *ngIf="modalStatus" class="modal bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" style="margin-top: 200px;">
+        <div class="modal-dialog modal-md">
+            <div class="modal-content">
+                <div class="modal-header" style="border: none;">
+                    <h5 class="modal-title mt-0" id="myLargeModalLabel">Company information</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" (click)="closeModal()"
+                    aria-label="Close"></button>
+                </div>
+                <div class="modal-body pt-2">
+                    <div class="col-md-12 col-lg-12">
+                        <div class="row">
+                            
+                        
+                            <div class="d-flex justify-content-center mt-0">
+                                <p style="text-align: left;">{{selectedVendor?.company_overview}}</p> 
+                            </div>
+                        </div>
+                    </div>
+                
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+        </div><!-- /.modal -->
+    </div>
+    <div class="page-content">
+        <div class="container-fluid">
+            <div class="card">
+                <div class="card-body p-3">
+            <div class="row">
+                <div class="col-xl-3 col-md-3">
+                    <div class="p-4" style="border-right: 1px solid #d7d7d7;">
+                        <div class="d-flex">
+                            <div class="flex-1 vendor-wrapper" style="text-align:center; margin-bottom: 23px;">
+                                <div class="vendor-img">
+                                    <img *ngIf="!selectedVendor.logo &&(!selectedVendor.logo_url || selectedVendor.logo_url == '')" src="assets/img/dummy.png"  alt="{{selectedVendor.company_name}}" class="responsive">
+                                    <img *ngIf="!selectedVendor.logo && selectedVendor.logo_url" [src]="selectedVendor.logo_url" alt="{{selectedVendor.company_name}}" class="responsive">
+                                    <img *ngIf="selectedVendor.logo"  src="{{host}}vendors/{{selectedVendor?.vendor_id}}/{{selectedVendor?.logo}}" alt="{{selectedVendor.company_name}}" class="responsive">
+                                    <!-- <img *ngIf="checkLogo(selectedVendor)" src="{{host}}vendors/{{selectedVendor?.vendor_id}}/{{selectedVendor?.logo}}" alt="" class="responsive">
+                                    <img *ngIf="!checkLogo(selectedVendor)" src="assets/img/dummy.png" alt="" class="responsive"> -->
+                                </div>
+                                <h5 class="text-center mt-2 mb-0 pt-4">{{selectedVendor?.company_name}}</h5>
+                            </div>
+                        </div>
+                         
+                      
+                    </div>
+                </div>
+                <div class="col-xl-9 col-md-9">
+                    
+                            <p class="strong-text" style="font-weight:500!important;margin-bottom: 10px;">Who we are</p>
+                         <p style="font-size:15px;">
+                            {{getOverView(selectedVendor?.company_overview)}} <b *ngIf="selectedVendor?.company_overview?.length > 260">...</b> <a *ngIf="selectedVendor?.company_overview?.length > 260" (click)="seeMore()" style="font-weight:600;color: #34c38f;cursor: pointer;">see more</a>
+                         </p>
+                         <div class="col-md-12 col-lg-12">
+                            <div class="row">
+                                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 mt-2">
+                                    <div class="d-flex justify-content-between" style="padding: 10px 20px 0px 20px;
+                                    border: 1px solid #e1e1e1;
+                                    border-radius: 5px;">
+                                        <div style="text-align: center;">
+                                            <p class="strong-text" style="font-weight:500!important;">Employees</p>
+                                            <p style="font-size:12px;">{{selectedVendor?.employees | number : '1.0-0'}} </p>
+                                        </div>
+                                        <div style="text-align: center;">
+                                            <p class="strong-text" style="font-weight:500!important;">Founded</p>
+                                            <p style="font-size:12px;">{{selectedVendor?.founded}}</p>
+                                        </div>
+                                        <div style="text-align: center;">
+                                            <p class="strong-text" style="font-weight:500!important;">Industry</p>
+                                            <p style="font-size:12px;">{{selectedVendor?.industry}}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                             
+                            </div>
+                        </div>
+                        
+                        <!-- <div class="row mt-2">
+                           <div class="col-md-12 col-lg-12">
+                                  <div class="row">
+                                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 mt-2">
+                                        <button type="button" class="btn btn-outline-success btn-rounded waves-effect waves-light mt-2" style="margin-right: 10px;">Follow</button>
+                                        <button type="button" class="btn btn-outline-success btn-rounded waves-effect waves-light mt-2" (click)="gotoWebsite()">Visit Website</button>
+                                     
+                                    </div>
+                                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 mt-2" style="padding-top:20px;text-align: right;">
+                                        <a style="padding-top: 7px;margin-left:10px;"><img src="./assets/images/facebook.svg" alt="face"></a>
+                                        <a style="padding-top: 7px;margin-left:10px;"><img src="./assets/images/twitter.svg" alt="face"></a>
+                                        <a style="padding-top: 7px;margin-left:10px;"><img src="./assets/images/insta.svg" alt="face"></a>
+                                        <a style="padding-top: 7px;margin-left:10px;"><img src="./assets/images/linked.svg" alt="face"></a>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 mt-2">
+                                        <div style="text-align:right;padding-top: 10px;">
+                                            <a href="#" style="margin-right:5px;color: #a3a3a3;">6 Mutual Connections</a>
+                                            <img src="assets/images/users/avatar-1.jpg" class="avatar-xs h-auto rounded-circle" alt="Error">
+                                            <img src="assets/images/users/avatar-1.jpg" class="avatar-xs h-auto rounded-circle" alt="Error">
+                                            <img src="assets/images/users/avatar-1.jpg" class="avatar-xs h-auto rounded-circle" alt="Error">
+            
+                                        </div>
+                                    </div>
+                                  </div>
+                           </div>
+                          
+                        
+                        </div> -->
+                       
+                        </div>
+                    </div>
+                </div>
+               
+            </div>
+           
+            <div class="card">
+                <div class="card-body p-3">
+                    <p class="strong-text" style="font-weight:500!important;margin-bottom: 10px;">What do you need?</p>
+                    
+                    <div class="row mt-3">
+                       <div class="col-md-12 col-lg-12">
+                        <div class="row">
+                            <button *ngFor="let item of childs; let i=index" type="button" class="btn btn-outline-success btn-rounded waves-effect waves-light" style="margin-left: 20px; margin-top: 10px;" title="{{ item.description }}" (click)="updateCallCount(item)">
+                                <a target="_blank" href="tel:{{item.algorithm}}">{{ item.intention }}</a>
+                            </button>
+                        </div>
+                       </div>
+                       
+                    </div>
+                   
+                </div>
+            </div>
+           <div class="col-md-12 col-lg-12">
+            <div class="row">
+                <div class="col-md-4 col-lg-4">
+                    <div class="card" style="height:388px;">
+                        <div class="card-body p-3">
+                                    
+                            <div class="row">
+                                <p class="strong-text" style="font-weight:500!important;margin-bottom: 10px;cursor:pointer;">
+                                    <span class="tp-wrap">Status Quo
+                                        <span class="tp">How would you rank the status quo experience of calling vendors today (with the call tree)</span>
+                                    </span>
+                                </p>
+                               
+                               
+                           </div>
+                           <div class="mt-5">
+                            <mat-slider
+                                    [ngClass]="{'terrible':value == 20,'bad':value == 40,'ok':value == 60,'good':value == 80,'great':value == 100}"
+                                    class="example-margin"
+                                    [max]="max"
+                                    [min]="min"
+                                    [step]="step"
+                                    [thumbLabel]="thumbLabel"
+                                    [tickInterval]="tickInterval"
+                                    [(ngModel)]="value"
+                                    aria-labelledby="example-name-label"
+                                    (change)="updateReview($event)">
+                                </mat-slider>
+                           </div>
+                           <div class="col-md-12 col-lg-12 mt-5">
+                           <p style="text-align:center;">Based on this company's customer service experience with<strong> status quo experience</strong>, how likely are you to recommend this company to a friend or colleague?
+                        </p>
+                        </div>
+                        <div class="col-md-12 col-lg-12">
+                            <div  style="margin-left:10px;text-align: center;margin-top: 40px;opacity: 0.3;">
+                                <img src="./assets/images/mic.svg" alt="face">
+                           <img src="./assets/images/camera.svg" alt="face" style="margin-left:20px;"></div>
+                        </div>
+                            
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 col-lg-4">
+                    <div class="card" style="height:388px;">
+                        <div class="card-body p-3">
+                                    
+                            <div class="row">
+                                <p class="strong-text" style="font-weight:500!important;margin-bottom: 10px;cursor:pointer;">
+                                    <span class="tp-wrap">Teleperson
+                                        <span class="tp">Let us know how the Teleperson experience was when contacting your vendors.</span>
+                                    </span>
+                                </p>
+                                
+                               
+                           </div>
+                           <div class="mt-5">
+                            <mat-slider
+                                    [ngClass]="{'terrible':telepersonValue == 20,'bad':telepersonValue == 40,'ok':telepersonValue == 60,'good':telepersonValue == 80,'great':telepersonValue == 100}"
+                                    class="example-margin"
+                                    [max]="max"
+                                    [min]="min"
+                                    [step]="step"
+                                    [thumbLabel]="thumbLabel"
+                                    [tickInterval]="tickInterval"
+                                    [(ngModel)]="telepersonValue"
+                                    aria-labelledby="example-name-label"
+                                    (change)="updateTelepersonValueReview($event)">
+                                </mat-slider>
+                           </div>
+                           <div class="col-md-12 col-lg-12 mt-5">
+                            <p style="text-align:center;">Based on this company's customer service experience with<strong> Teleperson</strong>, how likely are you to recommend this company to a friend or colleague?
+                         </p>
+                         </div>
+                         <div class="col-md-12 col-lg-12">
+                             <div  style="margin-left:10px;text-align: center;margin-top: 40px;opacity: 0.3;">
+                                 <img src="./assets/images/mic.svg" alt="face">
+                            <img src="./assets/images/camera.svg" alt="face" style="margin-left:20px;"></div>
+                         </div>
+                          
+                            
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 col-lg-4">
+                    <p class="coming-soon"> Coming Soon</p>
+                    <div class="card" style="opacity:0.4;">
+                        <div class="card-body">
+                            <div class="float-end">
+                                <select class="form-select form-select-sm">
+                                    <option selected>Apr</option>
+                                    <option value="1">Mar</option>
+                                    <option value="2">Feb</option>
+                                    <option value="3">Jan</option>
+                                </select>
+                            </div>
+                            <h4 class="card-title mb-4" style="cursor:pointer;">
+                                <span class="tp-wrap"> Community Scores
+                                    <span class="tp">View a summary of community scores</span>
+                                </span>
+                            </h4>
+
+                            <div id="line_chart" class="apex-charts"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+           </div>
+           
+        </div>
+       
+    </div>
+
+
+
+
+<!-- <div class="main-content">
+    <div class="page-content">
+        <div class="container-fluid">
+
+            <div class="row">
+                <div class="col-xl-3 col-md-3">
+                    <div class="p-3">
+                        <div class="d-flex">
+                            <div class="flex-1 vendor-wrapper" style="text-align:center; margin-bottom: 23px;">
+                                <div class="vendor-img">
+                                    <img *ngIf="checkLogo(selectedVendor)" src="{{host}}vendors/{{selectedVendor?.vendor_id}}/{{selectedVendor?.logo}}" alt="" class="responsive">
+                                    <img *ngIf="!checkLogo(selectedVendor)" src="assets/img/dummy.png" alt="" class="responsive">
+                                </div>
+                                <h5 class="text-center mt-2 mb-0 pt-4">{{selectedVendor?.company_name}}</h5>
+                            </div>
+                         </div>
+                      
+                    </div>
+                </div>
+                <div class="col-xl-9 col-md-9">
+                    <div class="card">
+                        <div class="card-body p-3">
+                            <p class="strong-text" style="font-weight:500!important;margin-bottom: 10px;">Who we are</p>
+                         <p style="font-size:13px;">
+                            Office Depot® OfficeMax® is a leading provider of office products and services for people like you that are taking care of business. So, whatever the day brings, we’ve got your back. Office Depot® OfficeMax® is a resource and a catalyst to help customers work better.
+                             We are a single source for everything customers need to be more productiv...<span style="font-weight:600;">see more</span>
+                         </p>
+                         <div class="col-md-12 col-lg-12">
+                            <div class="row">
+                                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 mt-2">
+                                    <div class="d-flex justify-content-between" style="padding: 10px 20px 0px 20px;
+                                    border: 1px solid #e1e1e1;
+                                    border-radius: 5px;">
+                                        <div class="me-3 text-center">
+                                            <p class="strong-text" style="font-weight:500!important;">Employees</p>
+                                            <p style="font-size:12px;">5000+ employees</p>
+                                        </div>
+                                        <div style="text-align: center;">
+                                            <p class="strong-text" style="font-weight:500!important;">Founded</p>
+                                            <p style="font-size:12px;">2006</p>
+                                        </div>
+                                        <div style="text-align: center;">
+                                            <p class="strong-text" style="font-weight:500!important;">Industry</p>
+                                            <p style="font-size:12px;">Services</p>
+                                        </div>
+                                    </div>
+                                </div>
+                             
+                            </div>
+                        </div>
+                        
+                        <div class="row mt-2">
+                           <div class="col-md-12 col-lg-12">
+                                  <div class="row">
+                                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 mt-2">
+                                        <button type="button" class="btn btn-outline-success btn-rounded waves-effect waves-light mt-2" style="margin-right: 10px;">Follow</button>
+                                        <button type="button" class="btn btn-outline-success btn-rounded waves-effect waves-light mt-2" >Visit Website</button>
+                                     
+                                    </div>
+                                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 mt-2" style="padding-top:20px;text-align: right;">
+                                        <a style="padding-top: 7px;margin-left:10px;"><img src="./assets/images/facebook.svg" alt="face"></a>
+                                        <a style="padding-top: 7px;margin-left:10px;"><img src="./assets/images/twitter.svg" alt="face"></a>
+                                        <a style="padding-top: 7px;margin-left:10px;"><img src="./assets/images/insta.svg" alt="face"></a>
+                                        <a style="padding-top: 7px;margin-left:10px;"><img src="./assets/images/linked.svg" alt="face"></a>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 mt-2">
+                                        <div style="text-align:right;padding-top: 10px;">
+                                            <a href="#" style="margin-right:5px;color: #a3a3a3;">6 Mutual Connections</a>
+                                            <img src="assets/images/users/avatar-1.jpg" class="avatar-xs h-auto rounded-circle" alt="Error">
+                                            <img src="assets/images/users/avatar-1.jpg" class="avatar-xs h-auto rounded-circle" alt="Error">
+                                            <img src="assets/images/users/avatar-1.jpg" class="avatar-xs h-auto rounded-circle" alt="Error">
+            
+                                        </div>
+                                    </div>
+                                  </div>
+                           </div>
+                          
+                        
+                        </div>
+                       
+                        </div>
+                    </div>
+                </div>
+               
+            </div>
+           
+            <div class="card">
+                <div class="card-body p-3">
+                    <p class="strong-text" style="font-weight:500!important;margin-bottom: 10px;">What do you need?</p>
+                    
+                    <div class="row mt-3">
+                       <div class="col-md-12 col-lg-12">
+                        <div class="row">
+                            <button *ngFor="let item of childs; let i=index" type="button" class="btn btn-outline-success btn-rounded waves-effect waves-light" style="margin-left: 20px; margin-top: 10px;" title="{{ item.description }}" (click)="updateCallCount(item)">
+                                <a target="_blank" href="tel:{{item.algorithm}}">{{ item.intention }}</a>
+                            </button>
+                        </div>
+                       </div>
+                    </div>
+                   
+                </div>
+            </div>
+           <div class="col-md-12 col-lg-12">
+            <div class="row">
+                <div class="col-md-8 col-lg-8">
+                    <div class="card" style="height:388px;">
+                        <div class="card-body p-3">
+                                    
+                            <div class="row">
+
+                                <div class="col-md-12 col-lg-12">
+                                    <div class="row">
+                                        <div class="col-md-8 col-lg-8">
+                                            Based on this company's customer service experience today, how likely are you to recommend this company to a friend or colleague?
+
+                                        </div>
+                                        <div class="col-md-4 col-lg-4">
+                                            <div  style="margin-left:10px;text-align: right;">
+                                                <img src="./assets/images/mic.svg" alt="face">
+                                           <img src="./assets/images/camera.svg" alt="face" style="margin-left:20px;"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                               
+                           </div>
+                           <div class="mt-5">
+                                <mat-slider
+                                    [ngClass]="{'terrible':value == 20,'bad':value == 40,'ok':value == 60,'good':value == 80,'great':value == 100}"
+                                    class="example-margin"
+                                    [max]="max"
+                                    [min]="min"
+                                    [step]="step"
+                                    [thumbLabel]="thumbLabel"
+                                    [tickInterval]="tickInterval"
+                                    [(ngModel)]="value"
+                                    aria-labelledby="example-name-label"
+                                    (change)="updateReview($event)">
+                                </mat-slider>
+                           </div>
+                          
+                            
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 col-lg-4">
+                    <p class="coming-soon"> Coming Soon</p>
+                    <div class="card" style="opacity:0.4;">
+                        <div class="card-body">
+                            <div class="float-end">
+                                <select class="form-select form-select-sm">
+                                    <option selected>Apr</option>
+                                    <option value="1">Mar</option>
+                                    <option value="2">Feb</option>
+                                    <option value="3">Jan</option>
+                                </select>
+                            </div>
+                            <h4 class="card-title mb-4">Customer Trends by Month</h4>
+
+                            <div id="line_chart" class="apex-charts"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+           </div>
+        </div>
+       
+    </div>
+<!-- <div class="page-content">
+    <div class="container-fluid">
+
+        <div class="row">
+            <div class="col-xl-3 col-md-3" style="padding-left: 0px;">
+                <div class="card" style="height:238px;">
+                    <div class="card-body p-0">
+                        <div class="p-3">
+                            <div class="d-flex">
+
+                                <div class="flex-1 vendor-wrapper" style="margin-bottom: 10px;">
+                                    <div class="vendor-img">
+                                        <img *ngIf="checkLogo(selectedVendor)" src="{{host}}vendors/{{selectedVendor?.vendor_id}}/{{selectedVendor?.logo}}" alt="" class="responsive">
+                                        <img *ngIf="!checkLogo(selectedVendor)" src="assets/img/dummy.png" alt="" class="responsive">
+                                    </div>
+                                    <h5 class="text-center font-size-14 mb-0 pt-2">{{selectedVendor?.company_name}}</h5>
+                                    
+                                </div>
+                                
+                            </div>
+                            <div class="d-flex">
+                                <div class="me-3">
+                                    <img src="assets/images/users/avatar-1.jpg"
+                                        class="avatar-xs h-auto rounded-circle" alt="Error">
+                                        <img src="assets/images/users/avatar-1.jpg"
+                                        class="avatar-xs h-auto rounded-circle" alt="Error">
+                                </div>
+                                <div style="padding-top: 12px;">
+                                    <h5 class="font-size-13 text-truncate mb-1">
+                                        <a href="#" style="color: #9b9393;">6 Mutual Connections</a>
+                                    </h5>
+                                   
+                                </div>
+                            </div>
+                          
+                        </div>
+                      
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-9 col-md-9 px-0">
+                <div class="card">
+                    <div class="card-body p-3">
+                      <p style="font-size: 16px; color: #4c4646;">Office Depot is here to help you & your business thrive. #DiscoverDepot products & services,
+                         & learn how we're making a Depot Difference</p>
+                     <p>Business Supplies & Equipment Boca Raton, Florida 138,600 followers</p>
+                     <div class="d-flex">
+                        <div class="me-3">
+                            <p class="strong-text">Employees</p>
+                            <p>5000+ employees</p>
+                        </div>
+                        <div style="margin-left: 30px;">
+                            <p class="strong-text">Founded</p>
+                            <p>2006</p>
+                        </div>
+                    </div>
+                    <div class="d-flex">
+                        <button type="button" class="btn btn-outline-success btn-rounded waves-effect waves-light">Follow</button>
+                        <button type="button" class="btn btn-outline-success btn-rounded waves-effect waves-light" style="margin-left: 20px;">Visit Website</button>
+                        <button type="button" class="btn btn-outline-success btn-rounded waves-effect waves-light" style="margin-left: 20px;">Add Vendors</button>
+                        <button type="button" class="btn btn-outline-success btn-rounded waves-effect waves-light" style="margin-left: 20px;">
+                          <img src="./assets/images/more.svg" alt="more" style="width: 20px;height: 20px;">
+                        </button>
+
+
+                    </div>
+                    </div>
+                </div>
+            </div>
+           
+        </div>
+        <div class="row">
+            <div class="card">
+                <div class="card-body p-3">
+                    <h4 style="font-weight:700;">Overview</h4>
+                    <p>
+                        Office Depot® OfficeMax® is a leading provider of office products and services for people like you that are taking care of business. So, whatever the day brings, we’ve got your back.
+                    </p>
+                    <p>
+                        Office Depot® OfficeMax® is a resource and a catalyst to help customers work better. We are a single source for everything customers need to be more productive, including the latest technology, core office supplies, print and document services, business services, facilities products, furniture, and school essentials.
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="card">
+                <div class="card-body p-3">
+                    <h4 style="font-weight:700;">What do you need?</h4>
+                    <div class="d-flex mt-3" style="flex-wrap:wrap;">
+                        <button *ngFor="let item of childs; let i=index" type="button" style="margin: 0 1.5rem 1rem 0;" class="btn btn-outline-success btn-rounded waves-effect waves-light theme-btn-outline" title="{{ item.description }}" (click)="updateCallCount(item)">
+                            <a target="_blank" href="tel:{{item.algorithm}}">{{ item.intention }}</a>
+                        </button>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xl-6 col-md-6 " style="padding-left: 0px;">
+                <div class="card">
+                    <div class="card-body p-3">
+                        <div class="d-flex">
+                            <div class="p-2 flex-grow-1">
+                                <h4 style="font-weight:700;">Current Deals</h4>
+                            </div>
+                            <div class="p-2">
+                                <p>See All</p>
+                            </div>
+                            
+                        </div>
+                        
+                        <div class="row">
+                            <div class="col-xl-4 col-md-4">
+                                <div class="card" style="border: 1px solid #e0e0e0;">
+                                    <div class="card-body p-2 text-center">
+                                      <img src="./assets/images/bag.png" alt="bag">
+                                      <p style="margin-bottom: 5px;padding-top: 10px;">Current Deals</p>
+                                      <h6>$160</h6>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xl-4 col-md-4">
+                                <div class="card" style="border: 1px solid #e0e0e0;">
+                                    <div class="card-body p-2 text-center">
+                                      <img src="./assets/images/mobile.png" alt="bag">
+                                      <p style="margin-bottom: 5px;padding-top: 10px;">Current Deals</p>
+                                      <h6>$160</h6>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xl-4 col-md-4">
+                                <div class="card" style="border: 1px solid #e0e0e0;">
+                                    <div class="card-body p-2 text-center">
+                                      <img src="./assets/images/game.png" alt="bag">
+                                      <p style="margin-bottom: 5px;padding-top: 10px;">Current Deals</p>
+                                      <h6>$160</h6>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xl-4 col-md-4">
+                                <div class="card" style="border: 1px solid #e0e0e0;">
+                                    <div class="card-body p-2 text-center">
+                                      <img src="./assets/images/magnify.png" alt="bag">
+                                      <p style="margin-bottom: 5px;padding-top: 10px;">Current Deals</p>
+                                      <h6>$160</h6>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xl-4 col-md-4">
+                                <div class="card" style="border: 1px solid #e0e0e0;">
+                                    <div class="card-body p-2 text-center">
+                                      <img src="./assets/images/floater.png" alt="bag">
+                                      <p style="margin-bottom: 5px;padding-top: 10px;">Current Deals</p>
+                                      <h6>$160</h6>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xl-4 col-md-4">
+                                <div class="card" style="border: 1px solid #e0e0e0;">
+                                    <div class="card-body p-2 text-center">
+                                      <img src="./assets/images/game.png" alt="bag">
+                                      <p style="margin-bottom: 5px;padding-top: 10px;">Current Deals</p>
+                                      <h6>$160</h6>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-6 col-md-6 px-0">
+                <div class="card" style="height: 449px;">
+                    <div class="card-body p-3">
+                        <div class="d-flex">
+                            <div class="p-2 flex-grow-1">
+                                <h4 style="font-weight:700;">Current Deals</h4>
+                            </div>
+                            <div class="p-2">
+                                <p>See All</p>
+                            </div>
+                            
+                        </div>
+                       
+                        <div class="row">
+                            <div class="col-xl-6 col-md-6 text-center">
+                                <img src="./assets/images/Mask-1.png" alt="bag" style="width: 100%;">
+                            </div>
+                            <div class="col-xl-6 col-md-6 text-center">
+                                <img src="./assets/images/Mask-2.png" alt="bag" style="width: 100%;">
+                            </div>
+                          
+                        </div>
+                    
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> -->
+<app-footer></app-footer>
+</div> -->
+<!-- End Page-content -->
+
+<!-- <div>
+    <div class="details-wrap">
+        <div class="col-md-3 monitor-view">
+            <div class="vendor-card-wrap">
+
+                <mat-card class="vendor-card">
+                    <div class="vendor-logo-wrap">
+                      <div class="vendor-logo">
+                          <img *ngIf="checkLogo(selectedVendor)" src="{{host}}vendors/{{selectedVendor?.vendor_id}}/{{selectedVendor?.logo}}" alt="" class="responsive">
+                          <img *ngIf="!checkLogo(selectedVendor)" src="assets/img/dummy.png" alt="" class="responsive">
+                      </div>
+                      <div class="vendor-details">
+                          <b>{{selectedVendor?.company_name}}</b>
+                      </div> 
+                    </div> 
+                  </mat-card>
+            </div>
+        </div>
+        <div class="col-md-3 mobile-view" style="width: 100%;">
+            <div class="vendor-card-wrap">
+
+                <mat-card class="vendor-card">
+                    <div class="vendor-logo-wrap">
+                      <div class="vendor-logo">
+                          <img *ngIf="checkLogo(selectedVendor)" src="{{host}}vendors/{{selectedVendor?.vendor_id}}/{{selectedVendor?.logo}}" alt="" class="responsive">
+                          <img *ngIf="!checkLogo(selectedVendor)" src="assets/img/dummy.png" alt="" class="responsive">
+                      </div>
+                      <div class="vendor-details">
+                        {{selectedVendor?.company_name}}
+                        <div class="link-btns">
+                            <button mat-icon-button><mat-icon>launch</mat-icon></button>
+                            <button mat-icon-button><mat-icon>favorite_border</mat-icon></button>
+                        </div>
+
+                        <div class="sm-imgs">
+                            <div><img src="assets/img/mobile_icons/fb.svg" alt=""></div>
+                            <div><img src="assets/img/mobile_icons/insta.svg" alt=""></div>
+                            <div><img src="assets/img/mobile_icons/twitter.svg" alt=""></div>
+                            <div><img src="assets/img/mobile_icons/selectedVendor.svg" alt=""></div>
+                            <div><img src="assets/img/mobile_icons/linkedin.svg" alt=""></div>
+                        </div>
+                      </div> 
+                    </div> 
+                  </mat-card>
+            </div>
+        </div>
+        <div class="col-md-9 monitor-view">
+            <div class="vendor-details-wrap">
+                <div class="vendor-card-wrap">
+                    <mat-card class="vendor-card">
+                        <h1>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Commodi reiciendis aut perspiciatis beatae cumque sed nihil repellat sapiente ea, culpa, tempora iure suscipit delectus tenetur qui laborum quos dignissimos numquam!</h1>
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam sed non at ab quibusdam numquam aperiam beatae!</p>
+                        <div class="details-wrap">
+                            <div class="col-md-4">
+                                <h1>Website</h1>
+                                <h2>https://www.demo.com</h2>
+                            </div>
+                            <div class="col-md-4">
+                                <h1>Employees</h1>
+                                <h2>5000+ employees</h2>
+                            </div>
+                            <div class="col-md-4">
+                                <h1>Founded</h1>
+                                <h2>2000</h2>
+                            </div>
+                        </div>
+                        <div class="btns">
+                            <button class="vendor-btns" mat-raised-button><mat-icon>add</mat-icon> &nbsp; Follow</button>
+                            <button class="vendor-btns-outline" mat-raised-button><mat-icon>open_in_new</mat-icon> &nbsp; Visit Website</button>
+                            <button class="vendor-btns-outline" mat-raised-button>More</button>
+                        </div>
+                    </mat-card>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-9 mobile-view">
+            <div class="vendor-details-wrap">
+                <div class="vendor-card-wrap">
+                    <mat-card class="vendor-card">
+                        <h1>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Commodi reiciendis aut perspiciatis beatae cumque sed nihil repellat sapiente ea, culpa, tempora iure suscipit delectus tenetur qui laborum quos dignissimos numquam!</h1>
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam sed non at ab quibusdam numquam aperiam beatae!</p>
+                        <div class="details-wrap">
+                            
+                            <div class="col-md-4">
+                                <h1>Employees</h1>
+                                <h2>5000+ employees</h2>
+                            </div>
+                            <div class="col-md-4">
+                                <h1>Founded</h1>
+                                <h2>2000</h2>
+                            </div>
+                        </div>
+                        
+                    </mat-card>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="overview-wrap">
+        <div class="vendor-card-wrap">
+
+            <mat-card class="vendor-card">
+                <h1>Overview</h1>
+                <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Architecto, fugiat modi porro at rerum veritatis, culpa quasi sit dolor ducimus ullam voluptates voluptatibus veniam necessitatibus ab officiis esse optio totam?</p>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur totam dicta voluptates fugit dolorum libero nisi laboriosam debitis modi omnis nesciunt maxime eum quisquam mollitia rem, accusamus animi, consectetur atque.</p>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur totam dicta voluptates fugit dolorum libero nisi laboriosam debitis modi omnis nesciunt maxime eum quisquam mollitia rem, accusamus animi, consectetur atque.</p>
+            </mat-card>
+        </div>
+    </div>
+    <div class="overview-wrap">
+        <div class="vendor-card-wrap" style="display: flex;justify-content: center;">
+
+            <mat-card class="vendor-card" style="width: 100%; display: flex;justify-content: center;">
+                <div style="width: 49%; display: flex;flex-direction: column;align-items: center;">
+
+                    <div style="display: flex;justify-content: space-between;margin-bottom: 2rem;">
+                        <div style="width: 75%;">
+                            Based on this company's customer service operations, how likely are you to recommend this vendor to a friend or colleague?
+                        </div>
+                        <div style="width: 15%;">
+                            <img src="assets/icons/mike.svg" alt="" style="width: 40px;">
+                            <img src="assets/icons/video.svg" alt="" style="margin-left: 0.5rem; width: 40px;">
+                        </div>
+                    </div>
+                    <mat-slider
+                        [ngClass]="{'terrible':value == 20,'bad':value == 40,'ok':value == 60,'good':value == 80,'great':value == 100}"
+                        class="example-margin"
+                        [max]="max"
+                        [min]="min"
+                        [step]="step"
+                        [thumbLabel]="thumbLabel"
+                        [tickInterval]="tickInterval"
+                        [(ngModel)]="value"
+                        aria-labelledby="example-name-label"
+                        (change)="updateReview($event)">
+                    </mat-slider>
+                    <div style="display:flex; justify-content:space-between;width: 100%;">
+                        <div>Not at all likely</div>
+                        <div>Extremely likely</div>
+                    </div>
+                </div>
+            </mat-card>
+        </div>
+    </div>
+    <div class="direct-buttons-wrap">
+        <div class="vendor-card-wrap">
+
+            <mat-card class="vendor-card">
+                <h1>Direct Buttons</h1>
+                <div>
+                    <button *ngFor="let item of childs; let i=index" class="vendor-btns-outline" mat-raised-button title="{{ item.description }}" (click)="updateCallCount(item)">
+                        <a target="_blank" href="tel:{{item.algorithm}}">{{ item.intention }}</a>
+                    </button>
+                   
+                </div>
+            </mat-card>
+        </div>
+    </div>
+</div> -->

@@ -1,0 +1,121 @@
+
+
+  <div class="main-content">
+    <!-- <div *ngIf="showSpinner" style="display: flex;justify-content: center;width: 99%;min-height: 86vh;align-items: center;">
+      <mat-progress-spinner strokeWidth="1" mode="indeterminate"></mat-progress-spinner>
+    </div> -->
+
+    <div class="page-content">
+        <div class="container-fluid">
+            <div class="row">
+               
+                <div class="col-md-12 col-gl-12 mb-3">
+                    <div style="background: #e5e5e5;border-radius: 0.25rem;">
+                        <div class="row">
+                            <div class="col-xl-8 col-md-8">
+                               <div class="p-3">
+                                <h3 style="color: #000;padding-top: 10px;">Vendor Lounge</h3>
+                                <p style="padding-top:10px;color: #000;font-size: 16px;">
+                                    Welcome to your Vendor Lounge! Here you can add those companies pulled from your accounts to your Vendor Hub! Once added to your Vendor Hub, we'll take it from there-unifying and making awesome your customer service experience across all of your companies!
+                                </p>
+                               </div>
+                            </div>
+                            <div class="col-xl-4 col-md-4 pt-0 text-center">
+                                <img src="assets/images/add-vendors.svg" alt="" width="230">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-12">
+                
+                    <div class="row">
+                        <div class="col-xl-2 col-md-3" *ngFor="let p of vendors; let i=index;" >
+                            <div class="card" >
+                                <div class="card-body card-height p-0">
+                                    <div class="dropdown p-2" style="position: absolute;right: 0px;">
+                                        <a href="#" class="dropdown-toggle arrow-none card-drop"
+                                            data-bs-toggle="dropdown" aria-expanded="false">
+                                            <i class="mdi mdi-dots-vertical text-muted"></i>
+                                        </a>
+                                        <div class="dropdown-menu dropdown-menu-end">
+                                            <!-- item-->
+                                           
+                                            <a href="javascript:void(0);" class="dropdown-item">
+                                                <i class="ri-inbox-archive-line"style="margin-right: 10px;position: relative;top: 2px;"></i>Archive</a>
+                                           
+                                         
+                                        </div>
+                                    </div>
+                                    <div class="p-3">
+                                        <div style="text-align:center;" class="vendor-wrapper">
+                                            <!-- <img src="./assets/images/layouts/bmw.png" alt="bmw"> -->
+                                             
+                                            <div class="vendor-img">
+                                              <img *ngIf="p.logo" src="{{host}}vendors/{{p?.vendor_id}}/{{p?.logo}}" alt="" class="responsive">
+                                              <img *ngIf="!p.logo" [src]="p.logo_url" alt="" class="responsive">
+                                            </div>
+                                            <h5 class="text-center font-size-12 mb-0 pt-2">{{p.company_name}}</h5>
+                                            <div class="form-switch mb-1 pt-2" style="text-align:center;">
+                                               <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" [checked]="p.checked" [(ngModel)]="p.checked" (change)="toggleChange($event,p)">
+                                                <label class="form-check-label" for="flexSwitchCheckChecked"></label>
+                                           </div>
+                                        </div>
+                                    </div>
+                                  
+                                </div>
+                                <!-- end cardbody -->
+                            </div>
+                            <!-- end card -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+          </div>
+        </div>
+        <app-footer></app-footer>
+  </div>
+                        <!-- end col -->
+                        
+  <!-- <div *ngIf="!showSpinner" class="monitor-view">
+    <div class="block-wrapper">
+    
+      <div class="vendor-lounge-wrap">
+          <div class="vendor-card-wrap">
+            <mat-card class="vendor-card-1 col-md-15" *ngFor="let p of vendors; let i=index;" [ngClass]="{'gray':!p.verified_status}" [title]="!p.verified_status?'This vendor is being built with love by the Teleperson team. Stay tuned!':''">
+              <div class="vendor-logo-wrap">
+                <div class="vendor-logo">
+                    <img *ngIf="!checkLogo(p)" src="assets/img/dummy.png" alt="" class="responsive">
+                    <img *ngIf="checkLogo(p)" src="{{host}}vendors/{{p?.vendor_id}}/{{p?.logo}}" alt="" class="responsive">
+                </div>
+                <div class="vendor-details">
+                    <b>{{p.company_name}}</b>
+                </div> 
+                <mat-slide-toggle style="margin-top: 0.5rem;"  [(ngModel)]="p.is_plaid_linked" (change)="toggleChange($event,p)"></mat-slide-toggle>
+              </div> 
+            </mat-card>
+          </div>
+           
+        </div>
+    </div>
+  </div>
+  
+  <div *ngIf="!showSpinner" class="mobile-view">
+    <div style="display: flex;justify-content: center;width: 99%;min-height: 86vh;overflow-y: auto;">
+    
+      <div class="vendor-lounge-wrap">
+          <div class="vendor-card-wrap">
+            <mat-card class="vendor-card" *ngFor="let p of vendors; let i=index;" [ngClass]="{'gray':!p.verified_status}" [title]="!p.verified_status?'This vendor is being built with love by the Teleperson team. Stay tuned!':''">
+              <div class="vendor-logo-wrap">
+                <div class="vendor-logo">
+                    <img *ngIf="!checkLogo(p)" src="assets/img/dummy.png" alt="" class="responsive">
+                    <img *ngIf="checkLogo(p)" src="{{host}}vendors/{{p?.vendor_id}}/{{p?.logo}}" alt="" class="responsive">
+                </div>
+          
+                <mat-slide-toggle style="margin-top: 0.5rem;" [(ngModel)]="p.is_plaid_linked" (change)="toggleChange($event,p)"></mat-slide-toggle>
+              </div> 
+            </mat-card>
+          </div>
+           
+        </div>
+    </div>
+  </div> -->

@@ -1,0 +1,51 @@
+<div class="main-content">
+    <div *ngIf="modalStatus" class="modal-backdrop show"></div>
+    <div *ngIf="modalStatus" class="modal bs-example-modal-lg" tabindex="-1" role="dialog" id="myModal" 
+        aria-labelledby="myLargeModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header" style="border: none;">
+                    <!-- <h5 class="modal-title mt-0" id="myLargeModalLabel">Add New Vendor</h5> -->
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" (click)="closeModal()"
+                        aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                <div class="col-md-12 col-lg-12">
+                    <div class="row">
+                        
+                        <div class="col-md-12 col-lg-12">
+                            <div class="row mb-3 px-2 d-flex justify-content-center">
+                            <img src="assets/images/Texting-amico-1.svg" alt="con" style="width:300px;">
+                            <p class="mt-2" style="text-align: left;">Welcome to your Concierge page, detailing ongoing, recent and otherwise pinned discussions with Teleperson Concierge (our native personalized chatbot) or the representative at each company you speak with. </p>
+                            <p class="mt-2" style="text-align: left;">All discussions are transcribed and saved in your account and you can choose which information to share with the Teleperson community (e.g., product names associated with specific issues, awesome representatives, companies or experiences you'd like to highlight, etc.). </p>
+                            <h5 class="mt-2" style="font-size: 16px;text-align: left;">At Teleperson, your data privacy is first and foremost and you are in complete control of your data!</h5>
+                            </div>
+                        
+                            <!-- <div class="d-flex justify-content-left mt-4">
+                                <button type="button" class="btn btn-outline-success btn-rounded waves-effect waves-light" style="margin-right:30px;border-radius: 5px !important;font-size: 16px !important;" >Add</button>
+                                <button type="button" class="btn btn-outline-success btn-rounded waves-effect waves-light"style="border-radius: 5px !important;font-size: 16px !important;" >Cancel</button>
+                            </div> -->
+                        </div>
+                    </div>
+                </div>
+                </div>
+                
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+    <div class="page-content">
+        <div class="container-fluid">
+            <p class="coming-soon" style="position: absolute;top: 26%;left: 50%;">Coming soon</p>
+            <div class="row" style="opacity:0.4;">
+                <img src="assets/images/just-img-123.jpg" alt="" width="100%">
+            </div>
+
+             
+
+        </div>
+        <!-- end container-fluid -->
+    </div>
+    <!-- End Page-content -->
+
+    <app-footer></app-footer>
+</div>

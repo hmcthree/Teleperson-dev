@@ -1,0 +1,19 @@
+<header class="login-header">
+    <div class="logo-wrap">
+        <img src="/assets/img/Logo.svg" class="img-fluid" alt="Logo">
+    </div>
+    <div *ngIf="_type == 'signin'" class="header-sign-up">
+            <span>Don't have an account?</span>
+            <button class="sbt-button" routerLink="/signup" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">
+                Sign up
+            </button>
+    </div>
+    <div *ngIf="_type == 'signup'" class="header-sign-up">
+           <div>
+            <span>Already have an account?</span>
+            <button class="sbt-button" routerLink="/login" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">
+                Sign in
+            </button>
+           </div>
+    </div>
+</header>

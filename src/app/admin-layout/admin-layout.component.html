@@ -1,0 +1,26 @@
+
+<!-- <div class="main-row" style="background: rgb(239 239 239);">
+  <div  [@slideInOut]="menuState" class="side-nav monitor-view" style="height: 100vh;background: white;">
+
+    <app-admin-sidenav [menuState]="menuState"></app-admin-sidenav>
+    <button mat-icon-button class="pull-btn" (click)="showHide()"><mat-icon [ngClass]="{'arrow-btn-in':menuState=='in','arrow-btn-out':menuState=='out'}">keyboard_arrow_right</mat-icon></button>
+  </div>
+<div [@contentInOut]="contentState">
+    <header class="monitor-view" style="margin-bottom:1rem; border-bottom: 1px solid #ccc;height: 10vh;padding:0 1.5rem;">
+      <app-admin-header></app-admin-header>
+    </header>
+    <header class="mobile-view" style="margin-bottom:1rem; border-bottom: 1px solid #ccc;height: 10vh;">
+      <app-admin-header></app-admin-header>
+    </header> -->
+    <!-- <div style="height: 87vh; overflow: auto;"> -->
+     
+      <app-admin-header></app-admin-header>
+      <app-admin-sidenav></app-admin-sidenav>
+      <router-outlet></router-outlet>
+      <app-right-sidenav></app-right-sidenav>
+      
+    <!-- </div>
+  </div>
+    <app-admin-sidenav [@slide1InOut]="rightMenuState" class="mobile-view" style="height: 100vh;background: white;"></app-admin-sidenav>
+</div> -->
+

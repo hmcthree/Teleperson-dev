@@ -1,0 +1,237 @@
+.vendor-wrapper{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+.vendor-img{
+    width: 100px;
+    min-height: 100px;
+    max-height: 120px;
+    display: flex;
+    align-items: center;
+}
+
+.responsive {
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+  }
+// .vendor-lounge-wrap{
+//     display: flex;
+//     flex-direction: column;
+//     align-items: center;
+//     width: 100%;
+// }
+// .top-title{
+//     color: #000;
+//     font-size: 1.4rem;
+//     font-weight: 600;
+//   }
+
+//   .gray{
+//     background: #abaaaa8c;
+//   }
+// //   .gray:hover .gray::before{
+// //         content: "";
+// //         top:0;
+// //     }
+  
+
+//     ::-webkit-scrollbar {
+//         display: none;
+//     }
+
+//   .monitor-view{
+//     .block-wrapper{
+//         height: 87vh;
+//         overflow-y: auto;
+//     }
+//       .vendor-card-wrap{
+//         width: 100%;
+//         overflow: auto;
+//         display: grid;
+//         grid-template-columns: repeat(auto-fill, 196px);
+//         justify-content: space-evenly;
+//         .vendor-card-1{
+//             // padding: 0rem 4%;
+//             margin-bottom: 1.4rem;
+//             // max-width: 15%;
+//             width: 100%;
+//             position: relative;
+//             .vendor-logo-wrap{
+//                 display: flex;
+//                 flex-direction: column;
+//                 align-items: center;
+//                 justify-content:center;
+//                 margin: 0.8rem 0;
+//                 cursor: pointer;
+//                 .vendor-logo{
+//                     width: 100px;
+//                     min-height: 100px;
+//                     max-height: 100px;
+//                     display: flex;
+//                     align-items: center;
+//                 }
+//                 .vendor-details{
+//                     margin-top: 1rem;
+//                     white-space: nowrap;
+//                     overflow: hidden;
+//                     text-overflow: ellipsis;
+//                     width: 100%;
+//                     text-align: center;
+//                     display: flex;
+//                     flex-direction: column;
+//                 }
+//                 .verified-status{
+//                     margin-top: 1rem;
+//                     color: #b1b1b1;
+//                     width: 200%;
+//                     text-align: center;
+//                 }
+//             }
+//             //   .vendor-logo-wrap{
+//             //       display: flex;
+//             //       flex-direction: column;
+//             //       align-items: center;
+//             //       justify-content:center;
+//             //       margin-top: 0.5rem;
+//             //       cursor: pointer;
+//             //       .vendor-logo{
+//             //           width: 100px;
+//             //           min-height: 100px;
+//             //           max-height: 100px;
+//             //           display: flex;
+//             //           align-items: center;
+//             //       }
+//             //       .vendor-details{
+//             //           margin-top: 1rem;
+//             //           white-space: nowrap;
+//             //           overflow: hidden;
+//             //           text-overflow: ellipsis;
+//             //           width: 200%;
+//             //           text-align: center;
+//             //           display: flex;
+//             //           flex-direction: column;
+//             //       }
+
+//             //       .verified-status{
+//             //         margin-top: 1rem;
+//             //         color: #b1b1b1;
+//             //         width: 200%;
+//             //         text-align: center;
+//             //     }
+                 
+//             //   }
+      
+//           }
+//       }
+//   }
+// .mobile-view{
+//     .vendor-card-wrap{
+//         width: 100%;
+//         display: flex;
+//         flex-wrap: wrap;
+//         align-items: center;
+//         justify-content: space-between;
+//         overflow: auto;
+    
+//         .vendor-card{
+//             padding: 0rem 4%;
+//             margin: 0;
+//             margin-bottom: 1rem;
+//             width: 88.45714569091797px;
+            
+//             .vendor-logo-wrap{
+//                 display: flex;
+//                 flex-direction: column;
+//                 align-items: center;
+//                 justify-content: center;
+//                 margin-top: 0.5rem;
+//                 cursor: pointer;
+//                 .vendor-logo{
+//                     display: flex;
+//                     align-items: center;
+//                     height: 46.04428482055664px;
+//                     width: 46.23896026611328px;
+//                 }
+//                 .vendor-details{
+//                     margin-top: 1rem;
+//                     white-space: nowrap;
+//                     overflow: hidden;
+//                     text-overflow: ellipsis;
+//                     width: 200%;
+//                     text-align: center;
+//                     display: flex;
+//                     flex-direction: column;
+//                 }
+//                 .verified-status{
+//                     // margin-top: 1rem;
+//                     // width: 200%;
+//                     color: #b1b1b1;
+//                     text-align: center;
+//                 }
+//             }
+
+//         }
+//     }
+// }
+
+// .lounge-box{
+//     margin-bottom: 1rem;
+//     width: 40%;
+//     height: 100%;
+//     flex-direction: column;
+//     box-shadow: 0px 2px 4px 2px rgb(0 0 0 / 20%);
+//     padding: 1rem; background: white;
+// }
+// ::ng-deep dialog{
+//     display: block;
+//     width: 58%;
+//     height: 45%;
+// }
+
+// // .vendor-card-wrap::after {
+// //     content: "";
+// //     flex: auto;
+// //   }
+// .responsive {
+//     width: 100%;
+//     max-width: 400px;
+//     height: auto;
+//   }
+
+//   .selectedBtn{
+//     color: white;
+//     font-weight: 700;
+//     background: #57e293;
+//   }
+
+//   :host ::ng-deep .mat-slide-toggle.mat-checked .mat-slide-toggle-thumb {
+//     background-color: white;
+// }
+//   :host ::ng-deep .mat-slide-toggle.mat-checked .mat-slide-toggle-bar {
+//     background-color: rgb(87 226 147);
+// }
+//   :host ::ng-deep .mat-slide-toggle-bar {
+//     position: relative;
+//     width: 40px;
+//     height: 22px;
+//     flex-shrink: 0;
+//     border-radius: 10px;
+// }
+
+// :host ::ng-deep .mat-slide-toggle-thumb-container {
+//     position: absolute;
+//     z-index: 1;
+//     width: 10px;
+//     height: 10px;
+//     top: 2px;
+//     left: 3px;
+// }
+
+// :host ::ng-deep .mat-slide-toggle-thumb {
+//     height: 18px;
+//     width: 18px;
+//     border-radius: 50%;
+// }

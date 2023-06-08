@@ -1,0 +1,132 @@
+<div class="main-content">
+
+    <div class="page-content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-xl-4 col-md-4">
+                    <div class="card">
+
+
+                        <div class="card-body" style="height:300px;">
+                            <div class="row align-items-center" >
+                                <div class="col-md-12 col-12 text-center pb-1" style="display: flex;flex-direction: column;align-items: center;">
+                                   <div *ngIf="!profileInfo?.profile" class="initials" style="height:160px;width:160px">{{getProfileInitials()}}</div>
+                                    <img *ngIf="profileInfo?.profile" src="{{host}}profiles/{{profileInfo?.user_id}}/{{profileInfo?.profile}}" alt="user" width="160px"> 
+                                   <p class="strong-text mt-2">{{profileInfo?.first_name}} {{profileInfo?.last_name}}</p>
+                                
+                                </div>
+
+
+                               
+                                <div class="col-md-12 col-xl-12 mt-3">
+                                     <div class="d-flex justify-content-center">
+                                        <div *ngIf="profileInfo?.facebook" style="cursor:pointer;"><a [href]="profileInfo?.facebook" target="_blank" rel="noopener noreferrer"><img src="./assets/images/facebook.svg" alt="face"></a></div>
+                                        <div *ngIf="profileInfo?.twitter" style="margin-left:10px;cursor:pointer;"><a [href]="profileInfo?.twitter" target="_blank" rel="noopener noreferrer"><img src="./assets/images/twitter.svg" alt="face"></a></div>
+                                        <div *ngIf="profileInfo?.instagram" style="margin-left:10px;cursor:pointer;"><a [href]="profileInfo?.instagram" target="_blank" rel="noopener noreferrer"><img src="./assets/images/insta.svg" alt="face"></a></div>
+                                        <div *ngIf="profileInfo?.linkedin" style="margin-left:10px;cursor:pointer;"><a [href]="profileInfo?.linkedin" target="_blank" rel="noopener noreferrer"><img src="./assets/images/linked.svg" alt="face"></a></div>
+                                     </div>
+                                </div>
+                               
+                            </div>
+                           
+                        </div>
+
+                    </div>
+                </div>
+                <div class="col-xl-8 col-md-8">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between">
+                                <h5 class="font-size-15 mb-3"><span class="tp-wrap">Community
+                                    <span class="tp">View other members in the Teleperson Community</span>
+                                </span></h5>
+                                <p class="mb-0 see-all" routerLink="/app/community" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">View all</p>
+                            </div>
+                                
+    
+                                <div class="table-responsive" style="overflow: hidden;">
+                                    <table class="table table-nowrap mb-0">
+                                        <tbody>
+                                            <tr *ngFor="let item of communities">
+                                                <td>
+                                                    <div class="d-flex">
+                                                        <div class="me-3" style="height: 40px; width: 40px;">
+                                                            <div *ngIf="!item?.profile" class="community-initials img-rounded">{{getCommunityProfileInitials(item) | uppercase}}</div>
+                                                            <img *ngIf="item?.profile" src="{{host}}profiles/{{item?.user_id}}/{{item?.profile}}"
+                                                            class="img-fluid img-rounded" style="height: 100%;width: 100%;cursor: pointer;" alt="">
+                                                        </div>
+                                                        <div style="display: flex;align-items: center;">
+                                                            <h5 class="font-size-13 text-truncate mb-1"><a routerLink="/app/community-profile/{{item.user_id}}" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}"
+                                                                    class="text-dark">{{item.first_name | titlecase}} {{item.last_name | titlecase}}</a>
+                                                            </h5>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                                
+                                                <td style="width: 15vw;">
+                                                    <!-- <div class="text-right"> -->
+                                                        <div *ngIf="item?.vendors?.length" style="height: 50%;
+                                                        width: 100%;
+                                                        display: flex;
+                                                        justify-content: flex-end;">
+                                                            <div class="vendors-box" >
+                            
+                                                                <div *ngFor="let vendor of item?.vendors; let i=index" mat-card-avatar style=" height: 35px; width: 35px;position: absolute;" [ngStyle]="{'left':(item?.vendors?.length >5)?35+(10*i)+'%':95-(10* (item?.vendors?.length-i))+'%', 'z-index':true?i:0}" (click)="!isRemaining(vendor)?gotoOverview(vendor):''">
+                                                                    <img *ngIf="(!vendor.logo && (!vendor.logo_url || vendor.logo_url == '')) && !isRemaining(vendor)" src="assets/img/dummy.png" alt="" class="img-fluid img-rounded" style="height: 100%;width: 100%;cursor: pointer;border: 1px solid #38D8A2;background: white;">
+                                                                    <img *ngIf="(!vendor.logo && vendor.logo_url) && !isRemaining(vendor)" [src]="vendor.logo_url"  alt="" class="img-fluid img-rounded" style="height: 100%;width: 100%;cursor: pointer;border: 1px solid #38D8A2;background: white;">
+                                                                    <img *ngIf="vendor?.logo && !isRemaining(vendor)" src="{{host}}vendors/{{vendor?.vendor_id}}/{{vendor?.logo}}" alt="" class="img-fluid img-rounded" style="height: 100%;width: 100%;cursor: pointer;border: 1px solid #38D8A2;background: white;">
+                                                                    <!-- <img *ngIf="!vendor?.logo && !isRemaining(vendor)" src="assets/img/dummy.png" alt="" class="img-fluid img-rounded" style="height: 100%;width: 100%;cursor: pointer;border: 3px solid #38D8A2;background: white;">
+                                                                    <img *ngIf="vendor?.logo && !isRemaining(vendor)" src="{{host}}vendors/{{vendor?.vendor_id}}/{{vendor?.logo}}" alt="" class="img-fluid img-rounded" style="height: 100%;width: 100%;cursor: pointer;border: 3px solid #38D8A2;background: white;"> -->
+                                                                    <div *ngIf="isRemaining(vendor)" class="remaining img-rounded">+{{vendor.remaining}}</div>
+                                                                </div>
+                                                                
+                                                            </div>
+                                                        </div>
+                                                    <!-- </div> -->
+                                                </td>
+
+                                                <td>
+                                                    <div class="dropdown float-end p-2">
+                                                        <a href="#" class="dropdown-toggle arrow-none card-drop"
+                                                            data-bs-toggle="dropdown" aria-expanded="false">
+                                                            <i class="mdi mdi-dots-vertical text-muted"></i>
+                                                        </a>
+                                                        <div class="dropdown-menu dropdown-menu-end">
+                                                            <!-- item-->
+                                                            <a href="javascript:void(0);" class="dropdown-item">
+                                                                <i class="ri-map-pin-user-fill"style="margin-right: 10px;position: relative;top: 2px;"></i>See Profile</a>
+                                                            <a href="javascript:void(0);" class="dropdown-item">
+                                                                 <i class="ri-delete-bin-line"style="margin-right: 10px;position: relative;top: 2px;"></i>Remove</a>
+                                                            <!-- item-->
+                                                         
+                                                            <!-- item-->
+                                                            <a href="javascript:void(0);" class="dropdown-item" style="opacity:0.4">
+                                                                <i class="ri-flag-line"style="margin-right: 10px;position: relative;top: 2px;"></i>Report</a>
+                                                            <!-- item-->
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                           
+                                          
+                                            
+                                        </tbody>
+                                        
+                                    </table>
+                                    
+                                </div>
+                            <!-- end table-responsive -->
+                        </div>
+                        <!-- end cardbody -->
+                    </div>
+                    <!-- end card -->
+                </div>
+               
+                <!-- end col -->
+            </div>
+                    
+        </div>
+    </div>
+    <app-footer></app-footer>
+</div>
+

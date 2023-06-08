@@ -1,0 +1,378 @@
+<!-- <div class="main-content">
+
+  <div class="page-content" >
+      <div class="container-fluid" >
+          <div class="row justify-content-center" >
+              <div class="col-xl-7 col-md-7" >
+
+      <mat-card class="form-card">
+        <div class="backdrop" *ngIf="selected == '' && !merchants.length" (click)="goBack()">
+
+        </div>
+
+        <div id="container"  *ngIf="selected && !merchants.length" style="border: 1px solid #ccc;">
+
+        </div>
+
+        <div  *ngIf="selected == '' && !merchants.length">
+          <div class="flexWrap">
+            <div class="flexWrap space-around" style="flex-wrap:wrap;width: 100%; padding: 1rem; align-items: self-start;    display: flex;
+            align-items: center;">
+              <div class="col-md-6">
+                <img src="assets/img/lounge_dialogue.svg" alt="">
+              </div>
+              <div class="col-md-6 lounge-message">
+                How would you like to add vendors to your Vendor Hub?
+              </div>
+            </div>
+            <div class="flexWrap space-around loung-dialog-width" style="  width:100%;  display: flex;
+            justify-content: space-around;">
+              <button class="focussable sbt-button" (click)="selectMode('auto')">Automatic 
+                <span class="tp-wrap"><img src="assets/img/info.svg" alt="" >
+                  <span class="tp">In order to simplify your Vendor 
+                    Hub creation, Teleperson is
+                    working with a safe & secure
+                    third-party platform called
+                    Plaid.</span>
+                </span>
+              </button>
+              <button class="focussable sbt-button" (click)="selectMode('manual')">Manual</button>
+            </div>
+          </div>
+        </div>
+      </mat-card>
+  </div>
+</div>
+</div>
+</div>
+</div> -->
+<div *ngIf="selected !='' && !merchants.length"  class="main-content" style="height:100vh!important;">
+
+  <div class="page-content"  style="height:91vh!important;">
+    <div *ngIf="showSpinner" style="display: flex;justify-content: center;width: 99%;min-height: 86vh;align-items: center;">
+      <mat-progress-spinner strokeWidth="1" mode="indeterminate"></mat-progress-spinner>
+    </div>
+
+      <div class="container-fluid" *ngIf="!showSpinner">
+          <div class="row mb-3 px-4">
+            <!-- <div class="col-md-3 col-lg-3"></div> -->
+            <div class="col-md-6 col-lg-6">
+              <div class="modal-header" style="border: none;">
+                <!-- <h5 class="modal-title mt-0" id="myLargeModalLabel">Add New Vendor</h5> -->
+                <button *ngIf="institutions.length == 0" type="button" mat-raised-button (click)="getLocalInstitutes()">Institutes Settings</button>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"  (click)="closeMx()"
+                    aria-label="Close"></button>
+                </div>
+              <div id="container"  style="border: 1px solid #ccc;    display: flex;
+              align-items: center;
+              justify-content: center;">
+
+              </div>
+            </div>
+
+            <div class="col-md-6 col-lg-6" *ngIf="institutions.length > 0">
+              <div class="modal-header" style="border: none;">
+                <!-- <h5 class="modal-title mt-0" id="myLargeModalLabel">Add New Vendor</h5> -->
+                <button type="button" class="btn-close" data-bs-dismiss="modal"  (click)="closeSettings()"
+                    aria-label="Close"></button>
+              </div>
+             
+              <div style="border: 1px solid #ccc;    display: flex;
+              align-items: center;
+              justify-content: center; flex-direction: column; height: 550px;">
+               <div style="display: flex;
+               align-items: center;
+               margin-right: 2rem;
+               padding: 1rem 0;">
+                <span  style="display: block; font-weight: 700;font-size: 1rem;
+                color: black; ">
+                  Prioritize your institutions & accounts 
+                </span>
+                <!-- <div class="app-search" style="padding-left: 43px; width: 100%; position: relative;">
+                  <span class="ri-search-line" style="left: 20px; right: 0 !important;"></span>
+                  <input type="search" class="form-control search-input" placeholder="Search"> 
+                </div> -->
+              </div>
+              <div style="    display: flex;
+              align-items: center;
+              flex-direction: column;
+              width: 330px;
+              overflow-y: scroll; background: white;height: 100%;padding-top: 1rem;">
+                <div style="width:100%;display: flex; margin-bottom: 1rem;" *ngFor="let item of institutions" (click)="showDetails(item)">
+                  <div style="width:10%;display: flex;align-items: center;">
+                    <mat-checkbox class="example-margin"></mat-checkbox>
+                  </div>
+                  <div style="width:20%;display: flex;align-items: center;">
+                    <img src="{{item.small_logo_url}}" alt="">
+                  </div>
+                  <div style="width:70%;display: flex;align-items: center;">
+                      <!-- <div style="display: flex;align-items: center;"> -->
+                        <b>{{item.name}}</b>
+                      
+                      <!-- </div> -->
+                  </div>
+                </div>
+              </div>
+              </div>
+            </div>
+            <!-- <div class="col-md-3 col-lg-3"></div> -->
+           
+          </div>
+      </div>
+  </div>
+</div>
+
+
+<div *ngIf="viewDetailsStatus"class="modal-backdrop show"></div>
+
+<div  *ngIf="viewDetailsStatus" class="modal bs-example-modal-lg" tabindex="-1" role="dialog"
+aria-labelledby="myLargeModalLabel" aria-hidden="true" style="margin-top: 25px;">
+  <div class="modal-dialog modal-md">
+      <div class="modal-content">
+        <div class="modal-header" style="border: none;">
+          <div style="display: flex; width: 100%;">
+            
+            <div style="width:15%;display: flex;align-items: center;">
+              <img src="{{viewDetailsStatus.small_logo_url}}" alt="">
+            </div>
+            <div style="width:70%;display: flex;align-items: center;">
+                <!-- <div style="display: flex;align-items: center;"> -->
+                  <b>{{viewDetailsStatus.name}}</b>
+                
+                <!-- </div> -->
+            </div>
+          </div>
+          <button type="button" mat-raised-button (click)="saveAccounts()">Save</button>
+            <!-- <h5 class="modal-title mt-0" id="myLargeModalLabel">Add New Vendor</h5> -->
+            <button type="button" class="btn-close" data-bs-dismiss="modal"  (click)="closeDetails()"
+                aria-label="Close"></button>
+        </div>
+        <div class="modal-body" style="padding: 0 1rem 1rem;">
+          <div style="border: 1px solid #ccc;    display: flex;
+            align-items: center;
+            justify-content: center; flex-direction: column; max-height: 550px;min-height: 300px;">
+            <div style="    display: flex;
+            align-items: center;
+            flex-direction: column;
+            width: 330px;
+            overflow-y: scroll; background: white;height: 100%;padding-top: 1rem;">
+            <div *ngIf="accountSpinnerStatus" style="display: flex;justify-content: center;width: 99%;min-height: 86vh;align-items: center;">
+              <mat-progress-spinner strokeWidth="1" mode="indeterminate"></mat-progress-spinner>
+            </div>
+
+            <mat-selection-list style="width:100%;padding: 1rem 0;border: 1px solid #ccc;" #accountList [(ngModel)]="selectedAccounts" (ngModelChange)="onGroupsChange($event)">
+              <mat-list-option *ngFor="let item of accounts"  checkboxPosition="before" style="margin-bottom: 1rem;" [value]="item">
+                <span style="white-space: nowrap;
+                    overflow: hidden;
+                    text-overflow: ellipsis;"><b>{{item.name}}</b></span>
+                    <span>A/c No: <b style="margin-left: 0.5rem;">{{item.account_number}}</b></span>
+              </mat-list-option>
+            </mat-selection-list>
+
+            <!-- <div style="width:100%;display: flex; padding: 1rem;border: 1px solid #ccc;" *ngFor="let item of accounts">
+              <div style="width:10%;display: flex;align-items: center;">
+                <mat-checkbox class="example-margin"></mat-checkbox>
+              </div>
+              
+              <div style="width:90%;display: flex;flex-direction:column;">
+                    <span style="white-space: nowrap;
+                    overflow: hidden;
+                    text-overflow: ellipsis;"><b>{{item.name}}</b></span>
+                    <span>A/c No: <b style="margin-left: 0.5rem;">{{item.account_number}}</b></span>
+                  
+              </div>
+            </div> -->
+          </div>
+        </div>
+        
+      </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+  </div><!-- /.modal -->
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+<div *ngIf="selected == '' && !merchants.length"class="modal-backdrop show"></div>
+
+<div *ngIf="selected == '' && !merchants.length" class="main-content" style="height:100vh!important;">
+
+  <div class="page-content"  style="height:91vh!important;">
+      <div class="container-fluid" >
+          <div class="row mb-3 px-4">
+              <!-- <label for="example-text-input text-left" class="col-sm-4 col-form-label" style="text-align: left;">Last Name</label> -->
+              <div class="col-md-2 col-lg-2"></div>
+              <div class="col-md-6 col-lg-6 py-5 mt-5">
+                  <!-- <button type="button" class="btn btn-outline-success btn-rounded waves-effect waves-light" data-bs-toggle="modal" data-bs-target=".bs-example-modal-lg"  style="width:auto;border-radius: 30px !important;font-size: 16px !important;">Add vendor</button> -->
+                  
+              </div>
+              <div class="col-md-4 col-lg-4 text-left py-5 mt-5">
+               <!--  Modal content for the above example -->
+                  <div class="modal bs-example-modal-lg" tabindex="-1" role="dialog"
+                      aria-labelledby="myLargeModalLabel" aria-hidden="true" style="margin-top: 150px;">
+                      <div class="modal-dialog modal-md">
+                          <div class="modal-content">
+                              <div class="modal-header" style="border: none;">
+                                  <!-- <h5 class="modal-title mt-0" id="myLargeModalLabel">Add New Vendor</h5> -->
+                                  <button type="button" class="btn-close" data-bs-dismiss="modal"  (click)="goBack()"
+                                      aria-label="Close"></button>
+                              </div>
+                              <div class="modal-body">
+                              <div class="col-md-12 col-lg-12">
+                                  <div class="row">
+                                      
+                                      <div class="col-md-12 col-lg-12">
+                                          <div class="row mb-3 px-2">
+                                            <div class="col-md-6 col-xl-6">
+                                              <img src="assets/img/lounge_dialogue.svg" alt="con" style="width:200px;">
+                                            </div>
+                                            <div class="col-md-6 col-xl-6">
+                                              <p style="padding-top: 35px;font-size: 18px;">How would you like to add vendors to your Vendor Hub?</p>
+                                            </div>
+                                          
+                                      </div>
+                                      <div class="d-flex justify-content-center mt-4 ">
+                                              <button type="button" class="btn btn-outline-success" style="margin-right:30px;border-radius: 5px !important;font-size: 16px !important;width: auto;" >Automatic &nbsp;
+                                              <!-- <button type="button" class="btn btn-outline-success" style="margin-right:30px;border-radius: 5px !important;font-size: 16px !important;width: auto;" (click)="selectMode('auto')">Automatic &nbsp; -->
+                                                  <a class="tp-wrap lounge-tool-tip" style="position: relative;">
+                                                      <img src="./assets/images/info.svg" style="width: 20px;">
+                                                      <span class="tp">In order to simplify your Vendor Hub creation, Teleperson is working with a safe & secure third-party platform called MX.</span>
+                                                  </a>
+                                                 
+                                              </button>
+                                              <button type="button" class="btn btn-outline-success"style="border-radius: 5px !important;font-size: 16px !important;" (click)="selectMode('manual')">Manual</button>
+                                          </div> 
+
+                                          
+                                          <div class="d-flex justify-content-start mt-2" style="padding-left: 75px;">
+                                            <a href="#" style="color: #34c38f!important;font-size: 16px;">
+                                                Why is this safe?
+                                             
+                                            </a>
+                                        </div>
+                                      
+                                  </div>
+                              </div>
+                              </div>
+                              
+                          </div><!-- /.modal-content -->
+                      </div><!-- /.modal-dialog -->
+                  </div><!-- /.modal -->
+              </div>
+
+            
+          </div>
+     
+  </div>
+  </div>
+  <!-- End Page-content -->
+  
+</div>
+<app-footer></app-footer>
+<!-- end main content-->
+</div>
+
+
+<div class="main-content" *ngIf="merchants.length">
+
+  <div class="page-content">
+      <div class="container-fluid">
+        
+
+        
+
+
+        <!-- <div class="" > -->
+          
+          <div class="row">
+              <div class="col-xl-2 col-md-3" *ngFor="let p of merchants; let i=index;">
+                  <div class="card">
+                      <div class="card-body card-height p-0">
+                          <div class="p-3">
+                              <div class="d-flex">
+                                  <div class="flex-1 vendor-wrapper" >
+                                      <div class="vendor-img" (click)="gotoOverview(p)">
+                                          <img [src]="p.logo_url" alt="{{p.name}}" class="responsive">
+                                      </div>
+                                  
+                                  <h5 class="text-center font-size-14 mb-0 pt-2" (click)="gotoOverview(p)">{{p.name}}</h5>
+                                  <div class="form-switch mb-1 pt-2" style="text-align:center;">
+                                      <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" [checked]="p.checked" [(ngModel)]="p.checked" (change)="toggleChange($event,p)">
+                                      <label class="form-check-label" for="flexSwitchCheckChecked"></label>
+                                  </div>
+                                  </div>
+                                  <div class="">
+                                      <i class="ri-more-2-fill"></i>
+                                    
+                                  </div>
+                              </div>
+                            
+                          </div>
+                        
+                      </div>
+                  </div>
+              </div>
+            </div>
+
+        <!-- </div> -->
+      </div>
+    </div>
+    <app-footer></app-footer>
+  </div>
+
+ 
+
+<!-- <div *ngIf="!showSpinner && selected != ''" class="monitor-view">
+  <div class="block-wrapper">
+  
+    <div class="vendor-lounge-wrap">
+        <div *ngIf="selected == 'auto'" class="vendor-card-wrap">
+          <mat-card class="vendor-card-1 col-md-15" *ngFor="let p of transactions; let i=index;">
+            <div class="vendor-logo-wrap">
+              <div class="vendor-logo">
+                  <img *ngIf="!checkLogo(p)" src="assets/img/dummy.png" alt="" class="responsive">
+                  <img *ngIf="checkLogo(p)" src="{{host}}vendors/{{p?.vendor_id}}/{{p?.logo}}" alt="" class="responsive">
+              </div>
+              <div class="vendor-details">
+                  <b>{{p.name}}</b>
+                  <span *ngIf="!p.verified_status">Pending</span>
+              </div> 
+              <mat-slide-toggle style="margin-top: 0.5rem;" [(ngModel)]="p.is_plaid_linked" (change)="toggleChange($event,p)"></mat-slide-toggle>
+            </div> 
+          </mat-card>
+        </div>
+         
+      </div>
+  </div>
+</div> -->
+
+<!-- <div *ngIf="!showSpinner && selected != ''" class="mobile-view">
+  <div style="display: flex;justify-content: center;width: 99%;min-height: 86vh;overflow-y: auto;">
+  
+    <div class="vendor-lounge-wrap">
+        <div *ngIf="selected == 'auto'" class="vendor-card-wrap">
+          <mat-card class="vendor-card" *ngFor="let p of transactions; let i=index;">
+            <div class="vendor-logo-wrap">
+              <div class="vendor-logo">
+                  <img *ngIf="!checkLogo(p)" src="assets/img/dummy.png" alt="" class="responsive">
+                  <img *ngIf="checkLogo(p)" src="{{host}}vendors/{{p?.vendor_id}}/{{p?.logo}}" alt="" class="responsive">
+              </div>
+              <div class="verified-status" *ngIf="!p.verified_status">
+                Pending
+              </div> 
+              <mat-slide-toggle style="margin-top: 0.5rem;" [(ngModel)]="p.is_plaid_linked" (change)="toggleChange($event,p)"></mat-slide-toggle>
+            </div> 
+          </mat-card>
+        </div>
+         
+      </div>
+  </div>
+</div> -->

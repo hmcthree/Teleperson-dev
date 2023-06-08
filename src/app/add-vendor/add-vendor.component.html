@@ -1,0 +1,305 @@
+<div class="flexWrapper">
+  <div class="col-md-3">
+    <mat-card class="mat-box">
+      <mat-card-header class="customer-card-header" style="justify-content: space-between;">
+        <mat-card-title>Vendors Hub</mat-card-title>
+
+      </mat-card-header>
+      <div class="customer-name">
+        <div class="input-group">
+          <div class="input-group-prepend">
+
+            <span class="input-group-text" id="basic-addon1"><mat-icon>search</mat-icon></span>
+          </div>
+          <input type="search" class="form-control" placeholder="Add Vendor" (input)="searchVendor($event)">
+        </div>
+
+      </div>
+      <div style="height: 94%;">
+        <div *ngIf="vendors.length <= 0 && vendorSearchTerm.length > 0" style="width:100%" class="mt-3 alert alert-info text-center">
+          No result found for “{{vendorSearchTerm}}”
+        </div>
+
+            <div class="tableFixHead">
+              <table class="table table-bordered table-striped">
+                <thead>
+                  <tr>
+                    <th>No</th>
+                    <th>Company Name</th>
+                    <th style="width: 10%;text-align: center;"></th>
+                  </tr>
+                </thead>
+                <tbody>
+
+                  <tr *ngFor="let p of vendors; let i=index;" [ngClass]="{'selected':p.vendor_id == selectedVendorData?.vendor_id}">
+                    <td class="pro-action" (click)="viewDetails(p)">{{i+1}}</td>
+
+                    <td (click)="viewDetails(p)">{{p.company_name}}</td>
+                    <td class="btn-flex">
+                      <button title="Add Vendor" mat-icon-button color="primary" (click)="addToList(p,i)">
+                        <mat-icon>add_circle_outline</mat-icon>
+                      </button>
+                      <!-- <button *ngIf="p.user_id == loggedUserInfo.user_id" title="Remove Vendor" mat-icon-button color="warn" (click)="removeFromList(p,i)">
+                        <mat-icon>remove_circle_outline</mat-icon>
+                      </button> -->
+                    </td>
+
+                  </tr>
+                </tbody>
+              </table>
+
+            </div>
+
+
+            <div class="customer-name">
+              <div class="input-group">
+                <div class="input-group-prepend">
+      
+                  <span class="input-group-text" id="basic-addon1"><mat-icon>search</mat-icon></span>
+                </div>
+                <input type="search" class="form-control" placeholder="My Vendor" (input)="searchMyVendor($event)">
+              </div>
+      
+            </div>
+            <div *ngIf="myVendors.length <= 0 && myVendorSearchTerm.length > 0" style="width:100%" class="mt-3 alert alert-info text-center">
+              No result found for “{{myVendorSearchTerm}}”
+            </div>
+            <div class="tableFixHead2">
+              <table class="table table-bordered table-striped">
+                <thead>
+                  <tr>
+                    <th>No</th>
+                    <th>Company Name</th>
+                    <th style="width: 10%;text-align: center;"></th>
+                  </tr>
+                </thead>
+                <tbody>
+
+                  <tr *ngFor="let p of myVendors; let i=index;" [ngClass]="{'selected':p.vendor_id == selectedVendorData?.vendor_id}">
+                    <td class="pro-action" (click)="viewDetails(p)">{{i+1}}</td>
+
+                    <td (click)="viewDetails(p)">{{p.company_name}}</td>
+                    <td class="btn-flex">
+                      <!-- <button *ngIf="p.user_id != loggedUserInfo.user_id" title="Add Vendor" mat-icon-button color="primary" (click)="addToList(p,i)">
+                        <mat-icon>add_circle_outline</mat-icon>
+                      </button> -->
+                      <button *ngIf="p.user_id == loggedUserInfo.user_id" title="Remove Vendor" mat-icon-button color="warn" (click)="removeFromList(p,i)">
+                        <mat-icon>remove_circle_outline</mat-icon>
+                      </button>
+                    </td>
+
+                  </tr>
+                </tbody>
+              </table>
+
+            </div>
+
+
+      </div>
+    </mat-card>
+  </div>
+  <div class="col-md-9">
+    <div *ngIf="!selectedVendorData" class="alert alert-warning text-center">
+      Please select Vendor to view Details..!
+    </div>
+    <div *ngIf="selectedVendorData" style="display: flex; flex-direction:column">
+
+        <div class="col-md-12" style="padding:0 1rem;">
+            <form [formGroup]="vendorForm">
+              <div class="flexWrap" style="align-items:flex-start">
+                <div class="col-md-4">
+                  <div class="form-wrap">
+                    <div class="flexWrapper" style="width: 100%;justify-content: space-between;">
+                      <div class="profile image" *ngIf="selectedVendorData">
+                        <img src="{{host}}vendors/{{selectedVendorData?.vendor_id}}/{{selectedVendorData?.logo}}" alt="Logo" class="img-fluid" style="height: 100%;width: 100%;object-fit: contain;">
+                      </div>
+                      <mat-form-field class="example-full-width" style="width: 75%;">
+                         <mat-label>Company Name</mat-label>
+                         <input matInput formControlName="company_name" required>
+                       </mat-form-field>
+                    </div>
+                    <mat-form-field class="example-full-width">
+                      <mat-label>Linkedin</mat-label>
+                      <input matInput formControlName="linkedin">
+                    </mat-form-field>
+                    <mat-form-field class="example-full-width">
+                      <mat-label>Parent Company</mat-label>
+                      <textarea matInput formControlName="parent_company"></textarea>
+                    </mat-form-field>
+                     <mat-form-field class="example-full-width">
+                        <mat-label>Address 1</mat-label>
+                        <textarea matInput formControlName="address_1"></textarea>
+                      </mat-form-field>
+                     <mat-form-field class="example-full-width">
+                        <mat-label>Address 2</mat-label>
+                        <textarea matInput formControlName="address_2"></textarea>
+                      </mat-form-field>
+                      <mat-form-field class="example-full-width">
+                         <mat-label>City</mat-label>
+                         <input matInput formControlName="city">
+                       </mat-form-field>
+                      <mat-form-field class="example-full-width">
+                         <mat-label>State</mat-label>
+                         <input matInput formControlName="state">
+                       </mat-form-field>
+                      <mat-form-field class="example-full-width">
+                         <mat-label>Zip</mat-label>
+                         <input matInput formControlName="zip">
+                       </mat-form-field>
+                      <mat-form-field class="example-full-width">
+                         <mat-label>Country</mat-label>
+                         <input matInput formControlName="country">
+                       </mat-form-field>
+                      <mat-form-field class="example-full-width">
+                         <mat-label>Contact Number</mat-label>
+                         <input matInput formControlName="contact_number" required>
+                       </mat-form-field>
+
+                  </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-wrap">
+                      <mat-form-field class="example-full-width">
+                         <mat-label>Industry</mat-label>
+                         <input matInput formControlName="industry">
+                       </mat-form-field>
+                      <mat-form-field class="example-full-width">
+                         <mat-label>Sub Industry</mat-label>
+                         <input matInput formControlName="sub_industry">
+                       </mat-form-field>
+                      <mat-form-field class="example-full-width">
+                         <mat-label>Ticker</mat-label>
+                         <input matInput formControlName="ticker">
+                       </mat-form-field>
+                      <mat-form-field class="example-full-width">
+                         <mat-label>Stock Price</mat-label>
+                         <input matInput formControlName="stock_price">
+                       </mat-form-field>
+                      <mat-form-field class="example-full-width">
+                         <mat-label>Website</mat-label>
+                         <input matInput formControlName="website_url">
+                       </mat-form-field>
+                       <mat-form-field class="example-full-width">
+                        <mat-label>Number of Locations</mat-label>
+                        <input matInput formControlName="number_of_locations">
+                      </mat-form-field>
+                      <mat-form-field class="example-full-width">
+                        <mat-label>Customer Reviews</mat-label>
+                        <input matInput formControlName="customer_reviews">
+                      </mat-form-field>
+                      <mat-form-field class="example-full-width">
+                        <mat-label>Support Email</mat-label>
+                        <input matInput formControlName="support_email">
+                      </mat-form-field>
+                      <!-- <mat-form-field class="example-full-width">
+                         <mat-label>Business CID</mat-label>
+                         <input matInput formControlName="business_cid">
+                       </mat-form-field> -->
+
+                      
+                      <mat-form-field class="example-full-width">
+                         <mat-label>Company Overview</mat-label>
+                         <textarea matInput formControlName="company_overview"></textarea>
+                       </mat-form-field>
+
+                       <mat-form-field class="example-full-width">
+                        <mat-label>Founded</mat-label>
+                        <input matInput formControlName="founded">
+                      </mat-form-field>
+                  </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-wrap">
+                       
+                        <!-- <mat-form-field class="example-full-width">
+                           <mat-label>Subsidiaries</mat-label>
+                           <input matInput formControlName="subsidiaries">
+                         </mat-form-field> -->
+                       
+                        <!-- <mat-form-field class="example-full-width">
+                           <mat-label>Category</mat-label>
+                           <input matInput formControlName="category">
+                         </mat-form-field> -->
+                        <!-- <mat-form-field class="example-full-width">
+                           <mat-label>Community Reviews</mat-label>
+                           <input matInput formControlName="community_reviews">
+                         </mat-form-field> -->
+                        <!-- <mat-form-field class="example-full-width">
+                           <mat-label>Verified List or Not</mat-label>
+                           <input matInput formControlName="verified_list">
+                         </mat-form-field> -->
+                       
+                        <!-- <mat-form-field class="example-full-width">
+                           <mat-label>Customer Service Number</mat-label>
+                           <input matInput formControlName="customer_service_number">
+                         </mat-form-field> -->
+                        
+                        <mat-form-field class="example-full-width">
+                           <mat-label>Competitors</mat-label>
+                           <input matInput formControlName="competitors">
+                         </mat-form-field>
+                        <mat-form-field class="example-full-width">
+                           <mat-label>Revenue</mat-label>
+                           <input matInput formControlName="revenue">
+                         </mat-form-field>
+                        <mat-form-field class="example-full-width">
+                           <mat-label>Employees</mat-label>
+                           <input matInput formControlName="employees">
+                         </mat-form-field>
+                     </div>
+                </div>
+              </div>
+
+            </form>
+        </div>
+        <div class="col-md-12">
+          <h3 style="font-size:1.5rem;">Intentions</h3>
+          <div class="customer-name">
+            <div class="input-group">
+              <div class="input-group-prepend">
+    
+                <span class="input-group-text" id="basic-addon1"><mat-icon>search</mat-icon></span>
+              </div>
+              <input type="search" class="form-control" placeholder="Search Intentions" (input)="searchIntention($event)">
+            </div>
+    
+          </div>
+          <div *ngIf="childs.length <= 0 && intentionSearchTerm.length > 0" style="width:100%" class="mt-3 alert alert-info text-center">
+            No Intentions found for search “{{intentionSearchTerm}}”
+          </div>
+          <div *ngIf="childs.length <= 0 && intentionSearchTerm.length <= 0" style="width:100%" class="mt-3 alert alert-warning text-center">
+            No intentions added yet..!
+          </div>
+          <div  class="tableFixHead1">
+            <table class="table table-bordered table-striped">
+              <thead>
+                <tr>
+                  <!-- <th>#</th> -->
+                  <!-- <th>Intention</th>
+                  <th>Description</th> -->
+                  <th style="padding-left: 4rem;">Call</th>
+                </tr>
+              </thead>
+              <tbody>
+
+                <tr *ngFor="let item of childs; let i=index">
+                  <!-- <td>{{ i+1 }}</td>
+                  <td>{{ item.intention }}</td>
+                  <td>{{ item.description }}</td> -->
+                  <td>
+                    <div class="action-wrap">
+
+                      <button class="btn btn-success" title="{{ item.description }}"><a target="_blank" href="https://vishal.pulsework360.com/callapi.php?token=e35f4b38-c6ce-4f6f-806e-392d7671553f&name=3002&pwd=Qwerty@3002&number={{item.algorithm}}">{{ item.intention }}</a></button>
+                      <!-- <button class="btn btn-success" title="{{ item.description }}"><a target="_blank" href="tel:{{item.algorithm}}">{{ item.intention }}</a></button> -->
+
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+
+          </div>
+        </div>
+      </div>
+  </div>
+</div>

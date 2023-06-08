@@ -1,0 +1,238 @@
+<div class="main-content">
+
+    <div class="page-content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-xl-7 col-md-7">
+                    <div class="card">
+                        <div class="card-body" style="max-height: 104vh;overflow: auto;">
+                            <div class="d-flex">
+                                <h5 class="font-size-15 flex-grow-1 mb-3">
+                                    <span class="tp-wrap">Community
+                                        <span class="tp">View other members in Community</span>
+                                    </span>
+                                </h5>
+                                <!-- <p class="mb-0" style="color:#38D8A2!important;text-align: right; cursor: pointer;">View all</p> -->
+                              
+                            </div>        
+                            <div class="">
+                                <table class="table mb-0">
+                                    <tbody>
+                                        <tr *ngFor="let item of communities">
+                                            <td>
+                                                <div class="d-flex">
+                                                    <div class="me-3" style="height: 40px; width: 40px;">
+                                                        <div *ngIf="!item?.profile" class="community-initials img-rounded">{{getProfileInitials(item) | uppercase}}</div>
+                                                        <img *ngIf="item?.profile" src="{{host}}profiles/{{item?.user_id}}/{{item?.profile}}"
+                                                        class="img-fluid img-rounded" style="height: 100%;width: 100%;cursor: pointer;" alt="">
+                                                    </div>
+                                                    <div style="display: flex;align-items: center;">
+                                                        <h5 class="font-size-13 text-truncate mb-1"><a routerLink="/app/community-profile/{{item.user_id}}" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}"
+                                                                class="text-dark">{{item.first_name | titlecase}} {{item.last_name | titlecase}}</a>
+                                                        </h5>
+                                                        <!-- <p class="text-muted mb-0 font-size-11 text-uppercase">
+                                                            8 shared vendors</p> -->
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            
+                                            <td style="width: 15vw;">
+                                                    <div *ngIf="item?.vendors?.length" style="height: 50%;
+                                                    width: 100%;
+                                                    display: flex;
+                                                    justify-content: flex-end;">
+                                                        <div class="vendors-box" >
+                        
+                                                            <div *ngFor="let vendor of item?.vendors; let i=index" mat-card-avatar style=" height: 35px; width: 35px;position: absolute;" [ngStyle]="{'left':(item?.vendors?.length >5)?35+(10*i)+'%':95-(10* (item?.vendors?.length-i))+'%', 'z-index':true?i:0}" (click)="!isRemaining(vendor)?gotoOverview(vendor):''">
+                                                                
+                                                                <img *ngIf="(!vendor.logo && (!vendor.logo_url || vendor.logo_url == '')) && !isRemaining(vendor)" src="assets/img/dummy.png" alt="" class="img-fluid img-rounded" style="height: 100%;width: 100%;cursor: pointer;border: 1px solid #38D8A2;background: white;">
+                                                                <img *ngIf="(!vendor.logo && vendor.logo_url) && !isRemaining(vendor)" [src]="vendor.logo_url"  alt="" class="img-fluid img-rounded" style="height: 100%;width: 100%;cursor: pointer;border: 1px solid #38D8A2;background: white;">
+                                                                <img *ngIf="vendor?.logo && !isRemaining(vendor)" src="{{host}}vendors/{{vendor?.vendor_id}}/{{vendor?.logo}}" alt="" class="img-fluid img-rounded" style="height: 100%;width: 100%;cursor: pointer;border: 1px solid #38D8A2;background: white;">
+                                                                <div *ngIf="isRemaining(vendor)" class="remaining img-rounded">+{{vendor.remaining}}</div>
+                                                            </div>
+                                                            
+                                                        </div>
+                                                    </div>
+                                            </td>
+                                            <td style="margin-left: 0.5rem;padding-right: 0 !important;">
+                                                <div class="dropdown float-end p-2">
+                                                    <a href="#" class="dropdown-toggle arrow-none card-drop"
+                                                        data-bs-toggle="dropdown" aria-expanded="false">
+                                                        <i class="mdi mdi-dots-vertical text-muted"></i>
+                                                    </a>
+                                                    <div class="dropdown-menu dropdown-menu-end">
+                                                        <a routerLink="/app/community-profile/{{item.user_id}}" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}" class="dropdown-item">
+                                                            <i class="ri-map-pin-user-fill"style="margin-right: 10px;position: relative;top: 2px;"></i>See Profile</a>
+                                                        <a href="javascript:void(0);" class="dropdown-item"  style="background: #d3d3d34f;">
+                                                             <i class="ri-delete-bin-line"style="margin-right: 10px;position: relative;top: 2px;"></i>Remove</a>
+                                                     
+                                                        <a href="javascript:void(0);" class="dropdown-item" style="opacity:0.4">
+                                                            <i class="ri-flag-line"style="margin-right: 10px;position: relative;top: 2px;"></i>Report</a>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- end card -->
+                </div>
+                <div class="col-xl-5 col-md-5">
+                      
+                    <p class="coming-soon">Coming soon</p>
+                    <div class="card" style="opacity:0.4;">
+                        <div class="card-body" style="padding-bottom: 60px;">
+                            <div class="d-flex">
+                                <h5 class="font-size-15 flex-grow-1 mb-3">
+                                    <span class="tp-wrap">Recent community reviews
+                                        <span class="tp">View messages left by the Teleperson Community</span>
+                                    </span>
+                                </h5>
+                                <p class="mb-0" style="color:#38D8A2!important;text-align: right;">View all</p>
+                              
+                            </div> 
+                            <div class="d-flex">
+                                <div class="p-2">
+                                    <img src="assets/images/users/avatar-7.jpg"
+                                        class="avatar-xs h-auto rounded-circle" alt="Error">
+                                </div>
+                                <div class="flex-grow-1 p-2">
+                                    <h5 class="font-size-13 text-truncate mb-1"><a href="#"
+                                            class="text-dark">Chintya Xin</a>
+                                    </h5>
+                                    <p class="text-muted mb-0 font-size-11 text-uppercase">
+                                        BMW</p>
+                                </div>
+                                <div class="px-0">
+                                    <p class="text-muted mb-0 font-size-11 text-uppercase pt-2">
+                                        June 14,2022</p>
+                                </div>
+                            </div>
+                            <div class="p-2">
+                                <p class="font-size-12 pl-2 pr-0">“This is by far the simplest, most frictionless, easiest-to-get-going platform that I’ve ever worked in. Just being able to upload a link and bounce”</p>
+                            </div>
+                            <div class="d-flex">
+                                <div class="p-2">
+                                    <img src="assets/images/users/avatar-7.jpg"
+                                        class="avatar-xs h-auto rounded-circle" alt="Error">
+                                </div>
+                                <div class="flex-grow-1 p-2">
+                                    <h5 class="font-size-13 text-truncate mb-1"><a href="#"
+                                            class="text-dark">Chintya Xin</a>
+                                    </h5>
+                                    <p class="text-muted mb-0 font-size-11 text-uppercase">
+                                        BMW</p>
+                                </div>
+                                <div class="px-0">
+                                    <p class="text-muted mb-0 font-size-11 text-uppercase pt-2">
+                                        June 14,2022</p>
+                                </div>
+                            </div>
+                            <div class="p-2">
+                                <p class="font-size-12 pl-2 pr-0">“This is by far the simplest, most frictionless, easiest-to-get-going platform that I’ve ever worked in. Just being able to upload a link and bounce”</p>
+                            </div>
+                            <div class="d-flex">
+                                <div class="p-2">
+                                    <img src="assets/images/users/avatar-7.jpg"
+                                        class="avatar-xs h-auto rounded-circle" alt="Error">
+                                </div>
+                                <div class="flex-grow-1 p-2">
+                                    <h5 class="font-size-13 text-truncate mb-1"><a href="#"
+                                            class="text-dark">Chintya Xin</a>
+                                    </h5>
+                                    <p class="text-muted mb-0 font-size-11 text-uppercase">
+                                        BMW</p>
+                                </div>
+                                <div class="px-0">
+                                    <p class="text-muted mb-0 font-size-11 text-uppercase pt-2">
+                                        June 14,2022</p>
+                                </div>
+                            </div>
+                            <div class="p-2">
+                                <p class="font-size-12 pl-2 pr-0">“This is by far the simplest, most frictionless, easiest-to-get-going platform that I’ve ever worked in. Just being able to upload a link and bounce”</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <p class="coming-soon">Coming soon</p> 
+                    <div class="card" style="opacity:0.4;">
+                        <div class="card-body">
+                            <div class="d-flex">
+                                <h5 class="font-size-15 flex-grow-1 mb-3">
+                                    <span class="tp-wrap">Messages
+                                        <span class="tp">Direcly engage with specific members in your community</span>
+                                    </span>
+                                </h5>
+                                <p class="mb-0" style="color:#38D8A2!important;text-align: right;">View all</p>
+                              
+                            </div> 
+                            <div class="d-flex">
+                                <div class="p-2">
+                                    <img src="assets/images/users/avatar-7.jpg"
+                                        class="avatar-xs h-auto rounded-circle" alt="Error">
+                                </div>
+                                <div class="flex-grow-1 p-2">
+                                    <p class="font-size-12 pl-2 pr-0">“This is by far the simplest, most frictionless, easiest-to-get-going platform that I’ve ever worked in. Just being able to upload a link and bounce”</p>
+                                    <p class="text-muted mb-0 font-size-11 text-uppercase">
+                                        June 14, 2022</p>
+                                </div>
+                               
+                            </div>
+                          
+                        </div>
+                    
+                    </div>
+                   
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+    <app-footer></app-footer>
+</div>
+
+
+
+<!-- <div>
+    <div style="display: flex;flex-wrap:wrap;">
+        <div class="col-md-7">
+            <mat-card style="margin: 15px 1rem 0px 2rem;">
+                <div style="margin: 10px 1rem;display: flex;justify-content: space-between;">
+                    <span style="font-size:1.2rem;">Community</span>
+                    <span style="font-size:1.2rem;"><a style="color:#38D8A2" routerLink="/app/view-community" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">See all</a></span>
+                </div>
+                <ul>
+                    <li *ngFor="let item of communities">
+                        <div style="height: 100%;width: 100%;cursor: pointer; display: flex; align-items: center;justify-content: space-between;" >
+                            <div style="width: 60%; display: flex;align-items: center;">
+                                <div mat-card-avatar style="margin:0 1rem; height: 50px; width: 50px;">
+                                    <div *ngIf="!item?.profile" class="initials img-rounded">{{getProfileInitials(item) | uppercase}}</div>
+                                    <img *ngIf="item?.profile" src="{{host}}profiles/{{item?.user_id}}/{{item?.profile}}" alt="" class="img-fluid img-rounded" style="height: 100%;width: 100%;cursor: pointer;">
+                                </div>
+                                <div style="font-size: 1rem;">
+                                    {{item.first_name | titlecase}} {{item.last_name | titlecase}}
+                                </div>
+                            </div>
+                            <div *ngIf="item?.vendors?.length" style="width: 32%;height: 50%;">
+                                <div class="vendors-box" >
+
+                                    <div *ngFor="let vendor of item?.vendors; let i=index" mat-card-avatar style=" height: 35px; width: 35px;position: absolute;" [ngStyle]="{'left':(item?.vendors?.length >5)?25+(10*i)+'%':85-(10* (item?.vendors?.length-i))+'%', 'z-index':true?i:0}">
+                                        <img *ngIf="!vendor?.logo && !isRemaining(vendor)" src="assets/img/dummy.png" alt="" class="img-fluid img-rounded" style="height: 100%;width: 100%;cursor: pointer;border: 3px solid #38D8A2;background: white;">
+                                        <img *ngIf="vendor?.logo && !isRemaining(vendor)" src="{{host}}vendors/{{vendor?.vendor_id}}/{{vendor?.logo}}" alt="" class="img-fluid img-rounded" style="height: 100%;width: 100%;cursor: pointer;border: 3px solid #38D8A2;background: white;">
+                                        <div *ngIf="isRemaining(vendor)" class="remaining img-rounded">+{{vendor.remaining}}</div>
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </mat-card>
+        </div>
+        <div class="col-md-5">
+            <img src="assets/img/community.svg" alt="" style="width: 100%;">
+        </div>
+    </div>
+</div> -->

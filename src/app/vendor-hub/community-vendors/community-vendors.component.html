@@ -1,0 +1,161 @@
+<!-- <div class="tab-pane">
+    <div class="row">
+        <div class="col-xl-3 col-md-3" *ngFor="let p of vendors; let i=index;">
+            <div class="card">
+                <div class="card-body card-height p-0">
+                    <div class="p-3">
+                        <div class="d-flex" (click)="gotoOverview(p)">
+                            <div class="">
+                                <i class="ri-heart-fill" style="font-size: 20px;color: #ED1C24;"></i>
+                              
+                            </div>
+                            <div class="flex-1 vendor-wrapper">
+                             <div class="vendor-img">
+                                <img *ngIf="!checkLogo(p)" src="assets/img/dummy.png" alt="{{p.company_name}}" class="responsive">
+                                <img *ngIf="checkLogo(p)" src="{{host}}vendors/{{p?.vendor_id}}/{{p?.logo}}" alt="{{p.company_name}}" class="responsive">
+                             </div>
+                             <h5 class="text-center font-size-14 mb-0 pt-2">{{p.company_name}}</h5>
+                             
+                            </div>
+                            <div class="">
+                                <i class="ri-more-2-fill" style="font-size: 20px;"></i>
+                              
+                            </div>
+                        </div>
+                      
+                    </div>
+                  
+                </div>
+            </div>
+        </div>
+        </div>
+    </div> -->
+
+    
+     <!-- Tab panes -->
+     <div class="tab-content py-3 px-0 text-muted">
+        <div class="tab-pane active" id="home-1" role="tabpanel">
+            <div class="row">
+                <div class="col-xl-2 col-md-3" *ngFor="let p of vendors; let i=index;"  [title]="!p.verified_status?'This vendor is being built with love by the Teleperson team. Stay tuned!':''">
+                    <div class="card">
+                        <div class="card-body card-height p-0">
+                            <div class="dropdown p-2" style="position: absolute;right: 0px;">
+                                <a href="#" class="dropdown-toggle arrow-none card-drop" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <i class="mdi mdi-dots-vertical text-muted"></i>
+                                </a>
+                                <div class="dropdown-menu dropdown-menu-end">
+                                    <!-- item-->
+                                    <a (click)="addToList(p,i)" class="dropdown-item">
+                                        <i class="ri-add-line" style="margin-right: 10px;position: relative;top: 2px;"></i>Add Vendor</a>
+                                    <a href="javascript:void(0);" class="dropdown-item">
+                                        <i class="ri-group-2-line"style="margin-right: 10px;position: relative;top: 2px;"></i>
+                                        <span>Community</span></a>
+                                    <!-- item-->
+                                    <a href="javascript:void(0);" class="dropdown-item" style="background: #d3d3d34f;">
+                                        <i class="ri-heart-line"style="margin-right: 10px;position: relative;top: 2px;"></i>Follow</a>
+                                    <!-- item-->
+                                    <a href="javascript:void(0);" class="dropdown-item" style="background: #d3d3d34f;">
+                                        <i class="ri-inbox-archive-line"style="margin-right: 10px;position: relative;top: 2px;"></i>Archive</a>
+                                   
+                                       
+                                    
+                                </div>
+                            </div>
+                            <div class="p-3">
+                                <div class="d-flex" (click)="gotoOverview(p)">
+                                    <div class="flex-1 vendor-wrapper" >
+                                        <div class="vendor-img">
+                                            <img *ngIf="!p.logo &&(!p.logo_url || p.logo_url == '')" src="assets/img/dummy.png"  alt="{{p.company_name}}" class="responsive">
+                                            <img *ngIf="!p.logo && p.logo_url" [src]="p.logo_url" alt="{{p.company_name}}" class="responsive">
+                                            <img *ngIf="p.logo"  src="{{host}}vendors/{{p?.vendor_id}}/{{p?.logo}}" alt="{{p.company_name}}" class="responsive">
+                                            <!-- <img *ngIf="checkLogo(p)" src="{{host}}vendors/{{p?.vendor_id}}/{{p?.logo}}" alt="{{p.company_name}}"  class="responsive"> -->
+                                        </div>
+                                        <h5 class="text-center font-size-12 mb-0 pt-2">{{p.company_name}}</h5>
+                                        <!-- <div class="form-switch mb-1 pt-2" style="text-align:center;">
+                                            <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" checked="">
+                                            <label class="form-check-label" for="flexSwitchCheckChecked"></label>
+                                        </div> -->
+                                    </div>
+                                </div>
+                            </div>
+                        
+                       
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<!-- 
+<div class="monitor-view"  *ngIf="vendors.length">
+    <div class="block-wrapper">
+   
+        <div class="vendor-card-wrap">
+        <mat-card class="vendor-card-1 col-md-15" *ngFor="let p of vendors; let i=index;" [ngClass]="{'show-more-menu':popoverIndex == p?.vendor_id}">
+            <button mat-icon-button class="favorite-btn"><mat-icon>favorite</mat-icon></button>
+            <button mat-icon-button class="more-btn" (click)="showVendorPopup(p)"><mat-icon>more_vert</mat-icon></button>
+            <div class="more-menu">
+                <ul class="more-menu-items">
+                    <li class="more-menu-item" role="presentation">
+                        <button type="button" mat-raised-button class="more-menu-btn" role="menuitem" (click)="addToList(p,i)"><img src="assets/img/more_icons/add.svg" alt="">   Add</button>
+                    </li>
+                    <li class="more-menu-item" role="presentation">
+                        <button type="button" mat-raised-button class="more-menu-btn" role="menuitem" (click)="follow()"><img src="assets/img/more_icons/filter.svg" alt="">   Follow</button>
+                    </li>
+                    <li class="more-menu-item" role="presentation">
+                        <button type="button" mat-raised-button class="more-menu-btn" role="menuitem" (click)="archive()"><img src="assets/img/more_icons/archive.svg" alt="">  Archive</button>
+                    </li>
+                    <li class="more-menu-item" role="presentation">
+                        <button type="button" mat-raised-button class="more-menu-btn" role="menuitem" (click)="share()"><img src="assets/img/more_icons/share.svg" alt="">   Share</button>
+                    </li>
+                </ul>
+            </div>
+
+
+            <div class="vendor-logo-wrap" (click)="gotoOverview(p)">
+            <div class="vendor-logo">
+                <img *ngIf="!checkLogo(p)" src="assets/img/dummy.png" alt="" class="responsive">
+                <img *ngIf="checkLogo(p)" src="{{host}}vendors/{{p?.vendor_id}}/{{p?.logo}}" alt="" class="responsive">
+            </div>
+            <div class="vendor-details">
+                <b>{{p.company_name}}</b>
+            </div> 
+            </div> 
+        </mat-card>
+    </div>
+  </div>
+</div>
+<div *ngIf="showSpinner" class="backdrop" style="display: flex;justify-content: center;width: 99%;min-height: 80vh;align-items: center;">
+    <mat-progress-spinner strokeWidth="1" mode="indeterminate"></mat-progress-spinner>
+  </div>
+  <div class="mobile-view"  *ngIf="vendors.length">
+    <div class="vendor-card-wrap">
+  
+      <mat-card class="vendor-card" *ngFor="let p of vendors; let i=index;" [ngClass]="{'show-more-menu':popoverIndex == p?.vendor_id}">
+        <button mat-icon-button class="more-btn" (click)="showVendorPopup(p)"><mat-icon>more_vert</mat-icon></button>
+
+        <div class="more-menu">
+          <div class="more-menu-caret">
+              <div class="more-menu-caret-outer"></div>
+              <div class="more-menu-caret-inner"></div>
+          </div>
+          <ul class="more-menu-items" tabindex="-1" role="menu" aria-labelledby="more-btn" aria-hidden="true">
+              <li class="more-menu-item" role="presentation">
+                  <button type="button" class="more-menu-btn" role="menuitem" (click)="addToList(p,i)">Add</button>
+              </li>
+          </ul>
+      </div>
+
+
+        <div class="vendor-logo-wrap" (click)="gotoOverview(p)">
+          <div class="vendor-logo">
+              <img *ngIf="!checkLogo(p)" src="assets/img/dummy.png" alt="" class="responsive">
+              <img *ngIf="checkLogo(p)" src="{{host}}vendors/{{p?.vendor_id}}/{{p?.logo}}" alt="" class="responsive">
+          </div>
+        </div> 
+      </mat-card>
+     
+  </div>
+
+  </div> -->

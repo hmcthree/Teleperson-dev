@@ -1,0 +1,213 @@
+<div class="main-content">
+
+    <div class="page-content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12 col-gl-12">
+                    <div style="height: 200px;background: #38D8A2;border-radius: 0.25rem;">
+                        <div class="row">
+                            <div class="col-xl-7 col-md-7">
+                               <div class="p-3">
+                                <h3 style="color: #fff;padding-top: 10px;">Invite friends</h3>
+                                <p style="padding-top:10px;color: #000;font-size: 16px;">Know people who deserve awesome customer service? Invite them here and help build the Teleperson community!</p>
+                               </div>
+                            </div>
+                            <div class="col-xl-5 col-md-5 pt-2 text-center">
+                                <img src="./assets/images/Invite-img.svg" alt="" width="300">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row mt-3">
+                
+                <div class="col-xl-8 col-md-8">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="d-flex">
+                                <h5 class="font-size-15 flex-grow-1 mb-3">Send an email invite</h5>
+                            </div>   
+                    
+
+                            <div class="email-input-wrap">
+
+                                <div class="search-wrap col-md-9">
+                                    <mat-chip-list #chipList aria-label="Email selection" style="width: 99%;">
+                                        <mat-chip *ngFor="let email of emails" (removed)="remove(email)">
+                                          {{email}}
+                                          <button matChipRemove>
+                                            <!-- <mat-icon>cancel</mat-icon> -->
+                                            <i class="ri-close-circle-fill"></i>
+                                          </button>
+                                        </mat-chip>
+                                        <input type="text" placeholder="email address" class="search-box" 
+                                        [matChipInputFor]="chipList"
+                                        [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                                        [matChipInputAddOnBlur]="addOnBlur"
+                                        (matChipInputTokenEnd)="add($event)">
+                                        <button mat-icon-button> <img src="assets/img/search.svg" alt=""></button>
+                                    </mat-chip-list>
+                                </div>
+                                <div class="email-btn-wrap col-md-3">
+                                    <button mat-icon-button (click)="saveInvitees()"><img src="assets/img/invite_send_btn.svg" alt=""></button>
+                                </div>
+                            </div>
+
+                            <div class="table-responsive">
+                                <table class="table table-nowrap mb-0">
+                                    <tbody>
+                                        <tr>
+                                            <td>
+                                                <p class="text-muted mb-0 font-size-11 text-uppercase">
+                                                Multiple addresses seperated by commas</p>
+                                                <h6 style="margin-top:10px;">Invited</h6>
+                                            </td>
+                                            <td></td>
+                                        </tr>
+                                        <tr *ngFor="let item of invitees">
+                                            <td>
+                                                <div class="d-flex">
+                                                    <div class="me-3">
+                                                      <img src="assets/images/users/avatar-7.jpg"
+                                                            class="avatar-xs h-auto rounded-circle" alt="Error">
+                                                    </div>
+                                                    <div>
+                                                        <h5 class="font-size-13 text-truncate pt-2"><a href="#"
+                                                                class="text-dark">{{item.sign_up_status?item.first_name + " " + item.last_name :item.email}}</a>
+                                                        </h5>
+                                                        
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            
+                                            <td style="text-align: right;">
+                                               <p  [ngStyle]="{'color':item.sign_up_status?'#42bfa6':'#495057'}">{{item.sign_up_status?'Signed up':'Waiting'}}</p>
+                                            </td>
+                                        </tr>
+                                        
+                                      
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-4 col-md-4">
+                    <div class="card">
+                        <div class="card-body">
+                          <h5>Your invite link</h5>
+                          <input type="text" class="form-control" id="username" placeholder="every.rg/dXvY74YB" style="border-radius: 8px!important;padding-left:20px;" [(ngModel)]="invite_link" disabled>
+                          <button type="button" class="btn btn-outline-success btn-rounded waves-effect waves-light mt-3" (click)="copyLink()">Copy the link</button>
+                          <span id="snackbar">Successfully Copied</span>
+                        </div>
+                    </div>
+                </div>
+
+               
+            </div>
+
+
+        </div>
+    </div>
+
+   <app-footer></app-footer>
+
+</div>
+
+
+
+<!-- <div style="height: 30vh;display: flex; background: #38D8A2;">
+    <div class="col-md-8">
+        <div style="color: white;
+        height: 70%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        padding: 0 2rem;">
+            <div style="font-size: 3rem;margin-top: 1.5rem;">Invite friends</div>
+            <div style="font-size: 1rem;word-spacing: 1px;">
+
+                Invite your friends to join the Teleperson platform and help build the community!
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div style="height: 100%;
+        display: flex;
+        align-items: flex-end;
+        justify-content: center;">
+
+            <img src="assets/img/invite.svg" alt="" style="height: 95%;">
+        </div>
+    </div>
+    
+</div>
+
+<div style="display: flex;">
+    <div class="col-md-8">
+        <mat-card style="margin: -3.4rem 1rem 0px 2rem;height: 62vh;">
+            <h3>Send an email invite</h3>
+            <div class="email-input-wrap">
+
+                <div class="search-wrap" style="width: 45%;">
+                    <mat-chip-list #chipList aria-label="Email selection" style="width: 99%;">
+                        <mat-chip *ngFor="let email of emails" (removed)="remove(email)">
+                          {{email}}
+                          <button matChipRemove>
+                            <mat-icon>cancel</mat-icon>
+                          </button>
+                        </mat-chip>
+                        <input type="text" placeholder="email address" class="search-box" 
+                        [matChipInputFor]="chipList"
+                        [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                        [matChipInputAddOnBlur]="addOnBlur"
+                        (matChipInputTokenEnd)="add($event)"> -->
+                        <!-- <mat-icon>search</mat-icon> -->
+                        <!-- <button mat-icon-button> <img src="assets/img/search.svg" alt=""></button>
+                    </mat-chip-list>
+                </div>
+                <div class="email-btn-wrap">
+                    <button mat-icon-button (click)="saveInvitees()"><img src="assets/img/invite_send_btn.svg" alt=""></button>
+                </div>
+            </div>
+            <h3 style="color:#adb5bd; margin: 0;">Multiple addresses can enter.</h3>
+
+            <div>
+                <h3 style="margin: 0;">Invited</h3>
+
+                <div>
+                    <div *ngFor="let item of invitees" class="invitees-list">
+                       <div class="avatar-wrap">
+                            <div mat-card-avatar>
+                                <img src="assets/img/avatar.jpeg" alt="" class="img-fluid img-rounded" style="height: 100%;width: 100%;"> -->
+                                <!-- <div *ngIf="!profileInfo?.profile" class="initials img-rounded" style="cursor: pointer;" (click)="gotoProfile()">{{getProfileInitials()}}</div>
+                                <img *ngIf="profileInfo?.profile" src="{{host}}profiles/{{profileInfo?.user_id}}/{{profileInfo?.profile}}" alt="" class="img-fluid img-rounded" style="height: 100%;width: 100%;"> -->
+                            <!-- </div>
+                            <div class="invite-name">
+                                {{item.sign_up_status?item.first_name + " " + item.last_name :item.email}}
+                            </div>
+                       </div>
+                        <div [ngStyle]="{'color':item.sign_up_status?'#48D9A8':'#959897'}">
+                            {{item.sign_up_status?'Signed up':'Waiting'}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </mat-card>
+    </div>
+    <div class="col-md-4">
+        <mat-card style="margin: 2rem 2rem 0px 1rem;height: 25vh;">
+            <h3>Your invite link</h3>
+            <div class="copy-input-wrap">
+
+                <div class="search-wrap" style="min-width: 100%;">
+                    <input type="text" placeholder="Your Invite Link" class="search-box" [(ngModel)]="invite_link" disabled>
+                </div>
+                <div class="copy-btn-wrap">
+                    <button mat-icon-button><img src="assets/img/copy_link_btn.svg" alt="" (click)="copyLink()"></button>
+                </div>
+                <span id="snackbar">Successfully Copied</span>
+            </div>
+        </mat-card>
+    </div>
+</div> -->
